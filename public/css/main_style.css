@@ -234,18 +234,18 @@ a:link {
   max-width: 85%;
 }
 #r1 {
-  width: 5%;
+  width: 10%;
 }
 #r2 {
   width: 40% !important;
   word-wrap: break-word;
 }
 #r3 {
-  width: 35% !important;
+  width: 40% !important;
   word-wrap: break-word;
 }
 #r4 {
-  width: 20% !important;
+  width: 10% !important;
   word-wrap: break-word;
 }
 #title {

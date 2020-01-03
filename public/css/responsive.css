@@ -19,10 +19,6 @@
 
 ******************************/
 
-#mobile-only {
-  display: none;
-}
-
 /************
 1. 1600px
 ************/
@@ -139,9 +135,6 @@
     left: 60%;
     width: 100px;
   }
-  #mobile-only {
-    display: flex;
-  }
 }
 
 /************
@@ -152,9 +145,6 @@
   .song-info {
     left: 60%;
     width: 100px;
-  }
-  #mobile-only {
-    display: flex;
   }
 }
 
@@ -201,9 +191,6 @@
     height: calc(100% - 150px);
     bottom: 75px;
     right: 0;
-  }
-  #mobile-only {
-    display: flex;
   }
 }
 
