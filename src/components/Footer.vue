@@ -13,7 +13,7 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col" style="padding:0">
           <div class="ft-content d-flex flew-row align-items-center">
             <!-- control -->
             <div class="control">

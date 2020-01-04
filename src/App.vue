@@ -1,7 +1,9 @@
 <template>
   <div>
     <headerr v-if="$route.path!='/login'"></headerr>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <footerr v-if="$route.path!='/login'"></footerr>
   </div>
 </template>

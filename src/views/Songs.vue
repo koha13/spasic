@@ -2,7 +2,7 @@
   <div>
     <div class="container all-song">
       <div class="row">
-        <div class="col-lg-10 col-sm-12">
+        <div class="col-12">
           <div id="title">
             <p>All Songs</p>
             <div id="but">
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div style="margin-bottom: 75px; ">
-            <div class="container all-song-content" style="max-width:100%;">
+            <div class="all-song-content">
               <songTable v-if="isSongTable"></songTable>
               <songCards v-else></songCards>
             </div>
@@ -31,16 +31,18 @@
         </div>
       </div>
     </div>
-    <!-- SideBar -->
-    <div
+    <!-- SideBar  tam thoi bo-->
+    <!-- <div
       class="col-lg-2 col-sm-0 col-xs-0 side-bar"
       style="margin-bottom: 75px; position: fixed; top: 80px; right: 5%;"
     >
       <div style="width: 100%;">
         <p id="side-bar-header">Lyric</p>
-        <p id="lyric">No lyric found</p>
+        <p id="lyric">
+          Lyrics here
+        </p>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>

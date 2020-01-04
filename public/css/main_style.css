@@ -111,11 +111,10 @@ a:link {
   background: var(--color-main);
   z-index: 100;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.596);
-  z-index: 2;
 }
 .header_content {
   width: calc(100% + 30px);
-  left: -20px;
+  /* left: -20px; */
   height: 75px;
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
@@ -231,7 +230,7 @@ a:link {
 ***************************************/
 .all-song {
   margin-top: 85px;
-  max-width: 85%;
+  max-width: 70%;
 }
 #r1 {
   width: 10%;
@@ -251,7 +250,7 @@ a:link {
 #title {
   font-size: 20px;
   color: white;
-  padding-bottom: 20px;
+  padding: 10px;
 }
 #title p {
   display: inline;
@@ -278,7 +277,9 @@ a:link {
 }
 
 .card:hover {
-  box-shadow: 0 5px 50px rgb(1, 170, 170), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 6px 6px black;
+  /* position: relative;
+  bottom: 10px; */
 }
 .card > .card-inner {
   padding: 5px;
@@ -342,14 +343,20 @@ h3 {
   bottom: 48px;
   right: 0;
   margin: 4px;
-  color: white;
-  padding: 2px 4px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 2px 4px 1px 4px;
   border-radius: 2px;
   letter-spacing: 0.5px;
   font-size: 12px;
-  font-weight: 300;
-  line-height: 8px;
-  background-color: var(--color-main);
+  font-weight: 500;
+  line-height: 12px;
+}
+#time span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 .card #image-1:hover #middle {
   opacity: 1;

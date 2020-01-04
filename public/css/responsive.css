@@ -79,6 +79,10 @@
   .header_content {
     width: 100%;
     left: auto;
+    height: 60px;
+  }
+  .all-song {
+    margin-top: 70px;
   }
   .main_nav {
     display: none;
@@ -175,6 +179,9 @@
   }
   .all-song {
     max-width: 100%;
+  }
+  .card {
+    pointer-events: none;
   }
   .side-bar {
     display: none;

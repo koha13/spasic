@@ -7,7 +7,7 @@
         <i class="fa fa-pause fa-5x"></i>
       </div>
       <div id="time">
-        <p>{{song.length | minutes}}</p>
+        <span>{{song.length | minutes}}</span>
       </div>
     </div>
     <div class="card-inner">
