@@ -13,7 +13,7 @@
     <div class="card-inner">
       <div class="content">
         <p id="header">{{song.name}}</p>
-        <i id="menu" class="fa fa-ellipsis-v fa-lg"></i>
+        <i id="menu" class="fa fa-ellipsis-v fa-lg" @click="openCtxMenu"></i>
         <p id="art-card">{{song.artists}}</p>
       </div>
     </div>
@@ -23,6 +23,11 @@
 export default {
   props: {
     song: Object
+  },
+  methods: {
+    openCtxMenu() {
+      this.$emit("openCtxMenu", this.song, $event);
+    }
   }
 };
 </script>

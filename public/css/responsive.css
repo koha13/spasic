@@ -180,9 +180,6 @@
   .all-song {
     max-width: 100%;
   }
-  .card {
-    pointer-events: none;
-  }
   .side-bar {
     display: none;
   }
