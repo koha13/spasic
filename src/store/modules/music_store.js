@@ -9,6 +9,9 @@ const state = {
 const mutations = {
   updateAllSongs(state, data) {
     state.allSongs = data;
+  },
+  updateList(state, value) {
+    state.allSongs = value;
   }
 };
 const actions = {
