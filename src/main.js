@@ -3,9 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store/index";
 import Vuelidate from "vuelidate";
+import VuePlyr from "vue-plyr";
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
+Vue.use(VuePlyr);
 
 Vue.filter("minutes", value => {
   if (!value || typeof value !== "number") return "00:00";

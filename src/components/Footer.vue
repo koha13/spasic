@@ -1,16 +1,5 @@
 <template>
   <div class="ft">
-    <div class="container" id="progressbar">
-      <div class="progress">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 75%"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
-    </div>
     <div class="container">
       <div class="row">
         <div class="col" style="padding:0">
@@ -22,24 +11,34 @@
                 <i class="fa fa-play fa-lg"></i>
                 <i class="fa fa-forward fa-lg"></i>
                 <i id="hi" class="fa fa-repeat fa-lg"></i>
+
+                <i id="hi" class="fa fa-random fa-lg"></i>
+                <img
+                  src="https://styleguide.iu.edu/images/1-1_placeholder_768px-768px.png"
+                  class="hi991"
+                />
               </a>
             </div>
 
             <!-- Main Navigation -->
             <nav class="song-info">
-              <p
-                style="margin-bottom: 0; margin-top: 10px;"
-              >qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+              <p style="margin-bottom: 0; margin-top: 10px;">
+                qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+              </p>
               <p>qwe</p>
             </nav>
 
             <!-- Menu -->
-            <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
-              <ul class="d-flex flex-row align-items-start justify-content-start">
+            <div
+              class="menu-bot d-flex flex-row align-items-center justify-content-start"
+            >
+              <ul
+                class="d-flex flex-row align-items-start justify-content-start"
+              >
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
                   <i id="hi" class="fa fa-volume-down fa-lg"></i>
-                  <i id="hi" class="fa fa-random fa-lg"></i>
+                  <i id="hi" class="fa fa-heart fa-lg"></i>
                   <i class="fa fa-list-ul fa-lg"></i>
                 </li>
               </ul>
@@ -51,10 +50,11 @@
   </div>
 </template>
 <style scoped>
-.progress {
-  height: 2px;
-  color: 2196f3;
-  background-color: transparent;
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+.control img {
+  width: 50px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 230px;
 }
 </style>

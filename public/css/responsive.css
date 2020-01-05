@@ -55,6 +55,9 @@
   .main_nav ul li:not(:last-of-type) {
     margin-right: 40px;
   }
+  .song-info {
+    left: 55%;
+  }
 }
 
 /************
@@ -96,6 +99,9 @@
   .song-info {
     left: 55%;
     width: 200px;
+  }
+  .hi991 {
+    display: none;
   }
 }
 
