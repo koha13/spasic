@@ -198,7 +198,7 @@
   }
   .list-song {
     width: 100vw;
-    height: calc(100% - 150px);
+    height: calc(100% - 135px);
     bottom: 75px;
     right: 0;
   }

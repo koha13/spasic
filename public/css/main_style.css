@@ -450,11 +450,11 @@ h3 {
 ***************************************/
 .list-song {
   background-color: var(--color5);
-  position: absolute;
+  position: fixed;
   width: 450px;
   height: 550px;
   bottom: 80px;
-  right: 30vh;
+  right: 17%;
   overflow: hidden;
   /* overflow: auto; */
   border-width: 10px;
@@ -462,12 +462,12 @@ h3 {
   border-style: solid;
   border-color: #000000;
   box-shadow: 5px 5px 200px rgb(2, 228, 228);
-  z-index: 1;
+  z-index: 5000;
 }
 .list-song .headerr {
   color: var(--color4);
   font-size: 25px;
-  margin: 10px 0 0 10px;
+  margin: 10px 0 0 5px;
   display: inline;
 }
 .list-song #top i {

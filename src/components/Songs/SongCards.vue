@@ -51,12 +51,10 @@
   </div>
 </template>
 <script>
-import SongCard from "./SongCard";
 import ContextMenu from "@/components/ContextMenu/ContextMenu";
 import CustomModal from "@/components/CustomModal";
 export default {
   components: {
-    SongCard,
     ContextMenu,
     CustomModal
   },

@@ -22,24 +22,24 @@
 
             <!-- Main Navigation -->
             <nav class="song-info">
-              <p style="margin-bottom: 0; margin-top: 10px;">
-                qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-              </p>
+              <p
+                style="margin-bottom: 0; margin-top: 10px;"
+              >qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
               <p>qwe</p>
             </nav>
 
             <!-- Menu -->
-            <div
-              class="menu-bot d-flex flex-row align-items-center justify-content-start"
-            >
-              <ul
-                class="d-flex flex-row align-items-start justify-content-start"
-              >
+            <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
+              <ul class="d-flex flex-row align-items-start justify-content-start">
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
                   <i id="hi" class="fa fa-volume-down fa-lg"></i>
                   <i id="hi" class="fa fa-heart fa-lg"></i>
-                  <i class="fa fa-list-ul fa-lg"></i>
+                  <i
+                    class="fa fa-list-ul fa-lg"
+                    @click="showCurrentList = !showCurrentList"
+                    :class="{actived: showCurrentList}"
+                  ></i>
                 </li>
               </ul>
             </div>
@@ -47,8 +47,26 @@
         </div>
       </div>
     </div>
+    <transition name="slide-fade">
+      <keep-alive>
+        <currentList v-if="true"></currentList>
+      </keep-alive>
+    </transition>
   </div>
 </template>
+<script>
+import CurrentList from "@/components/CurrentList";
+export default {
+  components: {
+    CurrentList
+  },
+  data() {
+    return {
+      showCurrentList: false
+    };
+  }
+};
+</script>
 <style scoped>
 .control img {
   width: 50px;
@@ -56,5 +74,19 @@
   transform: translate(-50%, -50%);
   top: 50%;
   left: 230px;
+}
+.actived {
+  color: var(--color-hover);
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
 }
 </style>
