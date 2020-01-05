@@ -22,15 +22,19 @@
 
             <!-- Main Navigation -->
             <nav class="song-info">
-              <p
-                style="margin-bottom: 0; margin-top: 10px;"
-              >qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+              <p style="margin-bottom: 0; margin-top: 10px;">
+                qwewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+              </p>
               <p>qwe</p>
             </nav>
 
             <!-- Menu -->
-            <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
-              <ul class="d-flex flex-row align-items-start justify-content-start">
+            <div
+              class="menu-bot d-flex flex-row align-items-center justify-content-start"
+            >
+              <ul
+                class="d-flex flex-row align-items-start justify-content-start"
+              >
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
                   <i id="hi" class="fa fa-volume-down fa-lg"></i>
@@ -38,7 +42,7 @@
                   <i
                     class="fa fa-list-ul fa-lg"
                     @click="showCurrentList = !showCurrentList"
-                    :class="{actived: showCurrentList}"
+                    :class="{ actived: showCurrentList }"
                   ></i>
                 </li>
               </ul>
@@ -49,7 +53,7 @@
     </div>
     <transition name="slide-fade">
       <keep-alive>
-        <currentList v-if="true"></currentList>
+        <currentList v-if="showCurrentList"></currentList>
       </keep-alive>
     </transition>
   </div>

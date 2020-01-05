@@ -467,17 +467,33 @@ h3 {
 .list-song .headerr {
   color: var(--color4);
   font-size: 25px;
-  margin: 10px 0 0 5px;
-  display: inline;
+  padding: 5px 0 0px 12px;
+  /* display: inline; */
 }
-.list-song #top i {
-  float: right;
-  color: var(--color-text);
-  margin: 10px 10px 0 0;
+#show2 {
+  visibility: hidden;
 }
-.list-song #top i:hover {
+.list-song #top .controls-2 .item {
+  padding: 0 5px;
+}
+.list-song #top .controls-2 i:hover {
   color: var(--color4);
   cursor: pointer;
+}
+.list-song #top .controls-2 button {
+  color: var(--color-text);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.list-song #top .controls-2 button:hover {
+  color: var(--color-hover);
+}
+.list-song #top .controls-2 {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-30%);
 }
 .list-song .content {
   overflow-x: hidden;

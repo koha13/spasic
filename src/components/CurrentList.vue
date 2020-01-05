@@ -1,8 +1,13 @@
 <template>
   <div class="list-song">
-    <div id="top">
+    <div id="top" style="position: relative">
       <p class="headerr">Next up</p>
-      <i class="fa fa-chevron-down fa-sm"></i>
+      <div class="controls-2">
+        <i id="show2" class="fa fa-repeat fa-lg item"></i>
+        <i id="show2" class="fa fa-random fa-lg item"></i>
+        <button class="item">Clear</button>
+        <i class="fa fa-chevron-down fa-sm item"></i>
+      </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
     <div class="content">
