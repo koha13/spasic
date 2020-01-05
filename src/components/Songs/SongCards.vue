@@ -31,17 +31,34 @@
       <li class="ctx-item">Like</li>
       <li class="ctx-item">After current song</li>
       <li class="ctx-item">Add to queue</li>
-      <li class="ctx-item">Add to playlist</li>
+      <li class="ctx-item" @click="showModalPl=true">Add to playlist</li>
     </context-menu>
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+      <slot>
+        <ul class="list-group list-group-flush" style="width:max-content">
+          <li>
+            <p>qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+          </li>
+          <li>
+            <p>qww</p>
+          </li>
+          <li>
+            <p>qwww</p>
+          </li>
+        </ul>
+      </slot>
+    </customModal>
   </div>
 </template>
 <script>
 import SongCard from "./SongCard";
 import ContextMenu from "@/components/ContextMenu/ContextMenu";
+import CustomModal from "@/components/CustomModal";
 export default {
   components: {
     SongCard,
-    ContextMenu
+    ContextMenu,
+    CustomModal
   },
   computed: {
     allSongs: {
@@ -52,7 +69,8 @@ export default {
   },
   data() {
     return {
-      songInContext: null
+      songInContext: null,
+      showModalPl: false
     };
   },
   methods: {
@@ -72,3 +90,28 @@ export default {
   }
 };
 </script>
+<style scoped>
+ul {
+  list-style-type: armenian;
+  padding: 0 1rem;
+}
+ul li {
+  padding: 5px 0;
+}
+ul li p {
+  max-width: 450px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  ul li p {
+    max-width: 300px;
+  }
+}
+</style>

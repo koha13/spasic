@@ -33,10 +33,11 @@ export default {
   computed: {
     playerOptions() {
       const options = {
-        title: "This is an example video",
+        title: "Audio",
         playsinline: true,
         controls: ["progress"],
-        debug: false
+        debug: false,
+        storage: { enabled: true, key: "plyr" }
       };
       return options;
     }
