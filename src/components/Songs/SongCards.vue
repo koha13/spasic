@@ -1,17 +1,15 @@
 <template>
   <div class="row">
-    <div
-      class="col-sm-6 col-xs-12 col-lg-3 col-md-4"
-      v-for="(song,index) in allSongs"
-      :key="index"
-      @click="test"
-    >
-      <div class="card">
-        <div id="image-1" style="width: 100%; height: 150px;">
+    <div class="col-sm-6 col-xs-12 col-lg-3 col-md-4" v-for="(song,index) in allSongs" :key="index">
+      <div :class="{card: true, current: song.id == $store.getters.currentSong.id}">
+        <div id="image-1" style="width: 100%; height: 150px;" @click="playSong(song)">
           <img style="width:100%; height:150px; object-fit: cover;" :src="song.avatar" />
           <div id="middle">
-            <!-- <i class="fa fa-play fa-5x"></i> -->
-            <i class="fa fa-pause fa-5x"></i>
+            <i
+              class="fa fa-pause fa-5x"
+              v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+            ></i>
+            <i class="fa fa-play fa-5x" v-else></i>
           </div>
           <div id="time">
             <span>{{song.length | minutes}}</span>
@@ -79,11 +77,8 @@ export default {
     resetCtxLocals() {
       this.songInContext = null;
     },
-    playSong(locals) {
-      console.log(this.songInContext);
-    },
-    test() {
-      console.log("here");
+    playSong(song) {
+      this.$store.dispatch("playSong", song);
     }
   }
 };
@@ -111,5 +106,11 @@ ul li p {
   ul li p {
     max-width: 300px;
   }
+}
+.current #image-1 #middle {
+  opacity: 1;
+}
+.current #image-1 img {
+  opacity: 0.1;
 }
 </style>

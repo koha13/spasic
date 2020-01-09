@@ -5,12 +5,7 @@
       <router-view></router-view>
     </keep-alive>
     <div class="container" id="progress-plyr">
-      <vue-plyr
-        v-if="$route.path != '/login'"
-        :emit="['ready', 'timeupdate', 'playing']"
-        ref="player"
-        :options="playerOptions"
-      >
+      <vue-plyr v-if="$route.path != '/login'" ref="player" :options="playerOptions">
         <audio>
           <source
             src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3"
@@ -41,6 +36,10 @@ export default {
       };
       return options;
     }
+  },
+  mounted() {
+    this.$store.state.music_store.player = this.$refs.player.player;
+    this.$store.dispatch("play");
   }
 };
 </script>

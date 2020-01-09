@@ -19,7 +19,7 @@
                 @click="changeSongView"
               ></i>
               <i class="fa fa-random fa-lg"></i>
-              <i class="fa fa-play fa-lg" style="margin-left: 10px;"></i>
+              <i class="fa fa-play fa-lg" style="margin-left: 10px;" @click="playAllSongs"></i>
             </div>
           </div>
           <div style="margin-bottom: 75px; ">
@@ -61,6 +61,9 @@ export default {
   methods: {
     changeSongView() {
       this.isSongTable = !this.isSongTable;
+    },
+    playAllSongs() {
+      this.$store.dispatch("playAllSong");
     }
   },
   created() {

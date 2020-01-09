@@ -6,7 +6,7 @@
         <i id="show2" class="fa fa-repeat fa-lg item"></i>
         <i id="show2" class="fa fa-random fa-lg item"></i>
         <button class="item">Clear</button>
-        <i class="fa fa-chevron-down fa-sm item"></i>
+        <i class="fa fa-chevron-down fa-sm item" @click="$emit('close')"></i>
       </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
@@ -22,7 +22,7 @@
           handle=".handle"
         >
           <div
-            class="col-md-12 item"
+            :class="{'col-md-12': true, item:true, current: song.id == $store.getters.currentSong.id}"
             v-for="(song, index) in allSongs"
             :key="index"
           >
@@ -30,34 +30,31 @@
               <div class="media-left">
                 <i class="fa fa-bars handle" style="padding-right:5px;"></i>
                 <a
-                  href="#"
+                  id="image-2"
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
+                  @click="playSong(song)"
                 >
-                  <img
-                    style="width: 40px; height: 40px;"
-                    class="media-object"
-                    :src="song.avatar"
-                  />
+                  <img style="width: 40px; height: 40px;" class="media-object" :src="song.avatar" />
                   <div id="middle">
-                    <i class="fa fa-play-circle-o fa-2x"></i>
+                    <i
+                      class="fa fa-pause-circle-o fa-2x"
+                      v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+                    ></i>
+                    <i class="fa fa-play-circle-o fa-2x" v-else></i>
                   </div>
                 </a>
               </div>
               <div class="media-body">
                 <p class="media-heading elle">{{ song.name }}</p>
-                <p class="media-des elle">
-                  {{ song.artists }}
-                </p>
+                <p class="media-des elle">{{ song.artists }}</p>
                 <div class="media-more">
-                  <p class="media-more-time" style="margin: 0; padding: 0;">
-                    {{ song.length | minutes }}
-                  </p>
+                  <p
+                    class="media-more-time"
+                    style="margin: 0; padding: 0;"
+                  >{{ song.length | minutes }}</p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
-                    <i
-                      style="margin-left: 10px;"
-                      class="fa fa-ellipsis-h fa-md"
-                    ></i>
+                    <i style="margin-left: 10px;" class="fa fa-ellipsis-h fa-md"></i>
                   </div>
                 </div>
               </div>
@@ -82,10 +79,10 @@ export default {
   computed: {
     allSongs: {
       get: function() {
-        return this.$store.state.music_store.allSongs;
+        return this.$store.state.music_store.currentList;
       },
       set(value) {
-        this.$store.commit("updateList", value);
+        this.$store.commit("updateCurrentList", value);
       }
     },
     dragOptions() {
@@ -95,6 +92,11 @@ export default {
         disabled: false,
         ghostClass: "ghost"
       };
+    }
+  },
+  methods: {
+    playSong(song) {
+      this.$store.dispatch("playSong", song);
     }
   }
 };
@@ -114,5 +116,16 @@ export default {
   float: left;
   padding-top: 13px;
   padding-bottom: 8px;
+}
+</style>
+<style scoped>
+.current #image-2 img {
+  opacity: 0.1;
+}
+.current #image-2 #middle {
+  opacity: 1;
+}
+.current {
+  background-color: rgb(43, 54, 80);
 }
 </style>
