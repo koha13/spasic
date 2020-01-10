@@ -18,8 +18,20 @@
                 style="margin-right: 10px;"
                 @click="changeSongView"
               ></i>
-              <i class="fa fa-random fa-lg"></i>
-              <i class="fa fa-play fa-lg" style="margin-left: 10px;" @click="playAllSongs"></i>
+              <i
+                class="fa fa-random fa-lg"
+                @click="
+                  $store.dispatch(
+                    'addShuffle',
+                    $store.state.music_store.allSongs
+                  )
+                "
+              ></i>
+              <i
+                class="fa fa-play fa-lg"
+                style="margin-left: 10px;"
+                @click="playAllSongs"
+              ></i>
             </div>
           </div>
           <div style="margin-bottom: 75px; ">

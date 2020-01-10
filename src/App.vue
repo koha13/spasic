@@ -5,13 +5,14 @@
       <router-view></router-view>
     </keep-alive>
     <div class="container" id="progress-plyr">
-      <vue-plyr v-if="$route.path != '/login'" ref="player" :options="playerOptions">
-        <audio>
-          <source
-            src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3"
-            type="audio/mp3"
-          />
-        </audio>
+      <vue-plyr
+        v-if="$route.path != '/login'"
+        ref="player"
+        :options="playerOptions"
+        @ended="$store.dispatch('onEnd')"
+        :emit="['ended']"
+      >
+        <audio></audio>
       </vue-plyr>
     </div>
     <footerr v-if="$route.path != '/login'"></footerr>
@@ -39,14 +40,13 @@ export default {
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
-    this.$store.dispatch("play");
   }
 };
 </script>
 <style>
 #progress-plyr {
   position: fixed;
-  bottom: 50px;
+  bottom: 52px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;

@@ -25,10 +25,13 @@
       </div>
     </div>
     <context-menu ref="ctx" @ctx-open="onCtxOpen" @ctx-cancel="resetCtxLocals">
-      <li class="ctx-item" @click="playSong">Play</li>
+      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)">Play</li>
       <li class="ctx-item">Like</li>
-      <li class="ctx-item">After current song</li>
-      <li class="ctx-item">Add to queue</li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('addToNextSong',songInContext)"
+      >After current song</li>
+      <li class="ctx-item" @click="$store.dispatch('addToCurrentList',songInContext)">Add to queue</li>
       <li class="ctx-item" @click="showModalPl=true">Add to playlist</li>
     </context-menu>
     <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
