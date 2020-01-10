@@ -10,8 +10,8 @@
       </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
-    <div class="content">
-      <div class="container" style="max-width: 100%;;">
+    <div class="content" id="scrolling_cur_list">
+      <div class="container" style="max-width: 100%;">
         <draggable
           tag="div"
           class="row"
@@ -22,7 +22,11 @@
           handle=".handle"
         >
           <div
-            :class="{'col-md-12': true, item:true, current: song.id == $store.getters.currentSong.id}"
+            :class="{
+              'col-md-12': true,
+              item: true,
+              current1: song.id == $store.getters.currentSong.id
+            }"
             v-for="(song, index) in allSongs"
             :key="index"
           >
@@ -34,11 +38,18 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img style="width: 40px; height: 40px;" class="media-object" :src="song.avatar" />
+                  <img
+                    style="width: 40px; height: 40px;"
+                    class="media-object"
+                    :src="song.avatar"
+                  />
                   <div id="middle">
                     <i
                       class="fa fa-pause-circle-o fa-2x"
-                      v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+                      v-if="
+                        song.id == $store.getters.currentSong.id &&
+                          $store.getters.isPlaying
+                      "
                     ></i>
                     <i class="fa fa-play-circle-o fa-2x" v-else></i>
                   </div>
@@ -48,13 +59,15 @@
                 <p class="media-heading elle">{{ song.name }}</p>
                 <p class="media-des elle">{{ song.artists }}</p>
                 <div class="media-more">
-                  <p
-                    class="media-more-time"
-                    style="margin: 0; padding: 0;"
-                  >{{ song.length | minutes }}</p>
+                  <p class="media-more-time" style="margin: 0; padding: 0;">
+                    {{ song.length | minutes }}
+                  </p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
-                    <i style="margin-left: 10px;" class="fa fa-ellipsis-h fa-md"></i>
+                    <i
+                      style="margin-left: 10px;"
+                      class="fa fa-ellipsis-h fa-md"
+                    ></i>
                   </div>
                 </div>
               </div>
@@ -98,6 +111,13 @@ export default {
     playSong(song) {
       this.$store.dispatch("playSong", song);
     }
+  },
+  activated() {
+    let temp = document.getElementsByClassName("current1");
+    if (temp != null) {
+      let topPos = temp[0].offsetTop;
+      document.getElementById("scrolling_cur_list").scrollTop = topPos - 70;
+    }
   }
 };
 </script>
@@ -119,13 +139,13 @@ export default {
 }
 </style>
 <style scoped>
-.current #image-2 img {
+.current1 #image-2 img {
   opacity: 0.1;
 }
-.current #image-2 #middle {
+.current1 #image-2 #middle {
   opacity: 1;
 }
-.current {
+.current1 {
   background-color: rgb(43, 54, 80);
 }
 </style>
