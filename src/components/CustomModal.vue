@@ -27,7 +27,7 @@
 
           <div class="modal-footer" @click="showq" v-if="!showAddPl">
             <div id="newpl">
-              <i class="fa fa-plus-square-o fa-lg"></i>
+              <i class="fa fa-plus-square fa-lg"></i>
               Add to new playlist
             </div>
           </div>
@@ -110,6 +110,7 @@ export default {
   max-height: 305px;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 0;
 }
 @media (max-width: 900px) {
   .modal-dialog {

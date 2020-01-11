@@ -324,7 +324,7 @@ h3 {
   color: var(--color-hover);
   cursor: pointer;
 }
-#middle {
+.card #middle {
   transition: 0.5s ease;
   opacity: 0;
   position: absolute;
@@ -546,14 +546,15 @@ h3 {
   padding-bottom: 7px;
 }
 .list-song .item #middle {
-  transition: 0.5s ease;
+  /* transition: 0.5s ease; */
   opacity: 0;
   position: absolute;
   top: 70%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* 
   -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   text-align: center;
   color: var(--color-hover);
 }

@@ -38,20 +38,16 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img
-                    style="width: 40px; height: 40px;"
-                    class="media-object"
-                    :src="song.avatar"
-                  />
+                  <img style="width: 40px; height: 40px;" class="media-object" :src="song.avatar" />
                   <div id="middle">
                     <i
-                      class="fa fa-pause-circle-o fa-2x"
+                      class="fa fa-pause-circle fa-2x"
                       v-if="
                         song.id == $store.getters.currentSong.id &&
                           $store.getters.isPlaying
                       "
                     ></i>
-                    <i class="fa fa-play-circle-o fa-2x" v-else></i>
+                    <i class="fas fa-play-circle fa-2x" v-else></i>
                   </div>
                 </a>
               </div>
@@ -59,15 +55,13 @@
                 <p class="media-heading elle">{{ song.name }}</p>
                 <p class="media-des elle">{{ song.artists }}</p>
                 <div class="media-more">
-                  <p class="media-more-time" style="margin: 0; padding: 0;">
-                    {{ song.length | minutes }}
-                  </p>
+                  <p
+                    class="media-more-time"
+                    style="margin: 0; padding: 0;"
+                  >{{ song.length | minutes }}</p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
-                    <i
-                      style="margin-left: 10px;"
-                      class="fa fa-ellipsis-h fa-md"
-                    ></i>
+                    <i style="margin-left: 10px;" class="fa fa-ellipsis-h fa-md"></i>
                   </div>
                 </div>
               </div>

@@ -7,36 +7,32 @@
             <!-- control -->
             <div class="control">
               <a class="d-flex flex-row align-items-end justify-content-start">
-                <i
-                  class="fa fa-backward fa-lg"
-                  @click="$store.dispatch('backSong')"
-                ></i>
+                <i class="fa fa-backward fa-lg" @click="$store.dispatch('backSong')"></i>
                 <i
                   v-if="!$store.getters.isPlaying"
                   class="fa fa-play fa-lg"
                   @click="$store.dispatch('play')"
                 ></i>
+                <i v-else class="fa fa-pause fa-lg" @click="$store.dispatch('pause')"></i>
+                <i class="fa fa-forward fa-lg" @click="$store.dispatch('nextSong')"></i>
                 <i
-                  v-else
-                  class="fa fa-pause fa-lg"
-                  @click="$store.dispatch('pause')"
-                ></i>
-                <i
-                  class="fa fa-forward fa-lg"
-                  @click="$store.dispatch('nextSong')"
+                  id="hi"
+                  class="fa fa-repeat fa-lg"
+                  @click="$store.commit('changeLoop')"
+                  v-if="$store.getters.loop==0"
                 ></i>
                 <i
                   id="hi"
-                  :class="{
-                    fa: true,
-                    'fa-repeat': true,
-                    'fa-lg': true,
-                    loop1: $store.getters.loop == 1,
-                    loopAll: $store.getters.loop == 2
-                  }"
+                  class="fa fa-repeat-1 fa-lg loopAll"
                   @click="$store.commit('changeLoop')"
+                  v-else-if="$store.getters.loop==1"
                 ></i>
-
+                <i
+                  id="hi"
+                  class="fa fa-repeat fa-lg loopAll"
+                  @click="$store.commit('changeLoop')"
+                  v-else
+                ></i>
                 <i
                   id="hi"
                   :class="{
@@ -53,19 +49,13 @@
 
             <!-- Main Navigation -->
             <nav class="song-info">
-              <p style="margin-bottom: 0; margin-top: 10px;">
-                {{ $store.getters.currentSong.name }}
-              </p>
+              <p style="margin-bottom: 0; margin-top: 10px;">{{ $store.getters.currentSong.name }}</p>
               <p>{{ $store.getters.currentSong.artists }}</p>
             </nav>
 
             <!-- Menu -->
-            <div
-              class="menu-bot d-flex flex-row align-items-center justify-content-start"
-            >
-              <ul
-                class="d-flex flex-row align-items-start justify-content-start"
-              >
+            <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
+              <ul class="d-flex flex-row align-items-start justify-content-start">
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
                   <input
@@ -94,10 +84,7 @@
     </div>
     <transition name="slide-fade">
       <keep-alive>
-        <currentList
-          v-if="showCurrentList"
-          @close="showCurrentList = false"
-        ></currentList>
+        <currentList v-if="showCurrentList" @close="showCurrentList = false"></currentList>
       </keep-alive>
     </transition>
   </div>

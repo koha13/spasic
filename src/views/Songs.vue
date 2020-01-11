@@ -27,11 +27,7 @@
                   )
                 "
               ></i>
-              <i
-                class="fa fa-play fa-lg"
-                style="margin-left: 10px;"
-                @click="playAllSongs"
-              ></i>
+              <i class="fa fa-play fa-lg" style="margin-left: 10px;" @click="playAllSongs"></i>
             </div>
           </div>
           <div style="margin-bottom: 75px; ">

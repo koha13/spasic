@@ -87,17 +87,15 @@ export default {
 };
 </script>
 <style scoped>
-ul {
-  list-style-type: armenian;
-  padding: 0 1rem;
+ul li:hover {
+  background: rgb(71, 68, 68);
 }
 ul li {
   padding: 5px 0;
 }
 ul li p {
   max-width: 450px;
-  padding: 0;
-  margin: 0;
+  padding: 0 1rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
