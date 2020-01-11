@@ -145,6 +145,12 @@
     left: 60%;
     width: 100px;
   }
+  .all-song {
+    max-width: 100%;
+  }
+  .playlists {
+    max-width: 100%;
+  }
 }
 
 /************
@@ -183,9 +189,7 @@
   .menu_nav ul li a {
     font-size: 30px;
   }
-  .all-song {
-    max-width: 100%;
-  }
+
   .side-bar {
     display: none;
   }

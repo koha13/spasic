@@ -1,4 +1,5 @@
 import songs from "@/axios/songs";
+import playlists from "@/axios/playlists";
 
 const state = {
   allSongs: Array,
@@ -9,11 +10,15 @@ const state = {
   isPlaying: false,
   loop: 0,
   random: false,
-  storeList: null
+  storeList: null,
+  playlists: []
 };
 const mutations = {
   updateAllSongs(state, value) {
     state.allSongs = value;
+  },
+  updatePlaylists(state, value) {
+    state.playlists = value;
   },
   updateCurrentList(state, value) {
     state.currentList = value;
@@ -206,6 +211,18 @@ const actions = {
         commit("changeRandom");
       }
     }
+  },
+  fetchPlaylists({ commit }) {
+    playlists
+      .get("", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      })
+      .then(res => {
+        console.log(res.data);
+        commit("updatePlaylists", res.data);
+      });
   }
 };
 const getters = {

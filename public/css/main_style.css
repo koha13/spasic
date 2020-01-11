@@ -640,3 +640,9 @@ h3 {
   display: inline-block;
   left: 50%;
 }
+
+/* Playlists */
+.playlists {
+  margin-top: 85px;
+  max-width: 70%;
+}
