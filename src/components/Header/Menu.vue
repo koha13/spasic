@@ -1,5 +1,5 @@
 <template>
-  <div class="menu active">
+  <div class="menu">
     <div class="menu_container" @click="$emit('close')">
       <div class="menu_background"></div>
       <div class="menu_close" @click.stop="$emit('close')">
@@ -52,17 +52,11 @@ export default {
   width: 100vw;
   height: 100vh;
   z-index: 101;
-  visibility: hidden;
-  opacity: 0;
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
   -ms-transition: all 400ms ease;
   -o-transition: all 400ms ease;
   transition: all 400ms ease;
-}
-.menu.active {
-  visibility: visible;
-  opacity: 1;
 }
 .menu_container {
   width: 100%;
@@ -75,7 +69,7 @@ export default {
   width: 100%;
   height: 100%;
   background: black;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .menu_close {
   position: absolute;

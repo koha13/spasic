@@ -7,7 +7,7 @@
             <!-- Logo -->
             <div class="logo">
               <a class="d-flex flex-row align-items-end justify-content-start">
-                <img src="../assets/logo-new.png" class="logo-image" />
+                <img src="../../assets/logo-new.png" class="logo-image" />
                 <span class="logo_text">spasic</span>
               </a>
             </div>
@@ -56,7 +56,7 @@
   </header>
 </template>
 <script>
-import Menuu from "@/components/Menu";
+import Menuu from "./Menu";
 export default {
   components: {
     Menuu

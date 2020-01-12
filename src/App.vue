@@ -19,8 +19,8 @@
   </div>
 </template>
 <script>
-import Headerr from "@/components/Header.vue";
-import Footerr from "@/components/Footer.vue";
+import Headerr from "@/components/Header/Header.vue";
+import Footerr from "@/components/Footer/Footer";
 export default {
   components: {
     Headerr,

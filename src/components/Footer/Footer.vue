@@ -88,7 +88,7 @@
   </div>
 </template>
 <script>
-import CurrentList from "@/components/CurrentList";
+import CurrentList from "./CurrentList";
 export default {
   components: {
     CurrentList
