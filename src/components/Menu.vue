@@ -1,21 +1,21 @@
 <template>
   <div class="menu active">
-    <div class="menu_container">
+    <div class="menu_container" @click="$emit('close')">
       <div class="menu_background"></div>
-      <div class="menu_close" @click="$emit('close')">
+      <div class="menu_close" @click.stop="$emit('close')">
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
       <div class="menu_content d-flex flex-column align-items-center justify-content-start">
         <nav class="menu_nav">
           <ul class="d-flex flex-column align-items-center justify-content-start">
             <li>
-              <a :class="{ active: $route.path == '/' }" @click="goHome">Home</a>
+              <a :class="{ active: $route.path == '/' }" @click.stop="goHome">Home</a>
             </li>
             <li>
-              <a :class="{ active: $route.path == '/songs' }" @click="goSongs">Songs</a>
+              <a :class="{ active: $route.path == '/songs' }" @click.stop="goSongs">Songs</a>
             </li>
             <li>
-              <a :class="{ active: $route.path == '/playlists' }" @click="goPls">Playlists</a>
+              <a :class="{ active: $route.path == '/playlists' }" @click.stop="goPls">Playlists</a>
             </li>
             <li>
               <a>About us</a>
