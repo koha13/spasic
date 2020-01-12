@@ -61,7 +61,11 @@
                   >{{ song.length | minutes }}</p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
-                    <i style="margin-left: 10px;" class="fa fa-ellipsis-h fa-md"></i>
+                    <i
+                      style="margin-left: 10px;"
+                      class="fa fa-ellipsis-h fa-md"
+                      @click.stop="$refs.ctx2.open($event, song)"
+                    ></i>
                   </div>
                 </div>
               </div>
@@ -70,18 +74,50 @@
         </draggable>
       </div>
     </div>
+    <context-menu ref="ctx2" @ctx-open="onCtxOpen" @ctx-cancel="resetCtxLocals">
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('pause')"
+        v-if="songInContext === $store.getters.currentSong && $store.getters.isPlaying==true"
+      >Pause</li>
+      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)" v-else>Play</li>
+      <li class="ctx-item">Like</li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('addToNextSong',songInContext)"
+      >After current song</li>
+      <li class="ctx-item" @click="addToPl">Add to playlist</li>
+    </context-menu>
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+      <slot>
+        <ul class="list-group list-group-flush" style="width:max-content">
+          <li v-for="(pl,index) in pls" :key="index">
+            <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
+            <i class="far fa-square fa-lg" v-else></i>
+            <p>{{pl.name}}</p>
+          </li>
+        </ul>
+      </slot>
+    </customModal>
   </div>
 </template>
 <script>
 import draggable from "vuedraggable";
+import ContextMenu from "@/components/ContextMenu/ContextMenu";
+import CustomModal from "@/components/CustomModal";
 export default {
   data() {
     return {
-      drag: false
+      drag: false,
+      songInContext: null,
+      showModalPl: false,
+      pls: []
     };
   },
   components: {
-    draggable
+    draggable,
+    ContextMenu,
+    CustomModal
   },
   computed: {
     allSongs: {
@@ -102,13 +138,26 @@ export default {
     }
   },
   methods: {
+    onCtxOpen(locals) {
+      this.songInContext = locals;
+    },
+
+    resetCtxLocals() {
+      this.songInContext = null;
+    },
     playSong(song) {
       this.$store.dispatch("playSong", song);
+    },
+    addToPl() {
+      this.showModalPl = true;
+      this.$store.dispatch("checkSong", this.songInContext).then(res => {
+        this.pls = res;
+      });
     }
   },
   activated() {
     let temp = document.getElementsByClassName("current1");
-    if (temp != null) {
+    if (temp.length > 0) {
       let topPos = temp[0].offsetTop;
       document.getElementById("scrolling_cur_list").scrollTop = topPos - 70;
     }
@@ -142,4 +191,30 @@ export default {
 .current1 {
   background-color: rgb(43, 54, 80);
 }
+ul li {
+  padding: 5px 0;
+  position: relative;
+  cursor: pointer;
+}
+ul li i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+}
+ul li p {
+  max-width: 450px;
+  padding: 0 1rem 0 2.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  ul li p {
+    max-width: 300px;
+  }
+}
 </style>
+
