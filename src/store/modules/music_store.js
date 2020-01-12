@@ -5,7 +5,6 @@ const state = {
   allSongs: Array,
   currentSong: Object,
   currentList: [],
-  volume: localStorage.getItem("plyr").volume,
   player: Object,
   isPlaying: false,
   loop: 0,
@@ -198,11 +197,13 @@ const actions = {
     });
   },
   addShuffle({ commit, dispatch }, value) {
-    commit("updateCurrentList", [...value]);
-    commit("updateStoreList", [...value]);
-    commit("shuffleCurrentList");
-    commit("changeRandom");
-    dispatch("playCurrentList");
+    if (value.length > 0) {
+      commit("updateCurrentList", [...value]);
+      commit("updateStoreList", [...value]);
+      commit("shuffleCurrentList");
+      commit("changeRandom");
+      dispatch("playCurrentList");
+    }
   },
   changeShuffle({ state, commit }) {
     if (state.currentList.length > 0) {
@@ -245,10 +246,12 @@ const actions = {
     for (i = 0; i < state.playlists.length; i++) {
       if (state.playlists[i].id == idPl) break;
     }
-    commit("updateCurrentList", [...state.playlists[i].songs]);
-    commit("updateCurrentSong", state.currentList[0]);
-    commit("updateSourcePlayer");
-    dispatch("play");
+    if (state.playlists[i].songs.length > 0) {
+      commit("updateCurrentList", [...state.playlists[i].songs]);
+      commit("updateCurrentSong", state.currentList[0]);
+      commit("updateSourcePlayer");
+      dispatch("play");
+    }
   }
 };
 const getters = {

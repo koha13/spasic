@@ -7,33 +7,17 @@
           <div class="va">
             <input type="text" placeholder="username" v-model.trim="username" />
             <div class="alert-validate" v-if="$v.username.$error">
-              <div class="alert-content" v-if="!$v.username.required">
-                Required zZz
-              </div>
-              <div class="alert-content" v-else-if="!$v.username.minLength">
-                At least 6 characters
-              </div>
-              <div class="alert-content" v-else-if="!$v.username.maxLength">
-                Too many characters
-              </div>
+              <div class="alert-content" v-if="!$v.username.required">Required zZz</div>
+              <div class="alert-content" v-else-if="!$v.username.minLength">At least 6 characters</div>
+              <div class="alert-content" v-else-if="!$v.username.maxLength">Too many characters</div>
             </div>
           </div>
           <div class="va">
-            <input
-              type="password"
-              placeholder="password"
-              v-model.trim="password"
-            />
+            <input type="password" placeholder="password" v-model.trim="password" />
             <div class="alert-validate" v-if="$v.password.$error">
-              <div class="alert-content" v-if="!$v.password.required">
-                Required
-              </div>
-              <div class="alert-content" v-else-if="!$v.password.minLength">
-                At least 6 characters
-              </div>
-              <div class="alert-content" v-else-if="!$v.password.maxLength">
-                Too many characters
-              </div>
+              <div class="alert-content" v-if="!$v.password.required">Required</div>
+              <div class="alert-content" v-else-if="!$v.password.minLength">At least 6 characters</div>
+              <div class="alert-content" v-else-if="!$v.password.maxLength">Too many characters</div>
             </div>
           </div>
 
@@ -46,16 +30,8 @@
             <p id="bt">SUCK</p>
           </a>
         </div>
-        <img
-          src="@/assets/login-true.gif"
-          v-if="showForm == 2"
-          style="width:170px"
-        />
-        <img
-          src="@/assets/login-fail.gif"
-          v-if="showForm == 3"
-          style="width:200px"
-        />
+        <img src="@/assets/login-true.gif" v-if="showForm == 2" style="width:170px" />
+        <img src="@/assets/login-fail.gif" v-if="showForm == 3" style="width:200px" />
       </form>
     </div>
   </div>
@@ -217,8 +193,9 @@ a:hover span:nth-child(4) {
   transition-delay: 0.75s;
 }
 .alert-validate::after {
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Pro";
   content: "\f188";
+  font-weight: 300;
   position: absolute;
   top: 20px;
   right: 5px;

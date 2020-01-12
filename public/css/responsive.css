@@ -205,7 +205,7 @@
   }
   .list-song {
     width: 100vw;
-    height: calc(100% - 135px);
+    height: calc(100% - 75px);
     bottom: 75px;
     right: 0;
     z-index: 102 !important;
