@@ -201,6 +201,7 @@ const actions = {
     commit("updateCurrentList", [...value]);
     commit("updateStoreList", [...value]);
     commit("shuffleCurrentList");
+    commit("changeRandom");
     dispatch("playCurrentList");
   },
   changeShuffle({ state, commit }) {
@@ -238,6 +239,16 @@ const actions = {
           resolve(res.data);
         });
     });
+  },
+  playPlaylist({ state, commit, dispatch }, idPl) {
+    let i;
+    for (i = 0; i < state.playlists.length; i++) {
+      if (state.playlists[i].id == idPl) break;
+    }
+    commit("updateCurrentList", [...state.playlists[i].songs]);
+    commit("updateCurrentSong", state.currentList[0]);
+    commit("updateSourcePlayer");
+    dispatch("play");
   }
 };
 const getters = {

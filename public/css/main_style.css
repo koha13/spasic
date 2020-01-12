@@ -411,10 +411,10 @@ h3 {
 }
 .ft .ft-content .control i {
   margin-left: 20px;
-}
-.ft .ft-content .control i:hover {
-  color: var(--color-hover);
   cursor: pointer;
+}
+.ft .ft-content .control i:active {
+  color: var(--color-hover);
 }
 .song-info {
   -webkit-transform: translateX(-50%);
@@ -440,8 +440,10 @@ h3 {
   margin-right: 20px;
 }
 .menu-bot ul li i:hover {
-  color: var(--color-hover);
   cursor: pointer;
+}
+.menu-bot ul li i:active {
+  color: var(--color-hover);
 }
 .ft .menu-bot i {
   margin-left: 20px;
@@ -465,7 +467,7 @@ h3 {
   border-color: #000000;
   /* box-shadow: 5px 5px 200px rgb(2, 228, 228); */
   box-shadow: 0 6px 6px black;
-  z-index: 5000;
+  z-index: 102 !important;
 }
 .list-song .headerr {
   color: var(--color4);
@@ -478,19 +480,10 @@ h3 {
 }
 .list-song #top .controls-2 .item {
   padding: 0 5px;
+  cursor: pointer;
 }
-.list-song #top .controls-2 i:hover {
+.list-song #top .controls-2 i:active {
   color: var(--color4);
-  cursor: pointer;
-}
-.list-song #top .controls-2 button {
-  color: var(--color-text);
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.list-song #top .controls-2 button:hover {
-  color: var(--color-hover);
 }
 .list-song #top .controls-2 {
   position: absolute;
@@ -646,4 +639,5 @@ h3 {
 .playlists {
   margin-top: 85px;
   max-width: 70%;
+  margin-bottom: 100px;
 }

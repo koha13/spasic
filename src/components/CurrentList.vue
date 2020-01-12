@@ -1,12 +1,41 @@
 <template>
   <div class="list-song">
     <div id="top" style="position: relative">
-      <p class="headerr">Next up</p>
+      <p class="headerr" style="display:inline-block">Next up</p>
+      <i
+        id="show2"
+        class="fa fa-repeat fa-lg"
+        @click="$store.commit('changeLoop')"
+        v-if="$store.getters.loop==0"
+        style="padding:0 5px; margin-left:10px"
+      ></i>
+      <i
+        id="show2"
+        class="fa fa-repeat-1 fa-lg loopAll"
+        @click="$store.commit('changeLoop')"
+        v-else-if="$store.getters.loop==1"
+        style="padding:0 5px; margin-left:10px"
+      ></i>
+      <i
+        id="show2"
+        class="fa fa-repeat fa-lg loopAll"
+        @click="$store.commit('changeLoop')"
+        v-else
+        style="padding:0 5px; margin-left:10px"
+      ></i>
+      <i
+        id="show2"
+        :class="{
+                    fa: true,
+                    'fa-random': true,
+                    'fa-lg': true,
+                    loopAll: $store.getters.random
+                  }"
+        @click="$store.dispatch('changeShuffle')"
+        style="padding:0 5px"
+      ></i>
       <div class="controls-2">
-        <i id="show2" class="fa fa-repeat fa-lg item"></i>
-        <i id="show2" class="fa fa-random fa-lg item"></i>
-        <button class="item">Clear</button>
-        <i class="fa fa-chevron-down fa-sm item" @click="$emit('close')"></i>
+        <i class="fa fa-chevron-down fa-sm item" style="margin-left:10px" @click="$emit('close')"></i>
       </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
@@ -215,6 +244,9 @@ ul li p {
   ul li p {
     max-width: 300px;
   }
+}
+.loopAll {
+  color: var(--color-hover);
 }
 </style>
 

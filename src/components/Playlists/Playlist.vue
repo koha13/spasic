@@ -3,20 +3,27 @@
     <div class="col-12 playlist d-flex flex-row" @click="show = !show">
       <div class="p-2 flex-grow-1 bd-highlight text">
         <p class="text title">{{playlist.name}}</p>
-        <p class="text">{{playlist.songs.length}}-songs</p>
+        <p class="text">{{playlist.songs.length+'-song'+((playlist.songs.length>1)?'s':'')}}</p>
       </div>
       <!-- <i class="fa fa-pen item"></i>
       <i class="far fa-times-circle"></i>-->
-      <i class="fa fa-random item"></i>
-      <i class="fa fa-play item"></i>
+      <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle',playlist.songs)"></i>
+      <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist',playlist.id)"></i>
     </div>
 
     <div class="col-12 d-flex flex-wrap" v-if="show">
       <div class="card-songpl d-flex flex-row" v-for="(song,index) in playlist.songs" :key="index">
-        <div class="image-holder">
+        <div
+          :class="{'image-holder':true, current:song.id == $store.getters.currentSong.id}"
+          @click.stop="$store.dispatch('playSong', song)"
+        >
           <img :src="song.avatar" alt class="image" />
           <div id="middle3">
-            <i class="fa fa-play fa-lg"></i>
+            <i
+              class="fa fa-pause"
+              v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+            ></i>
+            <i class="fa fa-play" v-else></i>
           </div>
         </div>
         <div class="flex-grow-1 bd-highlight song-info2 text">
@@ -38,6 +45,11 @@ export default {
     return {
       show: false
     };
+  },
+  methods: {
+    close() {
+      this.show = false;
+    }
   }
 };
 </script>
@@ -51,7 +63,7 @@ export default {
 .playlist .item {
   padding: 0 5px;
 }
-.playlist .item:hover {
+.playlist .item:active {
   color: var(--color-hover);
 }
 .playlist:hover {
@@ -71,7 +83,7 @@ export default {
   border-radius: 10px;
   height: 50px;
   width: 30%;
-  margin: 10px 10px;
+  margin: 5px 10px;
   background: rgb(41, 44, 58);
   color: var(--color-text);
   border-radius: 10px;
@@ -120,10 +132,12 @@ export default {
   color: var(--color-hover);
   opacity: 0;
 }
-.card-songpl:hover #middle3 {
+.card-songpl:hover #middle3,
+.card-songpl .current #middle3 {
   opacity: 1;
 }
-.card-songpl:hover .image {
+.card-songpl:hover .image,
+.card-songpl .current .image {
   opacity: 0.3;
 }
 </style>

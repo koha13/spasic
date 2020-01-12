@@ -45,17 +45,22 @@
 
               <!-- Hamburger -->
               <div class="hamburger d-flex flex-column align-items-center justify-content-between">
-                <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+                <i class="fa fa-bars fa-lg" aria-hidden="true" @click="showMenu = true"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <menuu v-if="showMenu" @close="showMenu = false"></menuu>
   </header>
 </template>
 <script>
+import Menuu from "@/components/Menu";
 export default {
+  components: {
+    Menuu
+  },
   methods: {
     goHome() {
       this.$router.push({ name: "home" });
@@ -66,6 +71,11 @@ export default {
     goPls() {
       this.$router.push({ name: "playlists" });
     }
+  },
+  data() {
+    return {
+      showMenu: false
+    };
   }
 };
 </script>

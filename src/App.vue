@@ -49,7 +49,7 @@ export default {
   bottom: 52px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 200;
+  z-index: 101;
 }
 .plyr__controls {
   background-color: transparent !important;
