@@ -19,10 +19,10 @@
           <img :src="song.avatar" alt class="image" />
           <div id="middle3">
             <i
-              class="fa fa-pause"
+              class="fa fa-pause fa-lg"
               v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
             ></i>
-            <i class="fa fa-play" v-else></i>
+            <i class="fa fa-play fa-lg" v-else></i>
           </div>
         </div>
         <div class="flex-grow-1 bd-highlight song-info2 text">
@@ -30,24 +30,74 @@
           <p class="text">{{song.artists}}</p>
         </div>
         <div class="time2">{{song.length | minutes}}</div>
-        <i class="fa fa-ellipsis-v"></i>
+        <i class="fa fa-times-circle" style="padding: 0 8px"></i>
+        <i class="fa fa-plus-square" style="padding: 0 8px" @click="addToPl(song)"></i>
       </div>
     </div>
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+      <slot>
+        <ul class="list-group list-group-flush" style="width:max-content">
+          <li @click="$store.dispatch('addToCurrentList',tempSong)">
+            <i class="fa fa-list-alt fa-lg"></i>
+            <p>Add to queue</p>
+          </li>
+          <li @click="$store.dispatch('addToNextSong',tempSong)">
+            <i class="fa fa-step-forward fa-lg"></i>
+            <p>After current song</p>
+          </li>
+          <div style="width:100%; height:5px;"></div>
+          <li
+            v-for="(pl,index) in pls"
+            :key="index"
+            @click="addSongToPl(pl.id,pl.inPlaylist); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+          >
+            <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
+            <i class="far fa-square fa-lg" v-if="!pl.inPlaylist"></i>
+            <p>{{pl.name}}</p>
+          </li>
+        </ul>
+      </slot>
+    </customModal>
   </div>
 </template>
 <script>
+import CustomModal from "@/components/CustomModal";
 export default {
+  components: {
+    CustomModal
+  },
   props: {
     playlist: Object
   },
   data() {
     return {
-      show: false
+      show: false,
+      showModalPl: false,
+      pls: [],
+      tempSong: null
     };
   },
   methods: {
     close() {
       this.show = false;
+    },
+    addToPl(song) {
+      this.$store.dispatch("checkSong", song).then(res => {
+        this.pls = res;
+        this.showModalPl = true;
+        this.tempSong = song;
+      });
+    },
+    addSongToPl(plId, check) {
+      let payload = {
+        song: this.tempSong,
+        plId: plId
+      };
+      if (!check) {
+        this.$store.dispatch("addSongToPl", payload);
+      } else {
+        this.$store.dispatch("deleteSongFromPl", payload);
+      }
     }
   }
 };
@@ -138,5 +188,32 @@ export default {
 .card-songpl:hover .image,
 .card-songpl .current .image {
   opacity: 0.3;
+}
+
+/* Modal */
+ul li {
+  padding: 5px 0;
+  position: relative;
+  cursor: pointer;
+}
+ul li i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+}
+ul li p {
+  max-width: 450px;
+  padding: 0 1rem 0 2.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  ul li p {
+    max-width: 300px;
+  }
 }
 </style>

@@ -120,7 +120,11 @@
     <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
-          <li v-for="(pl,index) in pls" :key="index">
+          <li
+            v-for="(pl,index) in pls"
+            :key="index"
+            @click="addSongToPl(pl.id,pl.inPlaylist); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+          >
             <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
             <i class="far fa-square fa-lg" v-else></i>
             <p>{{pl.name}}</p>
@@ -182,6 +186,17 @@ export default {
       this.$store.dispatch("checkSong", this.songInContext).then(res => {
         this.pls = res;
       });
+    },
+    addSongToPl(plId, check) {
+      let payload = {
+        song: this.songInContext,
+        plId: plId
+      };
+      if (!check) {
+        this.$store.dispatch("addSongToPl", payload);
+      } else {
+        this.$store.dispatch("deleteSongFromPl", payload);
+      }
     }
   },
   activated() {

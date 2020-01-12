@@ -252,6 +252,60 @@ const actions = {
       commit("updateSourcePlayer");
       dispatch("play");
     }
+  },
+
+  // Add to pl
+  addSongToPl({ state, commit, dispatch }, payload) {
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("/" + payload.plId + "/addsong?idSong=" + payload.song.id, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(res => {
+          resolve(res.data);
+          for (let i = 0; i < state.playlists.length; i++) {
+            if (state.playlists[i].id == payload.plId) {
+              // console.log(i);
+              state.playlists[i].songs.push(payload.song);
+              // console.log(state.playlists[i]);
+              break;
+            }
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
+  deleteSongFromPl({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("/" + payload.plId + "/deletesong?idSong=" + payload.song.id, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(res => {
+          resolve(res.data);
+          for (let i = 0; i < state.playlists.length; i++) {
+            if (state.playlists[i].id == payload.plId) {
+              // console.log(i);
+              for (let j = 0; j < state.playlists[i].songs.length; j++) {
+                if (payload.song.id == state.playlists[i].songs[j].id) {
+                  state.playlists[i].songs.splice(j, 1);
+                }
+              }
+              // console.log(state.playlists[i]);
+              break;
+            }
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 };
 const getters = {
