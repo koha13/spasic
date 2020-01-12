@@ -172,10 +172,13 @@ const actions = {
       dispatch("play");
     } else if (state.loop == 0) {
       if (
-        state.currentSong.id !=
-        state.currentList[state.currentList.lenght - 1].id
-      )
+        state.currentSong.id !==
+        state.currentList[state.currentList.length - 1].id
+      ) {
         dispatch("nextSong");
+      } else {
+        dispatch("pause");
+      }
     }
   },
   addToNextSong({ commit, dispatch }, song) {
@@ -220,9 +223,21 @@ const actions = {
         }
       })
       .then(res => {
-        console.log(res.data);
         commit("updatePlaylists", res.data);
       });
+  },
+  checkSong({}, song) {
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("/checksong?idSong=" + song.id, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(res => {
+          resolve(res.data);
+        });
+    });
   }
 };
 const getters = {

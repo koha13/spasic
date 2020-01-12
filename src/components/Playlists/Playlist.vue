@@ -2,10 +2,11 @@
   <div class="row" style="padding: 8px 0;">
     <div class="col-12 playlist d-flex flex-row" @click="show = !show">
       <div class="p-2 flex-grow-1 bd-highlight text">
-        <p class="text">{{playlist.name}}</p>
-        <p class="text">qweqwe</p>
+        <p class="text title">{{playlist.name}}</p>
+        <p class="text">{{playlist.songs.length}}-songs</p>
       </div>
-      <i class="fa fa-pen item"></i>
+      <!-- <i class="fa fa-pen item"></i>
+      <i class="far fa-times-circle"></i>-->
       <i class="fa fa-random item"></i>
       <i class="fa fa-play item"></i>
     </div>
@@ -61,6 +62,9 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.playlist .title {
+  font-size: 18px;
 }
 .card-songpl {
   align-items: center;

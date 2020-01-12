@@ -51,7 +51,8 @@ body {
   font-weight: 400;
   background: rgb(27, 33, 46);
   color: #a5a5a5;
-  /* overflow: hidden; */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 ul {
   list-style: none;

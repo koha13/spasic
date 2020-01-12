@@ -25,26 +25,27 @@
       </div>
     </div>
     <context-menu ref="ctx" @ctx-open="onCtxOpen" @ctx-cancel="resetCtxLocals">
-      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)">Play</li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('pause')"
+        v-if="songInContext === $store.getters.currentSong && $store.getters.isPlaying==true"
+      >Pause</li>
+      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)" v-else>Play</li>
       <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
         @click="$store.dispatch('addToNextSong',songInContext)"
       >After current song</li>
       <li class="ctx-item" @click="$store.dispatch('addToCurrentList',songInContext)">Add to queue</li>
-      <li class="ctx-item" @click="showModalPl=true">Add to playlist</li>
+      <li class="ctx-item" @click="addToPl">Add to playlist</li>
     </context-menu>
     <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
-          <li>
-            <p>qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
-          </li>
-          <li>
-            <p>qww</p>
-          </li>
-          <li>
-            <p>qwww</p>
+          <li v-for="(pl,index) in pls" :key="index">
+            <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
+            <i class="far fa-square fa-lg" v-else></i>
+            <p>{{pl.name}}</p>
           </li>
         </ul>
       </slot>
@@ -69,7 +70,8 @@ export default {
   data() {
     return {
       songInContext: null,
-      showModalPl: false
+      showModalPl: false,
+      pls: []
     };
   },
   methods: {
@@ -82,25 +84,35 @@ export default {
     },
     playSong(song) {
       this.$store.dispatch("playSong", song);
+    },
+    addToPl() {
+      this.showModalPl = true;
+      this.$store.dispatch("checkSong", this.songInContext).then(res => {
+        this.pls = res;
+      });
     }
   }
 };
 </script>
 <style scoped>
-ul li:hover {
-  background: rgb(71, 68, 68);
-}
 ul li {
   padding: 5px 0;
+  position: relative;
+  cursor: pointer;
+}
+ul li i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
 }
 ul li p {
   max-width: 450px;
-  padding: 0 1rem;
+  padding: 0 1rem 0 2.5rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: block;
-  cursor: pointer;
 }
 
 @media (max-width: 900px) {
