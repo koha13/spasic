@@ -56,7 +56,6 @@
             <!-- Menu -->
             <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
               <ul class="d-flex flex-row align-items-start justify-content-start">
-                <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
                   <input
                     id="hi"
@@ -67,7 +66,6 @@
                     step="0.1"
                     v-model="$store.state.music_store.player.volume"
                   />
-                  <!-- <i id="hi" class="fa fa-volume-down fa-lg"></i> -->
 
                   <i id="hi" class="fa fa-heart fa-lg"></i>
                   <i

@@ -10,30 +10,35 @@
       <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle',playlist.songs)"></i>
       <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist',playlist.id)"></i>
     </div>
-
-    <div class="col-12 d-flex flex-wrap" v-if="show">
-      <div class="card-songpl d-flex flex-row" v-for="(song,index) in playlist.songs" :key="index">
+    <transition name="bounce">
+      <div class="col-12 d-flex flex-wrap" v-if="show">
         <div
-          :class="{'image-holder':true, current:song.id == $store.getters.currentSong.id}"
-          @click.stop="$store.dispatch('playSong', song)"
+          class="card-songpl d-flex flex-row"
+          v-for="(song,index) in playlist.songs"
+          :key="index"
         >
-          <img :src="song.avatar" alt class="image" />
-          <div id="middle3">
-            <i
-              class="fa fa-pause"
-              v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
-            ></i>
-            <i class="fa fa-play" v-else></i>
+          <div
+            :class="{'image-holder':true, current:song.id == $store.getters.currentSong.id}"
+            @click.stop="$store.dispatch('playSong', song)"
+          >
+            <img :src="song.avatar" alt class="image" />
+            <div id="middle3">
+              <i
+                class="fa fa-pause"
+                v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+              ></i>
+              <i class="fa fa-play" v-else></i>
+            </div>
           </div>
+          <div class="flex-grow-1 bd-highlight song-info2 text">
+            <p class="text">{{song.name}}</p>
+            <p class="text">{{song.artists}}</p>
+          </div>
+          <div class="time2">{{song.length | minutes}}</div>
+          <i class="fa fa-ellipsis-v"></i>
         </div>
-        <div class="flex-grow-1 bd-highlight song-info2 text">
-          <p class="text">{{song.name}}</p>
-          <p class="text">{{song.artists}}</p>
-        </div>
-        <div class="time2">{{song.length | minutes}}</div>
-        <i class="fa fa-ellipsis-v"></i>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -139,5 +144,23 @@ export default {
 .card-songpl:hover .image,
 .card-songpl .current .image {
   opacity: 0.3;
+}
+/* Animation */
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

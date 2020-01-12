@@ -4,6 +4,7 @@
       <h4>Playlists</h4>
     </div>
     <playlist v-for="(playlist,index) in playlists" :key="index" :playlist="playlist" ref="pls"></playlist>
+
     <button type="button" class="close-pl" @click.stop="collapse">Collapse</button>
   </div>
 </template>
