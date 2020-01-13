@@ -87,6 +87,9 @@
   .all-song {
     margin-top: 70px;
   }
+  .home {
+    margin-top: 70px;
+  }
   .main_nav {
     display: none;
   }
@@ -110,11 +113,6 @@
 ************/
 
 @media only screen and (max-width: 959px) {
-  #home .home-title h1 {
-    margin-top: 190px;
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
   .song-info {
     left: 55%;
     width: 200px;
@@ -137,15 +135,14 @@
 ************/
 
 @media only screen and (max-width: 768px) {
-  #home .home-title {
-    text-align: left;
-    margin-top: 60px;
-  }
   .song-info {
     left: 60%;
     width: 100px;
   }
   .all-song {
+    max-width: 100%;
+  }
+  .home {
     max-width: 100%;
   }
   .playlists {

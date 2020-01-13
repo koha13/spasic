@@ -599,41 +599,6 @@ h3 {
   color: var(--color-hover);
 }
 
-/* Home */
-#home {
-  margin-top: 85px;
-}
-#home .home-title {
-  text-align: center;
-  margin-top: 20px;
-  max-width: 85%;
-}
-#home .home-title h1 {
-  font-size: 60px;
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-weight: 300;
-  line-height: 1.4;
-  color: var(--color-hover);
-  text-shadow: 5px 5px 20px aqua;
-}
-#home .home-title p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 40px;
-  margin-bottom: 30px;
-  font-weight: 300;
-}
-#home .home-title .image-holder {
-  text-align: center;
-}
-#home .home-title img {
-  position: relative;
-  max-width: 300px;
-  margin: 20px;
-  display: inline-block;
-  left: 50%;
-}
-
 /* Playlists */
 .playlists {
   margin-top: 85px;

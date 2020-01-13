@@ -6,7 +6,7 @@
     </keep-alive>
     <div class="container" id="progress-plyr">
       <vue-plyr
-        v-if="$route.path != '/login'"
+        v-if="showPlyr"
         ref="player"
         :options="playerOptions"
         @ended="$store.dispatch('onEnd')"
@@ -37,6 +37,11 @@ export default {
       };
       return options;
     }
+  },
+  data() {
+    return {
+      showPlyr: true
+    };
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
