@@ -2,6 +2,24 @@
   <div class="container playlists">
     <div class="row">
       <h4>Playlists</h4>
+      <i
+        class="fas fa-plus-circle fa-2x"
+        style="padding:0 10px;cursor:pointer"
+        @click="showForm = true"
+        v-if="!showForm"
+      ></i>
+      <i
+        class="fas fa-times-circle fa-2x"
+        style="padding:0 10px;cursor:pointer"
+        v-else
+        @click="showForm = false; plName=''"
+      ></i>
+    </div>
+    <div class="row" v-if="showForm">
+      <form class="form-newpl" @submit.prevent="createPl">
+        <input type="text" v-model="plName" />
+        <button type="submit">Create</button>
+      </form>
     </div>
     <playlist v-for="(playlist,index) in playlists" :key="index" :playlist="playlist" ref="pls"></playlist>
 
@@ -13,6 +31,12 @@ import Playlist from "@/components/Playlists/Playlist";
 export default {
   components: {
     Playlist
+  },
+  data() {
+    return {
+      plName: "",
+      showForm: false
+    };
   },
   created() {
     this.$store.dispatch("fetchPlaylists");
@@ -30,6 +54,11 @@ export default {
       for (let i = 0; i < a.length; i++) {
         a[i].close();
       }
+    },
+    createPl() {
+      this.$store.dispatch("createNewPl", this.plName).then(res => {
+        this.showForm = false;
+      });
     }
   }
 };
@@ -63,5 +92,34 @@ export default {
 .close-pl:active {
   color: var(--color-hover);
   border: 1px solid var(--color-hover);
+}
+.form-newpl input {
+  width: 260px;
+  background: var(--color5);
+  border: 0;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 18px;
+  color: var(--color-text);
+  border-radius: 10px;
+  display: inline-block;
+}
+.form-newpl button {
+  background: var(--color3);
+  border: 0;
+  height: 30px;
+  padding: 0 10px;
+  margin: 0 10px;
+  font-size: 18px;
+  color: var(--color-text);
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+.form-newpl button:active {
+  color: var(--color-hover);
+}
+.form-newpl button:focus {
+  outline-width: 0;
 }
 </style>

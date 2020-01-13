@@ -322,6 +322,25 @@ const actions = {
           reject(err);
         });
     });
+  },
+
+  // Create new pl
+  createNewPl({ state }, plName) {
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("/add?name=" + plName, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(res => {
+          state.playlists.push(res.data);
+          resolve(true);
+        })
+        .catch(err => {
+          reject(false);
+        });
+    });
   }
 };
 const getters = {

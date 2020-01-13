@@ -107,44 +107,4 @@ export default {
   padding: 0.5rem 1rem;
   font-size: 15px;
 }
-.modal-footer #newpl {
-  width: 100%;
-}
-.modal-footer #newpl i {
-  padding-right: 5px;
-}
-.modal-footer #newpl:hover {
-  cursor: pointer;
-}
-#input-newpl:focus {
-  outline-width: 0;
-}
-#input-newpl {
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid black;
-  padding-right: 70px;
-  background: var(--color5);
-  color: var(--color-text);
-}
-#input-newpl-container {
-  padding: 0.5rem 1rem;
-}
-#input-newpl-container p {
-  padding: 0;
-  margin: 0;
-  font-size: 15px;
-  color: rgb(192, 188, 188);
-}
-#btn-createpl {
-  position: absolute;
-  border: 0;
-  background: transparent;
-  right: 1rem;
-  color: grey;
-}
-#btn-createpl:hover {
-  color: var(--color-hover);
-  cursor: pointer;
-}
 </style>
