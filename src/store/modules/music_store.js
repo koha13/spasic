@@ -151,6 +151,8 @@ const actions = {
       resolve(-1);
     });
   },
+
+  /*Go forward current song */
   nextSong({ state, dispatch, commit }) {
     dispatch("findCurrentSongIndex").then(check => {
       if (check != -1) {
@@ -164,6 +166,8 @@ const actions = {
       }
     });
   },
+
+  /*Back forward current song */
   backSong({ state, dispatch, commit }) {
     dispatch("findCurrentSongIndex").then(check => {
       if (check != -1) {
@@ -180,6 +184,8 @@ const actions = {
       }
     });
   },
+
+  /*Onend event when current song is end. Play next or loop or ... will be handle here */
   onEnd({ state, dispatch }) {
     if (state.loop == 2) dispatch("nextSong");
     else if (state.loop == 1) {
@@ -196,6 +202,9 @@ const actions = {
       }
     }
   },
+
+  /*Add a song next to current song. It will not add to store list
+  So if current list is shuffled, you add a new song to it, then you unshuffle it, new song will be remove. */
   addToNextSong({ commit, dispatch }, song) {
     dispatch("findCurrentSongIndex", song).then(check => {
       if (check != -1) commit("deleteSongFromCurrentList", check);
@@ -204,6 +213,9 @@ const actions = {
       commit("addSongToCurrentList", { song, res });
     });
   },
+
+  /*Add a song to current list. It will not add to store list
+  So if current list is shuffled, you add a new song to it, then you unshuffle it, new song will be remove. */
   addToCurrentList({ state, commit, dispatch }, song) {
     dispatch("findCurrentSongIndex", song).then(check => {
       if (check == -1) {
@@ -212,6 +224,9 @@ const actions = {
       }
     });
   },
+
+  /*Shuffle a list that come in value. Save it in store list,
+  so if you dont want it's shuffled anymore, you can make it original again */
   addShuffle({ commit, dispatch }, value) {
     if (value.length > 0) {
       commit("updateCurrentList", [...value]);
@@ -221,6 +236,8 @@ const actions = {
       dispatch("playCurrentList");
     }
   },
+
+  /*Change shuffle state. If current list is shuffled, it will be back to its original. And vice versa */
   changeShuffle({ state, commit }) {
     if (state.currentList.length > 0) {
       if (state.random == false) {
@@ -233,6 +250,8 @@ const actions = {
       }
     }
   },
+
+  /*Fetch all playlists from sv */
   fetchPlaylists({ commit }) {
     playlists
       .get("", {
@@ -244,6 +263,8 @@ const actions = {
         commit("updatePlaylists", res.data);
       });
   },
+
+  /*Check all playlist if this song is in or not */
   checkSong({}, song) {
     return new Promise((resolve, reject) => {
       playlists
@@ -257,6 +278,9 @@ const actions = {
         });
     });
   },
+
+  /* Play playlist: param: id of playlist that need to play.
+  Then search in state.playlists and play that pl */
   playPlaylist({ state, commit, dispatch }, idPl) {
     let i;
     for (i = 0; i < state.playlists.length; i++) {
@@ -270,7 +294,7 @@ const actions = {
     }
   },
 
-  // Add to pl
+  // Add to pl: payload:{song, playlistId}
   addSongToPl({ state, commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       playlists
@@ -283,9 +307,7 @@ const actions = {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
-              // console.log(i);
               state.playlists[i].songs.push(payload.song);
-              // console.log(state.playlists[i]);
               break;
             }
           }
@@ -295,6 +317,8 @@ const actions = {
         });
     });
   },
+
+  // delete song from pl: payload:{song, playlistId}
   deleteSongFromPl({ state }, payload) {
     return new Promise((resolve, reject) => {
       playlists
@@ -307,13 +331,11 @@ const actions = {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
-              // console.log(i);
               for (let j = 0; j < state.playlists[i].songs.length; j++) {
                 if (payload.song.id == state.playlists[i].songs[j].id) {
                   state.playlists[i].songs.splice(j, 1);
                 }
               }
-              // console.log(state.playlists[i]);
               break;
             }
           }
