@@ -30,7 +30,11 @@
           <p class="text">{{song.artists}}</p>
         </div>
         <div class="time2">{{song.length | minutes}}</div>
-        <i class="fa fa-times-circle" style="padding: 0 8px"></i>
+        <i
+          class="fa fa-times-circle"
+          style="padding: 0 8px"
+          @click="addSongToPl(playlist.id,true,song)"
+        ></i>
         <i class="fa fa-plus-square" style="padding: 0 8px" @click="addToPl(song)"></i>
       </div>
     </div>
@@ -88,11 +92,14 @@ export default {
         this.tempSong = song;
       });
     },
-    addSongToPl(plId, check) {
+    addSongToPl(plId, check, song) {
       let payload = {
         song: this.tempSong,
         plId: plId
       };
+      if (song != null) {
+        payload.song = song;
+      }
       if (!check) {
         this.$store.dispatch("addSongToPl", payload);
       } else {
