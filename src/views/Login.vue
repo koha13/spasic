@@ -41,8 +41,8 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
-      username: null,
-      password: null,
+      username: "adminn",
+      password: "123456",
       showForm: true
     };
   },

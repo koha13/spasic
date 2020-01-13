@@ -90,6 +90,9 @@
   .home {
     margin-top: 70px;
   }
+  .about {
+    margin-top: 70px;
+  }
   .main_nav {
     display: none;
   }
@@ -143,6 +146,9 @@
     max-width: 100%;
   }
   .home {
+    max-width: 100%;
+  }
+  .about {
     max-width: 100%;
   }
   .playlists {

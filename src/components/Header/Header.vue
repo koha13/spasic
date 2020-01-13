@@ -23,8 +23,8 @@
                 <li :class="{ active: $route.path == '/playlists' }">
                   <a id="direc" @click="goPls">Playlists</a>
                 </li>
-                <li>
-                  <a id="direc">About</a>
+                <li :class="{ active: $route.path == '/about' }">
+                  <a id="direc" @click="goAbout">About</a>
                 </li>
               </ul>
             </nav>
@@ -70,6 +70,9 @@ export default {
     },
     goPls() {
       this.$router.push({ name: "playlists" });
+    },
+    goAbout() {
+      this.$router.push({ name: "about" });
     }
   },
   data() {

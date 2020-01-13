@@ -55,7 +55,7 @@
           <p>But it still works</p>
           <p>Help me improve this project.</p>
           <i class="fab fa-github"></i>
-          <a href="https://github.com/koha13/spasic">: https://github.com/koha13/spasic</a>
+          <a href="https://github.com/koha13/spasic">/koha13/spasic</a>
         </div>
       </div>
     </div>
@@ -117,7 +117,7 @@ export default {
 .home .body .content .bt {
   position: relative;
   display: inline-block;
-  padding: 15px 30px;
+  /* padding: 15px 30px; */
   color: black;
   text-transform: uppercase;
   letter-spacing: 4px;
