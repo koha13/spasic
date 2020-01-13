@@ -18,20 +18,7 @@
         <div class="modal-body">
           <slot></slot>
         </div>
-        <slot name="modal-footer">
-          <form id="input-newpl-container" v-if="showAddPl">
-            <p>Playlist name:</p>
-            <input type="text" id="input-newpl" />
-            <button type="submit" id="btn-createpl">Create</button>
-          </form>
-
-          <div class="modal-footer" @click="showq" v-if="!showAddPl">
-            <div id="newpl">
-              <i class="fa fa-plus-square fa-lg"></i>
-              Add to new playlist
-            </div>
-          </div>
-        </slot>
+        <slot name="modal-footer"></slot>
       </div>
     </div>
   </div>
@@ -51,8 +38,7 @@ export default {
   },
   data() {
     return {
-      backdrop: null,
-      showAddPl: false
+      backdrop: null
     };
   },
   methods: {
@@ -72,9 +58,6 @@ export default {
     closeModal() {
       this.$emit("close");
       this.showAddPl = false;
-    },
-    showq() {
-      this.showAddPl = !this.showAddPl;
     }
   },
   computed: {

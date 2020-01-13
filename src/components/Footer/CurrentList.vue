@@ -116,6 +116,7 @@
         @click="$store.dispatch('addToNextSong',songInContext)"
       >After current song</li>
       <li class="ctx-item" @click="addToPl">Add to playlist</li>
+      <li class="ctx-item" @click="$store.commit('deleteFromQueue',songInContext.id)">Remove</li>
     </context-menu>
     <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>

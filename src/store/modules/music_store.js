@@ -9,7 +9,7 @@ const state = {
   isPlaying: false,
   loop: 0,
   random: false,
-  storeList: null,
+  storeList: [],
   playlists: []
 };
 const mutations = {
@@ -63,6 +63,22 @@ const mutations = {
   },
   changeRandom(state) {
     state.random = !state.random;
+  },
+  deleteFromQueue(state, songId) {
+    for (let i = 0; i < state.currentList.length; i++) {
+      if (state.currentList[i].id == songId) {
+        state.currentList.splice(i, 1);
+        break;
+      }
+    }
+    if (state.storeList.length > 0) {
+      for (let i = 0; i < state.storeList.length; i++) {
+        if (state.storeList[i].id == songId) {
+          state.storeList.splice(i, 1);
+          break;
+        }
+      }
+    }
   }
 };
 const actions = {
