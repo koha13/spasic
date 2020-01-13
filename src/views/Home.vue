@@ -10,7 +10,7 @@
           <p>What is that?</p>
           <p>Simple streaming music website?</p>
           <p>Oh! Yes it is</p>
-          <a @click="$router.push({name:'songs'})">
+          <a @click="$router.push({name:'songs'})" class="bt">
             <span></span>
             <span></span>
             <span></span>
