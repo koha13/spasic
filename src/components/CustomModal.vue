@@ -102,9 +102,4 @@ export default {
     margin: 1.75rem auto;
   }
 }
-.modal-footer {
-  justify-content: start;
-  padding: 0.5rem 1rem;
-  font-size: 15px;
-}
 </style>

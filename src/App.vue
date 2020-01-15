@@ -45,10 +45,10 @@ export default {
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
-  },
-  created() {
-    this.$router.push({ name: "login" });
   }
+  // created() {
+  //   this.$router.push({ name: "login" });
+  // }
 };
 </script>
 <style>

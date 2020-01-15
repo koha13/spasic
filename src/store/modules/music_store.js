@@ -1,5 +1,6 @@
 import songs from "@/axios/songs";
 import playlists from "@/axios/playlists";
+import axios from "axios";
 
 const state = {
   allSongs: Array,
@@ -298,11 +299,15 @@ const actions = {
   addSongToPl({ state, commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("/" + payload.plId + "/addsong?idSong=" + payload.song.id, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
+        .post(
+          "/" + payload.plId + "/song?idSong=" + payload.song.id,
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
           }
-        })
+        )
         .then(res => {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
@@ -324,7 +329,8 @@ const actions = {
       playlists
         .get("/" + payload.plId + "/deletesong?idSong=" + payload.song.id, {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json"
           }
         })
         .then(res => {
@@ -350,13 +356,40 @@ const actions = {
   createNewPl({ state }, plName) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("/add?name=" + plName, {
+        .post(
+          "/add?name=" + plName,
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
+          }
+        )
+        .then(res => {
+          state.playlists.push(res.data);
+          resolve(true);
+        })
+        .catch(err => {
+          reject(false);
+        });
+    });
+  },
+  deletePl({ state }, plId) {
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("/delete/" + plId, {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json"
           }
         })
         .then(res => {
-          state.playlists.push(res.data);
+          for (let i = 0; i < state.playlists.length; i++) {
+            if (state.playlists[i].id == plId) {
+              state.playlists.splice(i, 1);
+              break;
+            }
+          }
           resolve(true);
         })
         .catch(err => {

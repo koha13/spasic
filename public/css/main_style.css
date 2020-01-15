@@ -53,6 +53,9 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+button:focus {
+  outline-width: 0;
+}
 ul {
   list-style: none;
   margin-bottom: 0px;

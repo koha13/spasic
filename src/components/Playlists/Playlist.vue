@@ -7,6 +7,7 @@
       </div>
       <!-- <i class="fa fa-pen item"></i>
       <i class="far fa-times-circle"></i>-->
+      <i class="fa fa-times-circle" @click.stop="showModalDeletePl=true"></i>
       <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle',playlist.songs)"></i>
       <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist',playlist.id)"></i>
     </div>
@@ -62,6 +63,18 @@
         </ul>
       </slot>
     </customModal>
+    <customModal
+      :show="showModalDeletePl"
+      @close="showModalDeletePl = false"
+      :title="'Delete playlist: '+playlist.name+'?'"
+    >
+      <slot name="modal-footer">
+        <div class="modal-footer">
+          <button @click="$store.dispatch('deletePl',playlist.id);showModalDeletePl= false">Ok</button>
+          <button @click="showModalDeletePl= false">Cancle</button>
+        </div>
+      </slot>
+    </customModal>
   </div>
 </template>
 <script>
@@ -78,7 +91,8 @@ export default {
       show: false,
       showModalPl: false,
       pls: [],
-      tempSong: null
+      tempSong: null,
+      showModalDeletePl: false
     };
   },
   methods: {
@@ -222,5 +236,21 @@ ul li p {
   ul li p {
     max-width: 300px;
   }
+}
+
+.modal-footer {
+  justify-content: center;
+  padding: 5px;
+}
+.modal-footer button {
+  width: 70px;
+  height: 30px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--color3);
+  padding: 2px 0 1px 0;
+  margin: 5px 5px;
+  cursor: pointer;
+  color: var(--color-hover);
 }
 </style>
