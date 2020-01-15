@@ -1,23 +1,23 @@
 <template>
   <div class="container playlists">
     <div class="row">
-      <h4>Playlists</h4>
+      <p class="title">Playlists</p>
       <i
-        class="fas fa-plus-circle fa-2x"
-        style="padding:0 10px;cursor:pointer"
+        class="fas fa-plus-circle fa-lg"
+        style="padding:15px 10px;cursor:pointer"
         @click="showForm = true"
         v-if="!showForm"
       ></i>
       <i
-        class="fas fa-times-circle fa-2x"
-        style="padding:0 10px;cursor:pointer"
+        class="fas fa-times-circle fa-lg"
+        style="padding:15px 10px;cursor:pointer"
         v-else
         @click="showForm = false; plName=''"
       ></i>
     </div>
     <div class="row" v-if="showForm">
       <form class="form-newpl" @submit.prevent="createPl">
-        <input type="text" v-model="plName" />
+        <input type="text" v-model="plName" onclick="this.setSelectionRange(0, this.value.length)" />
         <button type="submit">Create</button>
       </form>
     </div>
@@ -56,9 +56,18 @@ export default {
       }
     },
     createPl() {
-      this.$store.dispatch("createNewPl", this.plName).then(res => {
-        this.showForm = false;
-      });
+      this.$store
+        .dispatch("createNewPl", this.plName)
+        .then(res => {
+          this.showForm = false;
+          this.plName = "";
+        })
+        .catch(err => {
+          this.$notify({
+            group: "foo",
+            title: err.response.data.message
+          });
+        });
     }
   }
 };
@@ -121,5 +130,13 @@ export default {
 }
 .form-newpl button:focus {
   outline-width: 0;
+}
+.row {
+  margin: 0 0px;
+}
+.title {
+  font-size: 20px;
+  color: white;
+  padding: 10px 0 0 10px;
 }
 </style>

@@ -10,9 +10,15 @@
         ref="player"
         :options="playerOptions"
         @ended="$store.dispatch('onEnd')"
-        :emit="['ended']"
+        @playing="$store.state.music_store.isPlaying = true"
+        @play="$store.state.music_store.isPlaying = true"
+        @pause="$store.state.music_store.isPlaying = false"
+        :emit="['ended','playing','play','pause']"
       >
-        <audio></audio>
+        <audio>
+          <source src="https://musickoha3.herokuapp.com/songbyid/3" type="audio/mp3" />
+          <source src="https://musickoha3.herokuapp.com/songbyid/2" type="audio/mp3" />
+        </audio>
       </vue-plyr>
     </div>
     <footerr v-if="$route.path != '/login'"></footerr>
@@ -85,7 +91,7 @@ export default {
 .vue-notification-group {
   /* border-radius: 10px !important; */
   bottom: 80px !important;
-  width: 200px !important;
+  width: 230px !important;
 }
 .notification-title {
   max-width: 100% !important;

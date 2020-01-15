@@ -96,11 +96,9 @@ const actions = {
   },
   play({ state }) {
     state.player.play();
-    state.isPlaying = true;
   },
   pause({ state }) {
     state.player.pause();
-    state.isPlaying = false;
   },
   playAllSong({ state, dispatch, commit }) {
     state.currentList = [...state.allSongs];
@@ -401,7 +399,7 @@ const actions = {
           resolve(true);
         })
         .catch(err => {
-          reject(false);
+          reject(err);
         });
     });
   },
