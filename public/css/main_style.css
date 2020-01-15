@@ -397,13 +397,13 @@ h3 {
   left: 0;
   width: 100%;
   background: var(--color-main);
-  z-index: 100;
+  z-index: 102;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.596);
 }
 .ft-content {
   width: calc(100% + 30px);
   left: -20px;
-  height: 75px;
+  height: 65px;
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
   -ms-transition: all 400ms ease;
