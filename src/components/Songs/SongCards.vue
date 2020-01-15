@@ -45,7 +45,7 @@
           <li
             v-for="(pl,index) in pls"
             :key="index"
-            @click="addSongToPl(pl.id,pl.inPlaylist); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+            @click="addSongToPl(pl.id,pl.inPlaylist,pl.name); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
           >
             <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
             <i class="far fa-square fa-lg" v-else></i>
@@ -95,10 +95,11 @@ export default {
         this.pls = res;
       });
     },
-    addSongToPl(plId, check) {
+    addSongToPl(plId, check,plName) {
       let payload = {
         song: this.songInContext,
-        plId: plId
+        plId: plId,
+        plName : plName
       };
       if (!check) {
         this.$store.dispatch("addSongToPl", payload);

@@ -16,6 +16,7 @@
       </vue-plyr>
     </div>
     <footerr v-if="$route.path != '/login'"></footerr>
+    <notifications group="foo" position="bottom left" />
   </div>
 </template>
 <script>
@@ -45,10 +46,11 @@ export default {
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
+  },
+  created() {
+    if (localStorage.getItem("token") == null)
+      this.$router.push({ name: "login" });
   }
-  // created() {
-  //   this.$router.push({ name: "login" });
-  // }
 };
 </script>
 <style>
@@ -71,5 +73,24 @@ export default {
   border: none !important;
   box-shadow: none !important;
   background: none !important;
+}
+</style>
+<style>
+.vue-notification {
+  border-radius: 10px !important;
+  color: var(--color-text) !important;
+  background: var(--color3) !important;
+  border-left: 5px solid var(--color5) !important;
+}
+.vue-notification-group {
+  /* border-radius: 10px !important; */
+  bottom: 80px !important;
+  width: 200px !important;
+}
+.notification-title {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
 </style>

@@ -1,6 +1,6 @@
 import songs from "@/axios/songs";
 import playlists from "@/axios/playlists";
-import axios from "axios";
+import Vue from "vue";
 
 const state = {
   allSongs: Array,
@@ -212,6 +212,12 @@ const actions = {
     });
     dispatch("findCurrentSongIndex").then(res => {
       commit("addSongToCurrentList", { song, res });
+      Vue.notify({
+        group: "foo",
+        title: song.name,
+        text: "is added after current song",
+        duration: 3000
+      });
     });
   },
 
@@ -222,6 +228,12 @@ const actions = {
       if (check == -1) {
         let res = state.currentList.length - 1;
         commit("addSongToCurrentList", { song, res });
+        Vue.notify({
+          group: "foo",
+          title: song.name,
+          text: "is added to current list",
+          duration: 3000
+        });
       }
     });
   },
@@ -313,6 +325,12 @@ const actions = {
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
               state.playlists[i].songs.push(payload.song);
+              Vue.notify({
+                group: "foo",
+                title: payload.song.name,
+                text: "is added to: " + payload.plName,
+                duration: 3000
+              });
               break;
             }
           }
@@ -340,6 +358,13 @@ const actions = {
               for (let j = 0; j < state.playlists[i].songs.length; j++) {
                 if (payload.song.id == state.playlists[i].songs[j].id) {
                   state.playlists[i].songs.splice(j, 1);
+                  Vue.notify({
+                    group: "foo",
+                    title: payload.song.name,
+                    text: "is deleted from " + payload.plName,
+                    duration: 3000
+                  });
+                  break;
                 }
               }
               break;
@@ -367,6 +392,12 @@ const actions = {
         )
         .then(res => {
           state.playlists.push(res.data);
+          Vue.notify({
+            group: "foo",
+            title: "Playlist: " + plName,
+            text: "is created",
+            duration: 3000
+          });
           resolve(true);
         })
         .catch(err => {
@@ -374,10 +405,10 @@ const actions = {
         });
     });
   },
-  deletePl({ state }, plId) {
+  deletePl({ state }, payload) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("/delete/" + plId, {
+        .get("/delete/" + payload.plId, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
             "Content-Type": "application/json"
@@ -385,8 +416,14 @@ const actions = {
         })
         .then(res => {
           for (let i = 0; i < state.playlists.length; i++) {
-            if (state.playlists[i].id == plId) {
+            if (state.playlists[i].id == payload.plId) {
               state.playlists.splice(i, 1);
+              Vue.notify({
+                group: "foo",
+                title: "Playlist: " + payload.plName,
+                text: "is deleted",
+                duration: 3000
+              });
               break;
             }
           }

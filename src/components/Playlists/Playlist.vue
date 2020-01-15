@@ -2,63 +2,98 @@
   <div class="row" style="padding: 8px 0;">
     <div class="col-12 playlist d-flex flex-row" @click="show = !show">
       <div class="p-2 flex-grow-1 bd-highlight text">
-        <p class="text title">{{playlist.name}}</p>
-        <p class="text">{{playlist.songs.length+'-song'+((playlist.songs.length>1)?'s':'')}}</p>
+        <p class="text title">{{ playlist.name }}</p>
+        <p class="text">
+          {{
+            playlist.songs.length +
+              "-song" +
+              (playlist.songs.length > 1 ? "s" : "")
+          }}
+        </p>
       </div>
       <!-- <i class="fa fa-pen item"></i>
       <i class="far fa-times-circle"></i>-->
-      <i class="fa fa-times-circle" @click.stop="showModalDeletePl=true"></i>
-      <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle',playlist.songs)"></i>
-      <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist',playlist.id)"></i>
+      <i class="fa fa-times-circle" @click.stop="showModalDeletePl = true"></i>
+      <i
+        class="fa fa-random item"
+        @click.stop="$store.dispatch('addShuffle', playlist.songs)"
+      ></i>
+      <i
+        class="fa fa-play item"
+        @click.stop="$store.dispatch('playPlaylist', playlist.id)"
+      ></i>
     </div>
     <div class="col-12 d-flex flex-wrap" v-if="show">
-      <div class="card-songpl d-flex flex-row" v-for="(song,index) in playlist.songs" :key="index">
+      <div
+        class="card-songpl d-flex flex-row"
+        v-for="(song, index) in playlist.songs"
+        :key="index"
+      >
         <div
-          :class="{'image-holder':true, current:song.id == $store.getters.currentSong.id}"
+          :class="{
+            'image-holder': true,
+            current: song.id == $store.getters.currentSong.id
+          }"
           @click.stop="$store.dispatch('playSong', song)"
         >
           <img :src="song.avatar" alt class="image" />
           <div id="middle3">
             <i
               class="fa fa-pause fa-lg"
-              v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+              v-if="
+                song.id == $store.getters.currentSong.id &&
+                  $store.getters.isPlaying
+              "
             ></i>
             <i class="fa fa-play fa-lg" v-else></i>
           </div>
         </div>
         <div class="flex-grow-1 bd-highlight song-info2 text">
-          <p class="text">{{song.name}}</p>
-          <p class="text">{{song.artists}}</p>
+          <p class="text">{{ song.name }}</p>
+          <p class="text">{{ song.artists }}</p>
         </div>
-        <div class="time2">{{song.length | minutes}}</div>
+        <div class="time2">{{ song.length | minutes }}</div>
         <i
           class="fa fa-times-circle"
           style="padding: 0 8px"
-          @click="addSongToPl(playlist.id,true,song)"
+          @click="addSongToPl(playlist.id, true, playlist.name, song)"
         ></i>
-        <i class="fa fa-plus-square" style="padding: 0 8px" @click="addToPl(song)"></i>
+        <i
+          class="fa fa-plus-square"
+          style="padding: 0 8px"
+          @click="addToPl(song)"
+        ></i>
       </div>
     </div>
-    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+    <customModal
+      :show="showModalPl"
+      @close="showModalPl = false"
+      title="Add to:"
+    >
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
-          <li @click="$store.dispatch('addToCurrentList',tempSong)">
+          <li @click="$store.dispatch('addToCurrentList', tempSong)">
             <i class="fa fa-list-alt fa-lg"></i>
             <p>Add to queue</p>
           </li>
-          <li @click="$store.dispatch('addToNextSong',tempSong)">
+          <li @click="$store.dispatch('addToNextSong', tempSong)">
             <i class="fa fa-step-forward fa-lg"></i>
             <p>After current song</p>
           </li>
           <div style="width:100%; height:5px;"></div>
           <li
-            v-for="(pl,index) in pls"
+            v-for="(pl, index) in pls"
             :key="index"
-            @click="addSongToPl(pl.id,pl.inPlaylist); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+            @click="
+              addSongToPl(pl.id, pl.inPlaylist, pl.name);
+              pl.inPlaylist == true
+                ? (pl.inPlaylist = false)
+                : (pl.inPlaylist = true);
+            "
           >
             <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
             <i class="far fa-square fa-lg" v-if="!pl.inPlaylist"></i>
-            <p>{{pl.name}}</p>
+            <p>{{ pl.name }}</p>
           </li>
         </ul>
       </slot>
@@ -66,12 +101,14 @@
     <customModal
       :show="showModalDeletePl"
       @close="showModalDeletePl = false"
-      :title="'Delete playlist: '+playlist.name+'?'"
+      :title="'Delete playlist: ' + playlist.name + '?'"
     >
       <slot name="modal-footer">
         <div class="modal-footer">
-          <button @click="$store.dispatch('deletePl',playlist.id);showModalDeletePl= false">Ok</button>
-          <button @click="showModalDeletePl= false">Cancle</button>
+          <button @click="deletePl">
+            Ok
+          </button>
+          <button @click="showModalDeletePl = false">Cancle</button>
         </div>
       </slot>
     </customModal>
@@ -106,10 +143,11 @@ export default {
         this.tempSong = song;
       });
     },
-    addSongToPl(plId, check, song) {
+    addSongToPl(plId, check, plName, song) {
       let payload = {
         song: this.tempSong,
-        plId: plId
+        plId: plId,
+        plName: plName
       };
       if (song != null) {
         payload.song = song;
@@ -119,6 +157,13 @@ export default {
       } else {
         this.$store.dispatch("deleteSongFromPl", payload);
       }
+    },
+    deletePl() {
+      this.$store.dispatch("deletePl", {
+        plId: this.playlist.id,
+        plName: this.playlist.name
+      });
+      this.showModalDeletePl = false;
     }
   }
 };

@@ -6,14 +6,14 @@
         id="show2"
         class="fa fa-repeat fa-lg"
         @click="$store.commit('changeLoop')"
-        v-if="$store.getters.loop==0"
+        v-if="$store.getters.loop == 0"
         style="padding:0 5px; margin-left:10px"
       ></i>
       <i
         id="show2"
         class="fa fa-repeat-1 fa-lg loopAll"
         @click="$store.commit('changeLoop')"
-        v-else-if="$store.getters.loop==1"
+        v-else-if="$store.getters.loop == 1"
         style="padding:0 5px; margin-left:10px"
       ></i>
       <i
@@ -26,16 +26,20 @@
       <i
         id="show2"
         :class="{
-                    fa: true,
-                    'fa-random': true,
-                    'fa-lg': true,
-                    loopAll: $store.getters.random
-                  }"
+          fa: true,
+          'fa-random': true,
+          'fa-lg': true,
+          loopAll: $store.getters.random
+        }"
         @click="$store.dispatch('changeShuffle')"
         style="padding:0 5px"
       ></i>
       <div class="controls-2">
-        <i class="fa fa-chevron-down fa-sm item" style="margin-left:10px" @click="$emit('close')"></i>
+        <i
+          class="fa fa-chevron-down fa-sm item"
+          style="margin-left:10px"
+          @click="$emit('close')"
+        ></i>
       </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
@@ -67,7 +71,11 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img style="width: 40px; height: 40px;" class="media-object" :src="song.avatar" />
+                  <img
+                    style="width: 40px; height: 40px;"
+                    class="media-object"
+                    :src="song.avatar"
+                  />
                   <div id="middle">
                     <i
                       class="fa fa-pause-circle fa-2x"
@@ -84,10 +92,9 @@
                 <p class="media-heading elle">{{ song.name }}</p>
                 <p class="media-des elle">{{ song.artists }}</p>
                 <div class="media-more">
-                  <p
-                    class="media-more-time"
-                    style="margin: 0; padding: 0;"
-                  >{{ song.length | minutes }}</p>
+                  <p class="media-more-time" style="margin: 0; padding: 0;">
+                    {{ song.length | minutes }}
+                  </p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
                     <i
@@ -107,28 +114,55 @@
       <li
         class="ctx-item"
         @click="$store.dispatch('pause')"
-        v-if="songInContext === $store.getters.currentSong && $store.getters.isPlaying==true"
-      >Pause</li>
-      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)" v-else>Play</li>
+        v-if="
+          songInContext === $store.getters.currentSong &&
+            $store.getters.isPlaying == true
+        "
+      >
+        Pause
+      </li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('playSong', songInContext)"
+        v-else
+      >
+        Play
+      </li>
       <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
-        @click="$store.dispatch('addToNextSong',songInContext)"
-      >After current song</li>
+        @click="$store.dispatch('addToNextSong', songInContext)"
+      >
+        After current song
+      </li>
       <li class="ctx-item" @click="addToPl">Add to playlist</li>
-      <li class="ctx-item" @click="$store.commit('deleteFromQueue',songInContext.id)">Remove</li>
+      <li
+        class="ctx-item"
+        @click="$store.commit('deleteFromQueue', songInContext.id)"
+      >
+        Remove
+      </li>
     </context-menu>
-    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+    <customModal
+      :show="showModalPl"
+      @close="showModalPl = false"
+      title="Add to:"
+    >
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
           <li
-            v-for="(pl,index) in pls"
+            v-for="(pl, index) in pls"
             :key="index"
-            @click="addSongToPl(pl.id,pl.inPlaylist); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+            @click="
+              addSongToPl(pl.id, pl.inPlaylist, pl.name);
+              pl.inPlaylist == true
+                ? (pl.inPlaylist = false)
+                : (pl.inPlaylist = true);
+            "
           >
             <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
             <i class="far fa-square fa-lg" v-else></i>
-            <p>{{pl.name}}</p>
+            <p>{{ pl.name }}</p>
           </li>
         </ul>
       </slot>
@@ -188,10 +222,11 @@ export default {
         this.pls = res;
       });
     },
-    addSongToPl(plId, check) {
+    addSongToPl(plId, check, plName) {
       let payload = {
         song: this.songInContext,
-        plId: plId
+        plId: plId,
+        plName: plName
       };
       if (!check) {
         this.$store.dispatch("addSongToPl", payload);
@@ -265,4 +300,3 @@ ul li p {
   color: var(--color-hover);
 }
 </style>
-
