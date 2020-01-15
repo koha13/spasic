@@ -136,6 +136,7 @@ export default {
 }
 .title {
   font-size: 20px;
+  font-weight: 900;
   color: white;
   padding: 10px 0 0 10px;
 }

@@ -4,7 +4,7 @@ import Vue from "vue";
 
 const state = {
   allSongs: Array,
-  currentSong: Object,
+  currentSong: { name: "--", artists: "---" },
   currentList: [],
   player: Object,
   isPlaying: false,
