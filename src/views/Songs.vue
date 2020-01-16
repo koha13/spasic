@@ -6,12 +6,12 @@
           <div id="title">
             <p>All Songs</p>
             <div id="but">
-              <i
+              <!-- <i
                 v-if="!isSongTable"
                 class="fa fa-table fa-sm"
                 style="margin-right: 10px;"
                 @click="changeSongView"
-              ></i>
+              ></i>-->
               <i
                 v-if="isSongTable"
                 class="fa fa-th fa-sm"

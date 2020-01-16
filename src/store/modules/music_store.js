@@ -104,6 +104,7 @@ const actions = {
     state.currentList = [...state.allSongs];
     commit("updateCurrentSong", state.currentList[0]);
     commit("updateSourcePlayer");
+    state.random = 0;
     dispatch("play");
   },
   playCurrentList({ commit, dispatch }) {
@@ -301,6 +302,7 @@ const actions = {
       commit("updateCurrentList", [...state.playlists[i].songs]);
       commit("updateCurrentSong", state.currentList[0]);
       commit("updateSourcePlayer");
+      state.random = 0;
       dispatch("play");
     }
   },
