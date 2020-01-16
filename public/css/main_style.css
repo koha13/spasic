@@ -262,10 +262,10 @@ a:link {
 #title #but {
   float: right;
   color: var(--color-text);
-}
-#title #but i:hover {
-  color: var(--color-hover);
   cursor: pointer;
+}
+#title #but i:active {
+  color: var(--color-hover);
 }
 
 .card {

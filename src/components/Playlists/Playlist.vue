@@ -5,30 +5,20 @@
         <p class="text title">{{ playlist.name }}</p>
         <p class="text">
           {{
-            playlist.songs.length +
-              "-song" +
-              (playlist.songs.length > 1 ? "s" : "")
+          playlist.songs.length +
+          "-song" +
+          (playlist.songs.length > 1 ? "s" : "")
           }}
         </p>
       </div>
       <!-- <i class="fa fa-pen item"></i>
       <i class="far fa-times-circle"></i>-->
-      <i class="fa fa-times-circle" @click.stop="showModalDeletePl = true"></i>
-      <i
-        class="fa fa-random item"
-        @click.stop="$store.dispatch('addShuffle', playlist.songs)"
-      ></i>
-      <i
-        class="fa fa-play item"
-        @click.stop="$store.dispatch('playPlaylist', playlist.id)"
-      ></i>
+      <i class="fa fa-times-circle item" @click.stop="showModalDeletePl = true"></i>
+      <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle', playlist.songs)"></i>
+      <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist', playlist.id)"></i>
     </div>
     <div class="col-12 d-flex flex-wrap" v-if="show">
-      <div
-        class="card-songpl d-flex flex-row"
-        v-for="(song, index) in playlist.songs"
-        :key="index"
-      >
+      <div class="card-songpl d-flex flex-row" v-for="(song, index) in playlist.songs" :key="index">
         <div
           :class="{
             'image-holder': true,
@@ -58,18 +48,10 @@
           style="padding: 0 8px"
           @click="addSongToPl(playlist.id, true, playlist.name, song)"
         ></i>
-        <i
-          class="fa fa-plus-square"
-          style="padding: 0 8px"
-          @click="addToPl(song)"
-        ></i>
+        <i class="fa fa-plus-square" style="padding: 0 8px" @click="addToPl(song)"></i>
       </div>
     </div>
-    <customModal
-      :show="showModalPl"
-      @close="showModalPl = false"
-      title="Add to:"
-    >
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
           <li @click="$store.dispatch('addToCurrentList', tempSong)">
@@ -105,9 +87,7 @@
     >
       <slot name="modal-footer">
         <div class="modal-footer">
-          <button @click="deletePl">
-            Ok
-          </button>
+          <button @click="deletePl">Ok</button>
           <button @click="showModalDeletePl = false">Cancle</button>
         </div>
       </slot>
