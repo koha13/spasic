@@ -103,7 +103,7 @@
     display: none;
   }
   .song-info {
-    left: 55%;
+    left: 45%;
     width: 200px;
   }
   .hi991 {
@@ -116,10 +116,6 @@
 ************/
 
 @media only screen and (max-width: 959px) {
-  .song-info {
-    left: 55%;
-    width: 200px;
-  }
 }
 
 /************
@@ -128,7 +124,7 @@
 
 @media only screen and (max-width: 880px) {
   .song-info {
-    left: 55%;
+    left: 45%;
     width: 200px;
   }
 }
@@ -138,10 +134,6 @@
 ************/
 
 @media only screen and (max-width: 768px) {
-  .song-info {
-    left: 60%;
-    width: 100px;
-  }
   .all-song {
     max-width: 100%;
   }
@@ -162,7 +154,7 @@
 
 @media only screen and (max-width: 767px) {
   .song-info {
-    left: 60%;
+    left: 53%;
     width: 100px;
   }
 }
@@ -197,7 +189,7 @@
     display: none;
   }
   .song-info {
-    left: 60%;
+    left: 55%;
     width: 100px;
   }
   #hi {
