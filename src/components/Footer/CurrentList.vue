@@ -74,7 +74,7 @@
                   <img
                     style="width: 40px; height: 40px;"
                     class="media-object"
-                    :src="song.avatar"
+                    v-lazy="song.avatar"
                   />
                   <div id="middle">
                     <i

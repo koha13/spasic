@@ -5,11 +5,13 @@ import store from "./store/index";
 import Vuelidate from "vuelidate";
 import VuePlyr from "vue-plyr";
 import Notifications from "vue-notification";
+import VueLazyload from "vue-lazyload";
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 Vue.use(VuePlyr);
 Vue.use(Notifications);
+Vue.use(VueLazyload);
 
 Vue.filter("minutes", value => {
   if (!value || typeof value !== "number") return "00:00";

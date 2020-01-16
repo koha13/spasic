@@ -1,25 +1,48 @@
 <template>
   <div class="row">
-    <div class="col-sm-6 col-xs-12 col-lg-3 col-md-4" v-for="(song,index) in allSongs" :key="index">
-      <div :class="{card: true, current: song.id == $store.getters.currentSong.id}">
-        <div id="image-1" style="width: 100%; height: 150px;" @click="playSong(song)">
-          <img style="width:100%; height:150px; object-fit: cover;" :src="song.avatar" />
+    <div
+      class="col-sm-6 col-xs-12 col-lg-3 col-md-4"
+      v-for="(song, index) in allSongs"
+      :key="index"
+    >
+      <div
+        :class="{
+          card: true,
+          current: song.id == $store.getters.currentSong.id
+        }"
+      >
+        <div
+          id="image-1"
+          style="width: 100%; height: 150px;"
+          @click="playSong(song)"
+        >
+          <img
+            style="width:100%; height:150px; object-fit: cover;"
+            v-lazy="song.avatar"
+          />
           <div id="middle">
             <i
               class="fa fa-pause fa-5x"
-              v-if="(song.id == $store.getters.currentSong.id) && $store.getters.isPlaying"
+              v-if="
+                song.id == $store.getters.currentSong.id &&
+                  $store.getters.isPlaying
+              "
             ></i>
             <i class="fa fa-play fa-5x" v-else></i>
           </div>
           <div id="time">
-            <span>{{song.length | minutes}}</span>
+            <span>{{ song.length | minutes }}</span>
           </div>
         </div>
         <div class="card-inner">
           <div class="content">
-            <p id="header">{{song.name}}</p>
-            <i id="menu" class="fa fa-ellipsis-v fa-lg" @click.stop="$refs.ctx.open($event, song)"></i>
-            <p id="art-card">{{song.artists}}</p>
+            <p id="header">{{ song.name }}</p>
+            <i
+              id="menu"
+              class="fa fa-ellipsis-v fa-lg"
+              @click.stop="$refs.ctx.open($event, song)"
+            ></i>
+            <p id="art-card">{{ song.artists }}</p>
           </div>
         </div>
       </div>
@@ -28,28 +51,55 @@
       <li
         class="ctx-item"
         @click="$store.dispatch('pause')"
-        v-if="songInContext === $store.getters.currentSong && $store.getters.isPlaying==true"
-      >Pause</li>
-      <li class="ctx-item" @click="$store.dispatch('playSong',songInContext)" v-else>Play</li>
+        v-if="
+          songInContext === $store.getters.currentSong &&
+            $store.getters.isPlaying == true
+        "
+      >
+        Pause
+      </li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('playSong', songInContext)"
+        v-else
+      >
+        Play
+      </li>
       <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
-        @click="$store.dispatch('addToNextSong',songInContext)"
-      >After current song</li>
-      <li class="ctx-item" @click="$store.dispatch('addToCurrentList',songInContext)">Add to queue</li>
+        @click="$store.dispatch('addToNextSong', songInContext)"
+      >
+        After current song
+      </li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('addToCurrentList', songInContext)"
+      >
+        Add to queue
+      </li>
       <li class="ctx-item" @click="addToPl">Add to playlist</li>
     </context-menu>
-    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
+    <customModal
+      :show="showModalPl"
+      @close="showModalPl = false"
+      title="Add to:"
+    >
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
           <li
-            v-for="(pl,index) in pls"
+            v-for="(pl, index) in pls"
             :key="index"
-            @click="addSongToPl(pl.id,pl.inPlaylist,pl.name); ((pl.inPlaylist==true)?pl.inPlaylist=false:pl.inPlaylist=true)"
+            @click="
+              addSongToPl(pl.id, pl.inPlaylist, pl.name);
+              pl.inPlaylist == true
+                ? (pl.inPlaylist = false)
+                : (pl.inPlaylist = true);
+            "
           >
             <i class="far fa-check-square fa-lg" v-if="pl.inPlaylist"></i>
             <i class="far fa-square fa-lg" v-else></i>
-            <p>{{pl.name}}</p>
+            <p>{{ pl.name }}</p>
           </li>
         </ul>
       </slot>
@@ -95,11 +145,11 @@ export default {
         this.pls = res;
       });
     },
-    addSongToPl(plId, check,plName) {
+    addSongToPl(plId, check, plName) {
       let payload = {
         song: this.songInContext,
         plId: plId,
-        plName : plName
+        plName: plName
       };
       if (!check) {
         this.$store.dispatch("addSongToPl", payload);
