@@ -1,4 +1,17 @@
 :root {
+  --color-main: #3d84a8;
+  --color-hover: rgb(26, 171, 255);
+  --color-text: #abedd8;
+  --color3: rgb(49, 53, 74); /*bg-input*/
+  --color4: rgb(26, 171, 255); /*color-input*/
+  --color4-hover: #46cdcf;
+  --color5: rgb(33, 39, 55);
+  --color-bg: #48466d;
+  --color-item-active: rgb(43, 54, 80);
+  --color-bg-listsong: rgb(33, 39, 55);
+}
+
+/* :root {
   --color-main: rgb(33, 36, 50);
   --color-hover: rgb(26, 171, 255);
   --color-text: rgb(127, 131, 141);
@@ -6,14 +19,5 @@
   --color4: rgb(26, 171, 255);
   --color4-hover: aqua;
   --color5: rgb(33, 39, 55);
-}
-
-/* :root {
-  --color-main: rgb(33, 36, 50);
-  --color-hover: rgb(24, 121, 179);
-  --color-text: rgb(127, 131, 141);
-  --color3: rgb(49, 53, 74);
-  --color4: rgb(26, 171, 255);
-  --color4-hover: aqua;
-  --color5: rgb(33, 39, 55);
+  --color-bg: #a5a5a5;
 } */

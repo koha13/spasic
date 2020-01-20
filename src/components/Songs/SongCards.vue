@@ -11,13 +11,9 @@
           current: song.id == $store.getters.currentSong.id
         }"
       >
-        <div
-          id="image-1"
-          style="width: 100%; height: 150px;"
-          @click="playSong(song)"
-        >
+        <div id="image-1" style="width: 100%; height: 150px;" @click="playSong(song)">
           <img
-            style="width:100%; height:150px; object-fit: cover;"
+            style="width:100%; height:150px; object-fit: cover; border-radius:10px"
             v-lazy="song.avatar"
           />
           <div id="middle">
@@ -37,11 +33,7 @@
         <div class="card-inner">
           <div class="content">
             <p id="header">{{ song.name }}</p>
-            <i
-              id="menu"
-              class="fa fa-ellipsis-v fa-lg"
-              @click.stop="$refs.ctx.open($event, song)"
-            ></i>
+            <i id="menu" class="fa fa-ellipsis-v fa-lg" @click.stop="$refs.ctx.open($event, song)"></i>
             <p id="art-card">{{ song.artists }}</p>
           </div>
         </div>
@@ -55,36 +47,17 @@
           songInContext === $store.getters.currentSong &&
             $store.getters.isPlaying == true
         "
-      >
-        Pause
-      </li>
-      <li
-        class="ctx-item"
-        @click="$store.dispatch('playSong', songInContext)"
-        v-else
-      >
-        Play
-      </li>
+      >Pause</li>
+      <li class="ctx-item" @click="$store.dispatch('playSong', songInContext)" v-else>Play</li>
       <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
         @click="$store.dispatch('addToNextSong', songInContext)"
-      >
-        After current song
-      </li>
-      <li
-        class="ctx-item"
-        @click="$store.dispatch('addToCurrentList', songInContext)"
-      >
-        Add to queue
-      </li>
+      >After current song</li>
+      <li class="ctx-item" @click="$store.dispatch('addToCurrentList', songInContext)">Add to queue</li>
       <li class="ctx-item" @click="addToPl">Add to playlist</li>
     </context-menu>
-    <customModal
-      :show="showModalPl"
-      @close="showModalPl = false"
-      title="Add to:"
-    >
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
           <li

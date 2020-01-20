@@ -48,8 +48,8 @@ body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 14px;
   font-weight: 400;
-  background: rgb(27, 33, 46);
-  color: #a5a5a5;
+  background: var(--color-bg);
+  color: var(--color-bg);
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -144,7 +144,7 @@ a:link {
   line-height: 0.75;
   font-size: 30px;
   font-weight: 600;
-  color: var(--color4);
+  color: var(--color-text);
   margin-left: 3px;
   -webkit-transform: translateY(-15%);
   -moz-transform: translateY(-15%);
@@ -211,7 +211,7 @@ a:link {
 .log_reg ul li i {
   font-size: 18px;
   font-weight: 600;
-  color: rgb(78, 87, 105);
+  color: var(--color-text);
 }
 .log_reg ul li i:hover {
   color: var(--color-hover);
@@ -274,13 +274,14 @@ a:link {
   box-sizing: border-box;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: var(--color3);
+  background-color: var(--color-bg);
   color: var(--color-text);
   border: 0;
 }
 
 .card:hover {
-  box-shadow: 0 6px 6px black;
+  box-shadow: 6px 6px 6px black;
+  transform: translate(-3px, -3px);
   /* position: relative;
   bottom: 10px; */
 }
@@ -347,7 +348,7 @@ h3 {
   right: 0;
   margin: 4px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--color-main);
   padding: 2px 4px 1px 4px;
   border-radius: 2px;
   letter-spacing: 0.5px;
@@ -455,7 +456,8 @@ h3 {
 7. Modal list song
 ***************************************/
 .list-song {
-  background-color: var(--color5);
+  background-color: var(--color-main);
+  color: var(--color-text);
   position: fixed;
   width: 450px;
   height: 550px;
@@ -466,13 +468,13 @@ h3 {
   border-width: 10px;
   border: 0px;
   border-style: solid;
-  border-color: #000000;
+  border-color: black;
   /* box-shadow: 5px 5px 200px rgb(2, 228, 228); */
   box-shadow: 0 6px 6px black;
   z-index: 102 !important;
 }
 .list-song .headerr {
-  color: var(--color4);
+  color: var(--color-text);
   font-size: 25px;
   padding: 5px 0 0px 12px;
   /* display: inline; */
@@ -485,7 +487,7 @@ h3 {
   cursor: pointer;
 }
 .list-song #top .controls-2 i:active {
-  color: var(--color4);
+  color: var(--color-hover);
 }
 .list-song #top .controls-2 {
   position: absolute;
@@ -555,7 +557,7 @@ h3 {
   color: var(--color-hover);
 }
 .list-song .item:hover {
-  background-color: rgb(43, 54, 80);
+  background-color: var(--color-item-active);
   cursor: pointer;
 }
 .list-song .item:hover img {
@@ -565,7 +567,7 @@ h3 {
   opacity: 0.7;
 }
 .list-song .item.active {
-  background-color: rgb(43, 54, 80);
+  background-color: var(--color-item-active);
 }
 .list-song .item.active #middle {
   opacity: 0.7;

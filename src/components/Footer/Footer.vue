@@ -7,24 +7,14 @@
             <!-- control -->
             <div class="control">
               <a class="d-flex flex-row align-items-end justify-content-start">
-                <i
-                  class="fa fa-backward fa-lg"
-                  @click="$store.dispatch('backSong')"
-                ></i>
+                <i class="fa fa-backward fa-lg" @click="$store.dispatch('backSong')"></i>
                 <i
                   v-if="!$store.getters.isPlaying"
                   class="fa fa-play fa-lg"
                   @click="$store.dispatch('play')"
                 ></i>
-                <i
-                  v-else
-                  class="fa fa-pause fa-lg"
-                  @click="$store.dispatch('pause')"
-                ></i>
-                <i
-                  class="fa fa-forward fa-lg"
-                  @click="$store.dispatch('nextSong')"
-                ></i>
+                <i v-else class="fa fa-pause fa-lg" @click="$store.dispatch('pause')"></i>
+                <i class="fa fa-forward fa-lg" @click="$store.dispatch('nextSong')"></i>
                 <i
                   id="hi"
                   class="fa fa-repeat fa-lg"
@@ -59,19 +49,13 @@
 
             <!-- Main Navigation -->
             <nav class="song-info">
-              <p style="margin-bottom: 0; margin-top: 10px;">
-                {{ $store.getters.currentSong.name }}
-              </p>
+              <p style="margin-bottom: 0; margin-top: 10px;">{{ $store.getters.currentSong.name }}</p>
               <p>{{ $store.getters.currentSong.artists }}</p>
             </nav>
 
             <!-- Menu -->
-            <div
-              class="menu-bot d-flex flex-row align-items-center justify-content-start"
-            >
-              <ul
-                class="d-flex flex-row align-items-start justify-content-start"
-              >
+            <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
+              <ul class="d-flex flex-row align-items-start justify-content-start">
                 <li>
                   <input
                     id="hi"
@@ -98,10 +82,7 @@
     </div>
     <transition name="slide-fade">
       <keep-alive>
-        <currentList
-          v-if="showCurrentList"
-          @close="showCurrentList = false"
-        ></currentList>
+        <currentList v-if="showCurrentList" @close="showCurrentList = false"></currentList>
       </keep-alive>
     </transition>
   </div>
@@ -140,9 +121,6 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
-}
-.loop1 {
-  color: aqua;
 }
 .loopAll {
   color: var(--color-hover);

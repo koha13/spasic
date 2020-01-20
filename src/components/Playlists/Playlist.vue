@@ -151,9 +151,13 @@ export default {
 <style scoped>
 .playlist {
   height: 60px;
-  background: rgb(37, 41, 56);
+  /* background: rgb(37, 41, 56); */
   align-items: center;
   border-radius: 10px;
+  color: var(--color-text);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
 }
 .playlist .item {
   padding: 0 5px;
@@ -179,7 +183,10 @@ export default {
   height: 50px;
   width: 30%;
   margin: 5px 10px;
-  background: rgb(41, 44, 58);
+  /* background: rgb(41, 44, 58); */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
   color: var(--color-text);
   border-radius: 10px;
   padding: 5px 5px;

@@ -35,11 +35,7 @@
         style="padding:0 5px"
       ></i>
       <div class="controls-2">
-        <i
-          class="fa fa-chevron-down fa-sm item"
-          style="margin-left:10px"
-          @click="$emit('close')"
-        ></i>
+        <i class="fa fa-chevron-down fa-sm item" style="margin-left:10px" @click="$emit('close')"></i>
       </div>
     </div>
     <hr style="border-top: 1px solid aqua; margin-top: 5px;" />
@@ -71,11 +67,7 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img
-                    style="width: 40px; height: 40px;"
-                    class="media-object"
-                    v-lazy="song.avatar"
-                  />
+                  <img style="width: 40px; height: 40px;" class="media-object" v-lazy="song.avatar" />
                   <div id="middle">
                     <i
                       class="fa fa-pause-circle fa-2x"
@@ -92,9 +84,10 @@
                 <p class="media-heading elle">{{ song.name }}</p>
                 <p class="media-des elle">{{ song.artists }}</p>
                 <div class="media-more">
-                  <p class="media-more-time" style="margin: 0; padding: 0;">
-                    {{ song.length | minutes }}
-                  </p>
+                  <p
+                    class="media-more-time"
+                    style="margin: 0; padding: 0;"
+                  >{{ song.length | minutes }}</p>
                   <div class="media-more-but">
                     <i class="fa fa-heart fa-md"></i>
                     <i
@@ -118,36 +111,17 @@
           songInContext === $store.getters.currentSong &&
             $store.getters.isPlaying == true
         "
-      >
-        Pause
-      </li>
-      <li
-        class="ctx-item"
-        @click="$store.dispatch('playSong', songInContext)"
-        v-else
-      >
-        Play
-      </li>
+      >Pause</li>
+      <li class="ctx-item" @click="$store.dispatch('playSong', songInContext)" v-else>Play</li>
       <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
         @click="$store.dispatch('addToNextSong', songInContext)"
-      >
-        After current song
-      </li>
+      >After current song</li>
       <li class="ctx-item" @click="addToPl">Add to playlist</li>
-      <li
-        class="ctx-item"
-        @click="$store.commit('deleteFromQueue', songInContext.id)"
-      >
-        Remove
-      </li>
+      <li class="ctx-item" @click="$store.commit('deleteFromQueue', songInContext.id)">Remove</li>
     </context-menu>
-    <customModal
-      :show="showModalPl"
-      @close="showModalPl = false"
-      title="Add to:"
-    >
+    <customModal :show="showModalPl" @close="showModalPl = false" title="Add to:">
       <slot>
         <ul class="list-group list-group-flush" style="width:max-content">
           <li
@@ -269,7 +243,7 @@ export default {
   opacity: 1;
 }
 .current1 {
-  background-color: rgb(43, 54, 80);
+  background-color: var(--color-item-active);
 }
 ul li {
   padding: 5px 0;
