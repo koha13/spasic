@@ -281,7 +281,7 @@ a:link {
 
 .card:hover {
   box-shadow: 6px 6px 6px black;
-  transform: translate(-3px, -3px);
+  transform: translateY(-3px);
   /* position: relative;
   bottom: 10px; */
 }
