@@ -83,7 +83,7 @@ export default {
 }
 .menu_close i {
   font-size: 22px;
-  color: #ffffff;
+  color: var(--color-text);
 }
 .menu_content {
   position: absolute;
@@ -103,7 +103,7 @@ export default {
 .menu_nav ul li a {
   font-size: 36px;
   font-weight: 400;
-  color: #ffffff;
+  color: var(--color-text);
 }
 .menu_nav ul li a.active {
   color: var(--color-hover);
