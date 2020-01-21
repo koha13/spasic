@@ -1,13 +1,13 @@
 :root {
-  --color-main: #3d84a8;
-  --color-hover: rgb(26, 171, 255);
-  --color-text: #abedd8;
-  --color3: rgb(49, 53, 74); /*bg-input*/
+  --color-main: #2a555b;
+  --color-hover: #6fcce3;
+  --color-text: #ffffff;
+  --color3: #a2b5b8; /*bg-input*/
   --color4: rgb(26, 171, 255); /*color-input*/
   --color4-hover: #46cdcf;
   --color5: rgb(33, 39, 55);
-  --color-bg: #48466d;
-  --color-item-active: rgb(43, 54, 80);
+  --color-bg: #2a555b;
+  --color-item-active: #7a969b;
   --color-bg-listsong: rgb(33, 39, 55);
 }
 
