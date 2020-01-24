@@ -7,33 +7,17 @@
           <div class="va">
             <input type="text" placeholder="username" v-model.trim="username" />
             <div class="alert-validate" v-if="$v.username.$error">
-              <div class="alert-content" v-if="!$v.username.required">
-                Required zZz
-              </div>
-              <div class="alert-content" v-else-if="!$v.username.minLength">
-                At least 6 characters
-              </div>
-              <div class="alert-content" v-else-if="!$v.username.maxLength">
-                Too many characters
-              </div>
+              <div class="alert-content" v-if="!$v.username.required">Required zZz</div>
+              <div class="alert-content" v-else-if="!$v.username.minLength">At least 6 characters</div>
+              <div class="alert-content" v-else-if="!$v.username.maxLength">Too many characters</div>
             </div>
           </div>
           <div class="va">
-            <input
-              type="password"
-              placeholder="password"
-              v-model.trim="password"
-            />
+            <input type="password" placeholder="password" v-model.trim="password" />
             <div class="alert-validate" v-if="$v.password.$error">
-              <div class="alert-content" v-if="!$v.password.required">
-                Required
-              </div>
-              <div class="alert-content" v-else-if="!$v.password.minLength">
-                At least 6 characters
-              </div>
-              <div class="alert-content" v-else-if="!$v.password.maxLength">
-                Too many characters
-              </div>
+              <div class="alert-content" v-if="!$v.password.required">Required</div>
+              <div class="alert-content" v-else-if="!$v.password.minLength">At least 6 characters</div>
+              <div class="alert-content" v-else-if="!$v.password.maxLength">Too many characters</div>
             </div>
           </div>
 
@@ -46,16 +30,8 @@
             <p id="bt">SUCK</p>
           </a>
         </div>
-        <img
-          src="@/assets/login-true.gif"
-          v-if="showForm == 2"
-          style="width:170px"
-        />
-        <img
-          src="@/assets/login-fail.gif"
-          v-if="showForm == 3"
-          style="width:200px"
-        />
+        <img src="@/assets/login-true.gif" v-if="showForm == 2" style="width:170px" />
+        <img src="@/assets/login-fail.gif" v-if="showForm == 3" style="width:200px" />
       </form>
     </div>
   </div>
@@ -111,9 +87,10 @@ export default {
 #bt {
   margin-bottom: -8px;
   padding: 0;
+  color: var(--color-text);
 }
 #title-lg {
-  color: var(--color4);
+  color: var(--color-text);
   padding-bottom: 10px;
 }
 .login-page {
@@ -130,27 +107,27 @@ export default {
   height: 320px;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 aqua, 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  /* box-shadow: 0 0 20px 0 var(--color-contrast), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
 }
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: var(--color3);
+  background: transparent;
   width: 100%;
   height: 40px;
-  border: 0;
+  border: 1px solid var(--color3);
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
-  color: var(--color-hover);
+  color: var(--color-text);
   border-radius: 20px;
+  font-weight: 600;
 }
 a {
   position: relative;
   display: inline-block;
   padding: 15px 30px;
-  color: #2196f3;
   text-transform: uppercase;
   letter-spacing: 4px;
   text-decoration: none;
@@ -160,9 +137,10 @@ a {
   cursor: pointer;
 }
 a:hover {
-  color: #255784;
-  background: #2196f3;
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  color: var(--color-text);
+  background: var(--color-contrast);
+  box-shadow: 0 0 10px var(--color-contrast), 0 0 40px var(--color-contrast),
+    0 0 80px var(--color-contrast);
   transition-delay: 1s;
 }
 a span {
@@ -174,7 +152,7 @@ a span:nth-child(1) {
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #2196f3);
+  background: linear-gradient(90deg, transparent, var(--color-contrast));
 }
 a:hover span:nth-child(1) {
   left: 100%;
@@ -185,7 +163,7 @@ a span:nth-child(3) {
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #2196f3);
+  background: linear-gradient(270deg, transparent, var(--color-contrast));
 }
 a:hover span:nth-child(3) {
   left: 100%;
@@ -197,7 +175,7 @@ a span:nth-child(2) {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #2196f3);
+  background: linear-gradient(180deg, transparent, var(--color-contrast));
 }
 a:hover span:nth-child(2) {
   top: 100%;
@@ -209,7 +187,7 @@ a span:nth-child(4) {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #2196f3);
+  background: linear-gradient(360deg, transparent, var(--color-contrast));
 }
 a:hover span:nth-child(4) {
   bottom: 100%;
@@ -245,6 +223,7 @@ a:hover span:nth-child(4) {
   padding-left: 5px;
   padding-right: 5px;
   display: none;
+  color: var(--color-text);
 }
 .alert-validate:hover .alert-content {
   display: flex;
