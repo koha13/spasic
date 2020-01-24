@@ -1,9 +1,10 @@
 <template>
-  <div class="row">
+  <div class="row" style="padding: 0; margin:0">
     <div
       class="col-sm-6 col-xs-12 col-lg-3 col-md-4"
       v-for="(song, index) in allSongs"
       :key="index"
+      id="col-song-card"
     >
       <div
         :class="{

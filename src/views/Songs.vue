@@ -2,7 +2,7 @@
   <div>
     <div class="container all-song">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="col-song-card">
           <div id="title">
             <p>All Songs</p>
             <div id="but">

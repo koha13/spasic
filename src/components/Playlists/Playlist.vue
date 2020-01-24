@@ -200,10 +200,10 @@ export default {
     width: 45%;
   }
   .card-songpl:hover {
-    box-shadow: none;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24);
   }
   .playlist:hover {
-    box-shadow: none;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24);
   }
 }
 @media only screen and (max-width: 575px) {

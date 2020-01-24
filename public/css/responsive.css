@@ -109,6 +109,17 @@
   .hi991 {
     display: none;
   }
+  .card:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transform: none;
+  }
+  .card #image-1:hover #middle {
+    opacity: 0;
+  }
+  .card #image-1:hover img {
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 
 /************
@@ -204,6 +215,9 @@
     bottom: 75px;
     right: 0;
     z-index: 102 !important;
+  }
+  #col-song-card {
+    padding: 0;
   }
 }
 
