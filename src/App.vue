@@ -67,8 +67,8 @@ export default {
   background-color: transparent !important;
 }
 .plyr__progress input[type="range"]::-webkit-slider-runnable-track {
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3 !important;
-  counter-reset: #2196f3;
+  color: var(--color-contrast) !important;
+  outline-width: 0 !important;
 }
 .plyr__progress input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none !important;

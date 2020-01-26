@@ -5,6 +5,7 @@ import Songs from "../views/Songs.vue";
 import Login from "../views/Login.vue";
 import Playlists from "../views/Playlists.vue";
 import About from "../views/About.vue";
+import Profile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
@@ -32,10 +33,12 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: About
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile
   }
 ];
 

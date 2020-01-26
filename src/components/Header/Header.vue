@@ -39,7 +39,11 @@
                   <i class="fa fa-search fa-lg"></i>
                 </li>
                 <li style="margin-left:20px">
-                  <i class="fa fa-user fa-lg"></i>
+                  <i
+                    class="fa fa-user fa-lg"
+                    @click="goProfile"
+                    :class="{ active: $route.path == '/profile' }"
+                  ></i>
                 </li>
               </ul>
 
@@ -73,6 +77,9 @@ export default {
     },
     goAbout() {
       this.$router.push({ name: "about" });
+    },
+    goProfile() {
+      this.$router.push({ name: "profile" });
     }
   },
   data() {
@@ -82,3 +89,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.active {
+  color: var(--color-hover);
+}
+</style>
