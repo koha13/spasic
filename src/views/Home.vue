@@ -10,13 +10,6 @@
           <p>What is that?</p>
           <p>Simple streaming music website?</p>
           <p>Oh! Yes it is</p>
-          <a @click="$router.push({name:'songs'})" class="bt">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <p id="bt">LISTEN NOW</p>
-          </a>
         </div>
       </div>
     </div>
@@ -28,13 +21,6 @@
           <p>Listen everywhere</p>
           <p>Everytime?</p>
           <p>Oh! Yes it is</p>
-          <a @click="$router.push({name:'songs'})" class="bt">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <p id="bt">LISTEN NOW</p>
-          </a>
         </div>
       </div>
       <div class="col-lg-6 col-sm-12 order-lg-2 order-1">
@@ -63,8 +49,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "home"
 };
@@ -109,80 +93,5 @@ export default {
     font-size: 25px;
     font-weight: 400;
   }
-}
-#bt {
-  margin-bottom: -8px;
-  padding: 0;
-}
-.home .body .content .bt {
-  position: relative;
-  display: inline-block;
-  /* padding: 15px 30px; */
-  color: black;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  text-decoration: none;
-  font-size: 50px;
-  font-weight: 900;
-  overflow: hidden;
-  transition: 0.2s;
-  cursor: pointer;
-}
-.home .body .content .bt:hover {
-  color: #255784;
-  background: #2196f3;
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-  transition-delay: 1s;
-}
-.home .body .content .bt span {
-  position: absolute;
-  display: block;
-}
-.home .body .content .bt span:nth-child(1) {
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #2196f3);
-}
-.home .body .content .bt:hover span:nth-child(1) {
-  left: 100%;
-  transition: 1s;
-}
-.home .body .content .bt span:nth-child(3) {
-  bottom: 0;
-  right: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg, transparent, #2196f3);
-}
-.home .body .content .bt:hover span:nth-child(3) {
-  left: 100%;
-  transition: 1s;
-  transition-delay: 0.5s;
-}
-.home .body .content .bt span:nth-child(2) {
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg, transparent, #2196f3);
-}
-.home .body .content .bt:hover span:nth-child(2) {
-  top: 100%;
-  transition: 1s;
-  transition-delay: 0.25s;
-}
-.home .body .content .bt span:nth-child(4) {
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg, transparent, #2196f3);
-}
-.home .body .content .bt:hover span:nth-child(4) {
-  bottom: 100%;
-  transition: 1s;
-  transition-delay: 0.75s;
 }
 </style>
