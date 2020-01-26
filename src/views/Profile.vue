@@ -2,10 +2,11 @@
   <div class="profile container">
     <div class="row">
       <h1 class="title">Profile</h1>
+      <button type="button" class="btn btn-primary" @click="logout">Logout</button>
     </div>
     <p>Name: {{ this.$store.state.user_store.username }}</p>
     <p>Role: {{ this.$store.state.user_store.role }}</p>
-    <button type="button" class="btn btn-primary" @click="logout">Logout</button>
+
     <div>
       Upload song:
       <input
