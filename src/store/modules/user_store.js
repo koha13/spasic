@@ -28,6 +28,25 @@ const actions = {
           reject(err.response);
         });
     });
+  },
+
+  checkToken({ commit }) {
+    return new Promise((resolve, reject) => {
+      let token = localStorage.getItem("token");
+      if (token == null) reject("Failed");
+      else {
+        auth
+          .get("/verify/" + token)
+          .then(res => {
+            localStorage.setItem("token", res.data.token);
+            commit("updateUser", res.data);
+            resolve(res.data);
+          })
+          .catch(err => {
+            reject("Failed");
+          });
+      }
+    });
   }
 };
 const getters = {};

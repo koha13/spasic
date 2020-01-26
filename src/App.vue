@@ -1,12 +1,11 @@
 <template>
   <div>
-    <headerr v-if="$route.path != '/login'"></headerr>
+    <headerr v-if="showPlyr"></headerr>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <div class="container" id="progress-plyr">
+    <div class="container" id="progress-plyr" v-show="showPlyr">
       <vue-plyr
-        v-if="showPlyr"
         ref="player"
         :options="playerOptions"
         @ended="$store.dispatch('onEnd')"
@@ -18,7 +17,7 @@
         <audio></audio>
       </vue-plyr>
     </div>
-    <footerr v-if="$route.path != '/login'"></footerr>
+    <footerr v-if="showPlyr"></footerr>
     <notifications group="foo" position="bottom left" />
   </div>
 </template>
@@ -40,19 +39,19 @@ export default {
         storage: { enabled: true, key: "plyr" }
       };
       return options;
+    },
+    showPlyr: function() {
+      if (this.$route.path == "/login") return false;
+      return true;
     }
-  },
-  data() {
-    return {
-      showPlyr: true
-    };
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
   },
-  created() {
-    if (localStorage.getItem("token") == null)
+  async created() {
+    await this.$store.dispatch("checkToken").catch(err => {
       this.$router.push({ name: "login" });
+    });
   }
 };
 </script>

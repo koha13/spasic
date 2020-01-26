@@ -265,15 +265,21 @@ const actions = {
 
   /*Fetch all playlists from sv */
   fetchPlaylists({ commit }) {
-    playlists
-      .get("", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      })
-      .then(res => {
-        commit("updatePlaylists", res.data);
-      });
+    return new Promise((resolve, reject) => {
+      playlists
+        .get("", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        .then(res => {
+          commit("updatePlaylists", res.data);
+          resolve();
+        })
+        .catch(err => {
+          reject();
+        });
+    });
   },
 
   /*Check all playlist if this song is in or not */

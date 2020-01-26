@@ -4,13 +4,13 @@
       <p class="title">Playlists</p>
       <i
         class="fas fa-plus-circle fa-lg"
-        style="padding:15px 10px;cursor:pointer"
+        style="padding:15px 10px;cursor:pointer; color:var(--color-text)"
         @click="showForm = true"
         v-if="!showForm"
       ></i>
       <i
         class="fas fa-times-circle fa-lg"
-        style="padding:15px 10px;cursor:pointer"
+        style="padding:15px 10px;cursor:pointer;color:var(--color-text)"
         v-else
         @click="showForm = false; plName=''"
       ></i>
@@ -38,8 +38,8 @@ export default {
       showForm: false
     };
   },
-  created() {
-    this.$store.dispatch("fetchPlaylists");
+  async created() {
+    await this.$store.dispatch("fetchPlaylists");
   },
   computed: {
     playlists: {
@@ -104,7 +104,7 @@ export default {
 }
 .form-newpl input {
   width: 260px;
-  background: var(--color5);
+  background: var(--color3);
   border: 0;
   height: 30px;
   padding: 0 10px;
