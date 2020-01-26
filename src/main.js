@@ -17,7 +17,7 @@ Vue.filter("minutes", value => {
   if (!value || typeof value !== "number") return "00:00";
   let hour = parseInt(value / 3600),
     min = parseInt((value % 3600) / 60),
-    sec = parseInt(value % 60);
+    sec = parseInt((value % 3600) % 60);
   sec = sec < 10 ? "0" + sec : sec;
   if (hour > 0) {
     min = min < 10 ? "0" + min : min;
