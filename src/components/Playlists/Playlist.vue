@@ -13,7 +13,11 @@
       </div>
       <!-- <i class="fa fa-pen item"></i>
       <i class="far fa-times-circle"></i>-->
-      <i class="fa fa-times-circle item" @click.stop="showModalDeletePl = true"></i>
+      <i
+        class="fa fa-times-circle item"
+        @click.stop="showModalDeletePl = true"
+        v-if="playlist.name !='Loved'"
+      ></i>
       <i class="fa fa-random item" @click.stop="$store.dispatch('addShuffle', playlist.songs)"></i>
       <i class="fa fa-play item" @click.stop="$store.dispatch('playPlaylist', playlist.id)"></i>
     </div>
@@ -47,6 +51,13 @@
           class="fa fa-times-circle"
           style="padding: 0 8px"
           @click="addSongToPl(playlist.id, true, playlist.name, song)"
+          v-if="playlist.name != 'Loved'"
+        ></i>
+        <i
+          class="fa fa-times-circle"
+          style="padding: 0 8px"
+          @click="$store.dispatch('unlikeSong',song)"
+          v-else
         ></i>
         <i class="fa fa-plus-square" style="padding: 0 8px" @click="addToPl(song)"></i>
       </div>

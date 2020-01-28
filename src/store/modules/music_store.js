@@ -93,7 +93,6 @@ const actions = {
       })
       .then(res => {
         commit("updateAllSongs", res.data);
-        console.log(res.data);
       });
   },
   play({ state }) {
@@ -444,15 +443,16 @@ const actions = {
   },
 
   likeSong({ state }, song) {
-    let id;
+    let temp = null;
     if (song == null) {
-      id = state.currentSong.id;
+      temp = state.currentSong;
     } else {
-      id = song.id;
+      temp = song;
     }
+    if (temp == null) return;
     axios
       .post(
-        process.env.VUE_APP_BASE_API + "/like/" + id,
+        process.env.VUE_APP_BASE_API + "/like/" + temp.id,
         {},
         {
           headers: {
@@ -462,29 +462,33 @@ const actions = {
       )
       .then(res => {
         for (let i = 0; i < state.allSongs.length; i++) {
-          if (state.allSongs[i].id == id) {
+          if (state.allSongs[i].id == temp.id) {
             state.allSongs[i].like = true;
             break;
           }
         }
         for (let i = 0; i < state.playlists.length; i++) {
           for (let j = 0; j < state.playlists[i].songs.length; j++) {
-            if (state.playlists[i].songs[j].id == id) {
+            if (state.playlists[i].songs[j].id == temp.id) {
               state.playlists[i].songs[j].like = true;
               break;
             }
+          }
+          if (state.playlists[i].name == "Loved") {
+            state.playlists[i].songs.push(temp);
           }
         }
       });
   },
 
   unlikeSong({ state }, song) {
-    let id;
+    let id = null;
     if (song == null) {
       id = state.currentSong.id;
     } else {
       id = song.id;
     }
+    if (id == null) return;
     axios
       .post(
         process.env.VUE_APP_BASE_API + "/unlike/" + id,
@@ -506,6 +510,9 @@ const actions = {
           for (let j = 0; j < state.playlists[i].songs.length; j++) {
             if (state.playlists[i].songs[j].id == id) {
               state.playlists[i].songs[j].like = false;
+              if (state.playlists[i].name == "Loved") {
+                state.playlists[i].songs.splice(j, 1);
+              }
               break;
             }
           }
