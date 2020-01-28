@@ -71,6 +71,8 @@ export default {
           .dispatch("login1", loginForm)
           .then(() => {
             this.$router.push({ name: "home" });
+            this.$store.dispatch("fetchPlaylists");
+            this.$store.dispatch("fetchAllSong");
           })
           .catch(() => {
             this.showForm = 3;
