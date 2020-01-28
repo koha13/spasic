@@ -73,6 +73,7 @@ export default {
             this.$router.push({ name: "home" });
             this.$store.dispatch("fetchPlaylists");
             this.$store.dispatch("fetchAllSong");
+            this.showForm = 1;
           })
           .catch(() => {
             this.showForm = 3;
