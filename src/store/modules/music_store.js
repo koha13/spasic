@@ -1,5 +1,6 @@
 import songs from "@/axios/songs";
 import playlists from "@/axios/playlists";
+import axios from "axios";
 import Vue from "vue";
 
 const state = {
@@ -92,6 +93,7 @@ const actions = {
       })
       .then(res => {
         commit("updateAllSongs", res.data);
+        console.log(res.data);
       });
   },
   play({ state }) {
@@ -439,6 +441,76 @@ const actions = {
           reject(false);
         });
     });
+  },
+
+  likeSong({ state }, song) {
+    let id;
+    if (song == null) {
+      id = state.currentSong.id;
+    } else {
+      id = song.id;
+    }
+    axios
+      .post(
+        process.env.VUE_APP_BASE_API + "/like/" + id,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }
+      )
+      .then(res => {
+        for (let i = 0; i < state.allSongs.length; i++) {
+          if (state.allSongs[i].id == id) {
+            state.allSongs[i].like = true;
+            break;
+          }
+        }
+        for (let i = 0; i < state.playlists.length; i++) {
+          for (let j = 0; j < state.playlists[i].songs.length; j++) {
+            if (state.playlists[i].songs[j].id == id) {
+              state.playlists[i].songs[j].like = true;
+              break;
+            }
+          }
+        }
+      });
+  },
+
+  unlikeSong({ state }, song) {
+    let id;
+    if (song == null) {
+      id = state.currentSong.id;
+    } else {
+      id = song.id;
+    }
+    axios
+      .post(
+        process.env.VUE_APP_BASE_API + "/unlike/" + id,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }
+      )
+      .then(res => {
+        for (let i = 0; i < state.allSongs.length; i++) {
+          if (state.allSongs[i].id == id) {
+            state.allSongs[i].like = false;
+            break;
+          }
+        }
+        for (let i = 0; i < state.playlists.length; i++) {
+          for (let j = 0; j < state.playlists[i].songs.length; j++) {
+            if (state.playlists[i].songs[j].id == id) {
+              state.playlists[i].songs[j].like = false;
+              break;
+            }
+          }
+        }
+      });
   }
 };
 const getters = {

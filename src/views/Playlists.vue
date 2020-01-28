@@ -38,9 +38,6 @@ export default {
       showForm: false
     };
   },
-  async created() {
-    await this.$store.dispatch("fetchPlaylists");
-  },
   computed: {
     playlists: {
       get: function() {

@@ -67,7 +67,18 @@
                     v-model="$store.state.music_store.player.volume"
                   />
 
-                  <i id="hi" class="fa fa-heart fa-lg"></i>
+                  <i
+                    id="hi"
+                    class="far fa-heart fa-lg"
+                    v-if="!$store.state.music_store.currentSong.like"
+                    @click.stop="$store.dispatch('likeSong')"
+                  ></i>
+                  <i
+                    id="hi"
+                    class="fas fa-heart fa-lg"
+                    v-else
+                    @click.stop="$store.dispatch('unlikeSong')"
+                  ></i>
                   <i
                     class="fa fa-list-ul fa-lg"
                     @click="showCurrentList = !showCurrentList"

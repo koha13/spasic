@@ -73,9 +73,6 @@ export default {
     playAllSongs() {
       this.$store.dispatch("playAllSong");
     }
-  },
-  created() {
-    this.$store.dispatch("fetchAllSong");
   }
 };
 </script>

@@ -89,7 +89,16 @@
                     style="margin: 0; padding: 0;"
                   >{{ song.length | minutes }}</p>
                   <div class="media-more-but">
-                    <i class="fa fa-heart fa-md"></i>
+                    <i
+                      class="far fa-heart fa-md"
+                      v-if="!song.like"
+                      @click.stop="$store.dispatch('likeSong',song)"
+                    ></i>
+                    <i
+                      class="fas fa-heart fa-md"
+                      v-else
+                      @click.stop="$store.dispatch('unlikeSong',song)"
+                    ></i>
                     <i
                       style="margin-left: 10px;"
                       class="fa fa-ellipsis-h fa-md"
@@ -113,7 +122,6 @@
         "
       >Pause</li>
       <li class="ctx-item" @click="$store.dispatch('playSong', songInContext)" v-else>Play</li>
-      <li class="ctx-item">Like</li>
       <li
         class="ctx-item"
         @click="$store.dispatch('addToNextSong', songInContext)"

@@ -49,9 +49,15 @@ export default {
     this.$store.state.music_store.player = this.$refs.player.player;
   },
   async created() {
-    await this.$store.dispatch("checkToken").catch(err => {
-      this.$router.push({ name: "login" });
-    });
+    await this.$store
+      .dispatch("checkToken")
+      .then(res => {
+        this.$store.dispatch("fetchPlaylists");
+        this.$store.dispatch("fetchAllSong");
+      })
+      .catch(err => {
+        this.$router.push({ name: "login" });
+      });
   }
 };
 </script>

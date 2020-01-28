@@ -50,7 +50,12 @@
         "
       >Pause</li>
       <li class="ctx-item" @click="$store.dispatch('playSong', songInContext)" v-else>Play</li>
-      <li class="ctx-item">Like</li>
+      <li
+        class="ctx-item"
+        @click="$store.dispatch('likeSong',songInContext)"
+        v-if="songInContext.like == false"
+      >Like</li>
+      <li class="ctx-item" @click="$store.dispatch('unlikeSong',songInContext)" v-else>Unlike</li>
       <li
         class="ctx-item"
         @click="$store.dispatch('addToNextSong', songInContext)"
@@ -97,7 +102,7 @@ export default {
   },
   data() {
     return {
-      songInContext: null,
+      songInContext: { like: false },
       showModalPl: false,
       pls: []
     };
@@ -108,7 +113,7 @@ export default {
     },
 
     resetCtxLocals() {
-      this.songInContext = null;
+      this.songInContext = { like: false };
     },
     playSong(song) {
       this.$store.dispatch("playSong", song);
