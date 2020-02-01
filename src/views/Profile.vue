@@ -2,12 +2,22 @@
   <div class="profile container">
     <div class="row">
       <h1 class="title">Profile</h1>
-      <button type="button" class="btn btn-primary" @click="logout">Logout</button>
     </div>
     <p>Name: {{ this.$store.state.user_store.username }}</p>
     <p>Role: {{ this.$store.state.user_store.role }}</p>
+    <button type="button" class="btn btn-primary" @click="logout">Logout</button>
+    <br />
+    <br />
+    <h5>Change password:</h5>
 
-    <div>
+    <form @submit="changePassword">
+      <span>Old password:</span>
+      <input type="password" v-model="oldpass" />
+      <span>New password:</span>
+      <input type="password" v-model="newpass" />
+      <button type="submit" class="btn btn-primary">Change</button>
+    </form>
+    <div v-if="$store.state.user_store.role == 'admin'">
       Upload song:
       <input
         type="file"
@@ -57,11 +67,31 @@ export default {
             duration: 3000
           });
         });
+    },
+    changePassword() {
+      axios
+        .post(
+          process.env.VUE_APP_BASE_API + "/auth/changepass",
+          {
+            newPass: this.newpass,
+            oldPass: this.oldpass
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
+          }
+        )
+        .then(res => {
+          localStorage.setItem("token", res.data.token);
+        });
     }
   },
   data() {
     return {
-      file: ""
+      file: "",
+      oldpass: "",
+      newpass: ""
     };
   }
 };
@@ -79,5 +109,20 @@ export default {
 }
 button {
   margin: 10px 0;
+}
+form input {
+  outline: 0;
+  background: transparent;
+  width: 200px;
+  height: 30px;
+  border: 1px solid var(--color3);
+  margin: 0 0 5px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: var(--color-text);
+  border-radius: 20px;
+  font-weight: 600;
+  display: block;
 }
 </style>
