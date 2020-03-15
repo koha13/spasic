@@ -477,6 +477,12 @@ const actions = {
           }
           if (state.playlists[i].name == "Loved") {
             state.playlists[i].songs.push(temp);
+            Vue.notify({
+              group: "foo",
+              title: temp.name,
+              text: "is added to Loved",
+              duration: 3000
+            });
           }
         }
       });
@@ -504,6 +510,12 @@ const actions = {
         for (let i = 0; i < state.allSongs.length; i++) {
           if (state.allSongs[i].id == id) {
             state.allSongs[i].like = false;
+            Vue.notify({
+              group: "foo",
+              title: state.allSongs[i].name,
+              text: "is deleted from Loved",
+              duration: 3000
+            });
             break;
           }
         }
