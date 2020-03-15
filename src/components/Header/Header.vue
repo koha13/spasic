@@ -33,7 +33,7 @@
               <ul class="d-flex flex-row align-items-start justify-content-start">
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
                 <li>
-                  <input type="text" id="textInput1" />
+                  <input type="text" id="textInput1" v-model="search" />
                 </li>
                 <li style="margin-left:20px">
                   <i class="fa fa-search fa-lg"></i>
@@ -64,6 +64,16 @@ import Menuu from "./Menu";
 export default {
   components: {
     Menuu
+  },
+  computed: {
+    search: {
+      get: function() {
+        return this.$store.state.music_store.search;
+      },
+      set: function(value) {
+        this.$store.state.music_store.search = value;
+      }
+    }
   },
   methods: {
     goHome() {

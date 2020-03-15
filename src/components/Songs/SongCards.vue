@@ -96,7 +96,7 @@ export default {
   computed: {
     allSongs: {
       get: function() {
-        return this.$store.state.music_store.allSongs;
+        return this.$store.getters.songsFilter;
       }
     }
   },

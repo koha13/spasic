@@ -4,7 +4,7 @@ import axios from "axios";
 import Vue from "vue";
 
 const state = {
-  allSongs: Array,
+  allSongs: [],
   currentSong: { name: "--", artists: "---" },
   currentList: [],
   player: Object,
@@ -12,7 +12,8 @@ const state = {
   loop: 0,
   random: false,
   storeList: [],
-  playlists: []
+  playlists: [],
+  search: ""
 };
 const mutations = {
   updateAllSongs(state, value) {
@@ -532,6 +533,10 @@ const getters = {
   },
   random: state => {
     return state.random;
+  },
+  songsFilter: state => {
+    console.log(typeof state.allSongs);
+    return state.allSongs.filter(song => song.name.includes(state.search));
   }
 };
 export default {
