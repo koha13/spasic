@@ -547,7 +547,6 @@ const getters = {
     return state.random;
   },
   songsFilter: state => {
-    console.log(typeof state.allSongs);
     return state.allSongs.filter(song => song.name.includes(state.search));
   }
 };
