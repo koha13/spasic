@@ -41,23 +41,16 @@ export default {
       return options;
     },
     showPlyr: function() {
-      if (this.$route.path == "/login") return false;
+      if (this.$route.path == "/login" || this.$route.path == "/loading")
+        return false;
       return true;
     }
   },
   mounted() {
     this.$store.state.music_store.player = this.$refs.player.player;
   },
-  async created() {
-    await this.$store
-      .dispatch("checkToken")
-      .then(res => {
-        this.$store.dispatch("fetchPlaylists");
-        this.$store.dispatch("fetchAllSong");
-      })
-      .catch(err => {
-        this.$router.push({ name: "login" });
-      });
+  created() {
+    this.$router.replace({ name: "loading" });
   }
 };
 </script>

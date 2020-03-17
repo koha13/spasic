@@ -70,7 +70,7 @@ export default {
         this.$store
           .dispatch("login1", loginForm)
           .then(() => {
-            this.$router.push({ name: "home" });
+            this.$router.replace({ name: "home" });
             this.$store.dispatch("fetchPlaylists");
             this.$store.dispatch("fetchAllSong");
             this.showForm = 1;
