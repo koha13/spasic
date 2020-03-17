@@ -46,8 +46,7 @@
         @click="$store.dispatch('pause')"
         v-if="
           songInContext === $store.getters.currentSong &&
-            $store.getters.isPlaying == true
-        "
+            $store.getters.isPlaying == true"
       >Pause</li>
       <li class="ctx-item" @click="$store.dispatch('playSong', songInContext)" v-else>Play</li>
       <li
