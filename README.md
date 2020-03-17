@@ -21,6 +21,8 @@ npm install
 
 ### Compiles and hot-reloads for development
 
+Change domain of api in .env
+
 ```
 npm run serve
 ```
