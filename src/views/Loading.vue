@@ -1,6 +1,6 @@
 <template>
   <div class="load d-flex">
-    <img src="@/assets/login-true.gif" alt />
+    <img style="width:50px; height:50px" src="@/assets/login-true.gif" alt />
   </div>
 </template>
 <script>
