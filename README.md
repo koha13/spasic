@@ -2,7 +2,7 @@
 
 #### Simple front-end music website by VueJS
 
-## [Demo](https://spasic.herokuapp.com)
+## [Demo](http://spasic.onlyu.me)
 
 ## [API repo](https://github.com/koha13/spasic-api)
 
