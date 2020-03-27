@@ -66,7 +66,6 @@
 
 <script>
 import Vue from "vue";
-import UpdateSongModal from "./UpdateSongModal";
 import CustomModal from "@/components/CustomModal";
 
 Vue.filter("cutLongNumber", function(value) {
@@ -78,7 +77,6 @@ Vue.filter("cutLongNumber", function(value) {
 });
 export default {
   components: {
-    UpdateSongModal,
     CustomModal
   },
   data() {
