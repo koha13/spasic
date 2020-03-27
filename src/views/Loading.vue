@@ -9,7 +9,7 @@ export default {
     this.$store
       .dispatch("checkToken")
       .then(res => {
-        this.$router.replace({ name: "home" });
+        this.$router.replace({ name: this.$route.query.next });
         this.$store.dispatch("fetchPlaylists");
         this.$store.dispatch("fetchAllSong");
       })

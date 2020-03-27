@@ -7,6 +7,7 @@ import Playlists from "../views/Playlists.vue";
 import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 import Loading from "../views/Loading.vue";
+import AdminDashboard from "../views/AdminDashboard";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,11 @@ const routes = [
     path: "/loading",
     name: "loading",
     component: Loading
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: AdminDashboard
   }
 ];
 

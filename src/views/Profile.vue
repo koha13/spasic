@@ -17,21 +17,6 @@
       <input type="password" v-model="newpass" />
       <button type="submit" class="btn btn-primary">Change</button>
     </form>
-    <div v-if="$store.state.user_store.role == 'admin'">
-      Upload song:
-      <input
-        type="file"
-        accept=".mp3"
-        id="file"
-        ref="file"
-        v-on:change="handleFileUpload()"
-      />
-      <button type="button" class="btn btn-primary" @click="submit">Submit</button>
-    </div>
-    <div v-if="$store.state.user_store.role == 'admin'">
-      <button type="button" class="btn btn-primary" @click="scan">SCAN</button>
-      <small style="padding:0 5px">{{scanInfo}}</small>
-    </div>
   </div>
 </template>
 <script>
@@ -41,36 +26,6 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$router.replace({ name: "login" });
-    },
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-    },
-    submit() {
-      let formData = new FormData();
-      formData.append("file", this.file);
-      axios
-        .post(process.env.VUE_APP_BASE_API + "/song/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(res => {
-          this.$notify({
-            group: "foo",
-            title: "Upload song",
-            text: res.data.name + " is uploaded",
-            duration: 3000
-          });
-        })
-        .catch(err => {
-          this.$notify({
-            group: "foo",
-            title: "Upload song",
-            text: err.response.data,
-            duration: 3000
-          });
-        });
     },
     changePassword() {
       axios
@@ -89,28 +44,12 @@ export default {
         .then(res => {
           localStorage.setItem("token", res.data.token);
         });
-    },
-    scan() {
-      axios
-        .get(process.env.VUE_APP_BASE_API + "/scan", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(res => {
-          this.scanInfo = "Done";
-        })
-        .catch(err => {
-          if (err) this.scanInfo = err.response;
-        });
     }
   },
   data() {
     return {
-      file: "",
       oldpass: "",
-      newpass: "",
-      scanInfo: "Scan all songs in music folder and insert to database"
+      newpass: ""
     };
   }
 };

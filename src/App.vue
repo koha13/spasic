@@ -50,7 +50,10 @@ export default {
     this.$store.state.music_store.player = this.$refs.player.player;
   },
   created() {
-    this.$router.replace({ name: "loading" });
+    this.$router.replace({
+      name: "loading",
+      query: { next: this.$route.name }
+    });
   }
 };
 </script>
