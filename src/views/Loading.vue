@@ -9,12 +9,15 @@ export default {
     this.$store
       .dispatch("checkToken")
       .then(res => {
-        this.$router.replace({ name: this.$route.query.next });
+        this.$router.replace(this.$route.query.next);
         this.$store.dispatch("fetchPlaylists");
         this.$store.dispatch("fetchAllSong");
       })
       .catch(err => {
-        this.$router.replace({ name: "login" });
+        this.$router.replace({
+          name: "login",
+          query: { next: this.$route.query.next }
+        });
       });
   }
 };

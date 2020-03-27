@@ -52,7 +52,7 @@ export default {
   created() {
     this.$router.replace({
       name: "loading",
-      query: { next: this.$route.name }
+      query: { next: this.$route.path }
     });
   }
 };
