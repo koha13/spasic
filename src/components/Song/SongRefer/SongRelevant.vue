@@ -1,53 +1,32 @@
 <template>
-  <div class="col-lg-6 col-sm-12">
+  <div class="col-lg-6 col-sm-12" v-if="relevantSong.length >0">
     <div
       class="row d-flex justify-content-center"
       style="font-size:20px; margin-bottom:10px"
     >Relevant</div>
-    <div class="row">
+    <div class="row" v-for="song in relevantSong" :key="song.id">
       <div class="col-4 card-default1">
         <div class="img-container">
-          <img src="https://workmacro.com/wp-content/uploads/2018/02/1-by-1-1024x1024.png" />
+          <img :src="song.avatar" />
           <i class="fas fa-play fa-4x layout-up"></i>
         </div>
 
-        <div class="song-title">Song</div>
+        <div class="song-title" v-text="song.name" />
         <br style="margin:0; padding:0;height:0" />
-        <router-link to="/" tag="a" class="song-artist">Song's artist</router-link>
-      </div>
-      <div class="col-4 card-default1">
-        <div class="img-container">
-          <img src="https://workmacro.com/wp-content/uploads/2018/02/1-by-1-1024x1024.png" />
-          <i class="fas fa-play fa-4x layout-up"></i>
-        </div>
-
-        <div class="song-title">Song</div>
-        <br style="margin:0; padding:0;height:0" />
-        <router-link to="/" tag="a" class="song-artist">Song's artist</router-link>
-      </div>
-      <div class="col-4 card-default1">
-        <div class="img-container">
-          <img src="https://workmacro.com/wp-content/uploads/2018/02/1-by-1-1024x1024.png" />
-          <i class="fas fa-play fa-4x layout-up"></i>
-        </div>
-
-        <div class="song-title">Song</div>
-        <br style="margin:0; padding:0;height:0" />
-        <router-link to="/" tag="a" class="song-artist">Song's artist</router-link>
-      </div>
-      <div class="col-4 card-default1">
-        <div class="img-container">
-          <img src="https://workmacro.com/wp-content/uploads/2018/02/1-by-1-1024x1024.png" />
-          <i class="fas fa-play fa-4x layout-up"></i>
-        </div>
-
-        <div class="song-title">Song</div>
-        <br style="margin:0; padding:0;height:0" />
-        <router-link to="/" tag="a" class="song-artist">Song's artist</router-link>
+        <router-link to="/" tag="a" class="song-artist" v-text="song.artists" />
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  computed: {
+    relevantSong() {
+      return this.$store.getters.relevantSong;
+    }
+  }
+};
+</script>
 <style scoped >
 .card-default1 {
   cursor: pointer;

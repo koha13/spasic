@@ -2,7 +2,7 @@
   <div class="container specific-song">
     <div class="row">
       <SongImage />
-      <SongDetail :lyric="lyric" />
+      <SongDetail />
     </div>
     <hr />
     <SongRefer />
@@ -18,12 +18,6 @@ export default {
     SongImage,
     SongDetail,
     SongRefer
-  },
-  data() {
-    return {
-      lyric:
-        "1. Simona\nYou're getting older\nYour journey's been etched\nOn your skin.\n\nSimona\nWish I had known that\nWhat seemed so strong\nHas been and gone.\n\n[Chorus:]\nI would call you up everyday Saturday night wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\nAnd we'd both stay out 'til the morning light\nAnd we sang, 'Here we go again'\nAnd though time goes by\nI will always be\nIn a club with you\nIn 1973\nSinging, 'Here we go again'.\n\n2. Simona\nWish I was sober\nSo I could see clearly now\nThe rain has gone.\n\nSimona\nI guess it's over\nMy memory plays our tune\nThe same old song.\n\n[Chorus x3]\n\n[Coda:]\nAnd though time goes by\nI will always be\nIn a club with you\nIn 1973"
-    };
   }
 };
 </script>

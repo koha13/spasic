@@ -550,6 +550,15 @@ const getters = {
     return state.allSongs.filter(song =>
       song.name.toLowerCase().includes(state.search.toLowerCase())
     );
+  },
+  relevantSong: state => {
+    if (state.currentSong.name === "--") return null;
+    let artists = state.currentSong.artists;
+    let nameSong = state.currentSong.name;
+    let relevantSong = state.allSongs.filter(
+      song => song.artists === artists && song.name !== nameSong
+    );
+    return relevantSong;
   }
 };
 export default {
