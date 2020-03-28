@@ -315,7 +315,7 @@ const actions = {
     }
   },
 
-  // Add to pl: payload:{song, playlistId}
+  // Add to pl: payload:{song, plId, plName}
   addSongToPl({ state, commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       playlists

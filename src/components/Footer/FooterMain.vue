@@ -120,7 +120,6 @@ input[type="range"] {
   position: relative;
   width: 55px;
   left: 0px;
-  z-index: 10000;
   bottom: 5px;
   border-radius: 10px;
 }
