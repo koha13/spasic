@@ -4,19 +4,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <div class="container" id="progress-plyr" v-show="showPlyr">
-      <vue-plyr
-        ref="player"
-        :options="playerOptions"
-        @ended="$store.dispatch('onEnd')"
-        @playing="$store.state.music_store.isPlaying = true"
-        @play="$store.state.music_store.isPlaying = true"
-        @pause="$store.state.music_store.isPlaying = false"
-        :emit="['ended','playing','play','pause']"
-      >
-        <audio></audio>
-      </vue-plyr>
-    </div>
+
     <footerr v-if="showPlyr"></footerr>
     <notifications group="foo" position="bottom left" />
   </div>
@@ -30,25 +18,13 @@ export default {
     Footerr
   },
   computed: {
-    playerOptions() {
-      const options = {
-        title: "Audio",
-        playsinline: true,
-        controls: ["progress"],
-        debug: false,
-        storage: { enabled: true, key: "plyr" }
-      };
-      return options;
-    },
     showPlyr: function() {
       if (this.$route.path == "/login" || this.$route.path == "/loading")
         return false;
       return true;
     }
   },
-  mounted() {
-    this.$store.state.music_store.player = this.$refs.player.player;
-  },
+
   created() {
     this.$router.replace({
       name: "loading",
@@ -59,14 +35,16 @@ export default {
 </script>
 <style>
 #progress-plyr {
-  position: fixed;
-  bottom: 52px;
+  position: absolute;
+  top: -13px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 101;
 }
 .plyr__controls {
   background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .plyr__progress input[type="range"]::-webkit-slider-runnable-track {
   color: var(--color-contrast) !important;

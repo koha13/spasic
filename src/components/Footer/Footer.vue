@@ -91,6 +91,20 @@
         </div>
       </div>
     </div>
+    <div class="container" id="progress-plyr">
+      <vue-plyr
+        ref="player"
+        :options="playerOptions"
+        @ended="$store.dispatch('onEnd')"
+        @playing="$store.state.music_store.isPlaying = true"
+        @play="$store.state.music_store.isPlaying = true"
+        @pause="$store.state.music_store.isPlaying = false"
+        :emit="['ended','playing','play','pause']"
+      >
+        <audio></audio>
+      </vue-plyr>
+    </div>
+    <Song />
     <transition name="slide-fade">
       <keep-alive>
         <currentList v-if="showCurrentList" @close="showCurrentList = false"></currentList>
@@ -100,14 +114,31 @@
 </template>
 <script>
 import CurrentList from "./CurrentList";
+import Song from "@/views/Song";
 export default {
   components: {
-    CurrentList
+    CurrentList,
+    Song
   },
   data() {
     return {
       showCurrentList: false
     };
+  },
+  mounted() {
+    this.$store.state.music_store.player = this.$refs.player.player;
+  },
+  computed: {
+    playerOptions() {
+      const options = {
+        title: "Audio",
+        playsinline: true,
+        controls: ["progress"],
+        debug: false,
+        storage: { enabled: true, key: "plyr" }
+      };
+      return options;
+    }
   }
 };
 </script>
