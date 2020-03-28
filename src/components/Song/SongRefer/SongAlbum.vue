@@ -35,6 +35,7 @@ img {
 }
 .album-song {
   cursor: pointer;
+  opacity: 0.7;
   user-select: none;
   margin: 1px 0;
 }

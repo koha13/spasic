@@ -43,15 +43,11 @@ export default {
   object-fit: cover;
   border-radius: 20px;
 }
-.specific-song .song-img.spin {
-  animation: spin 8s linear infinite;
-}
 .specific-song .title-song {
   overflow-wrap: break-word;
-  width: calc(90%);
-  font-size: 35px;
-  margin-bottom: 15px;
-  color: var(--color-hover);
+  width: calc(100%);
+  font-size: 30px;
+  margin-bottom: 0px;
   padding-right: 0;
   margin-right: 0;
 }
@@ -59,8 +55,11 @@ export default {
   display: inline;
   cursor: pointer;
   user-select: none;
-  font-size: 20px;
+  font-size: 16px;
   color: var(--color-text);
+  opacity: 0.7;
+  padding: 0;
+  margin: 0;
 }
 .specific-song pre {
   color: var(--color-text);

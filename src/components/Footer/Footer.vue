@@ -1,5 +1,5 @@
 <template>
-  <div class="ft">
+  <div class="ft" v-click-outside="hideExpand">
     <div class="container">
       <div class="row">
         <div class="col" style="padding:0">
@@ -48,7 +48,11 @@
             </div>
 
             <!-- Main Navigation -->
-            <nav class="song-info">
+            <nav
+              class="song-info"
+              style=" cursor:pointer; user-select:none"
+              @click="showExpand=!showExpand"
+            >
               <p style="margin-bottom: 0; margin-top: 10px;">{{ $store.getters.currentSong.name }}</p>
               <p>{{ $store.getters.currentSong.artists }}</p>
             </nav>
@@ -91,6 +95,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Plyr progress -->
     <div class="container" id="progress-plyr">
       <vue-plyr
         ref="player"
@@ -104,7 +110,15 @@
         <audio></audio>
       </vue-plyr>
     </div>
-    <Song />
+
+    <!-- Song expand -->
+    <transition name="slide-fade">
+      <keep-alive>
+        <Song v-if="showExpand" />
+      </keep-alive>
+    </transition>
+
+    <!-- Curren List -->
     <transition name="slide-fade">
       <keep-alive>
         <currentList v-if="showCurrentList" @close="showCurrentList = false"></currentList>
@@ -122,7 +136,8 @@ export default {
   },
   data() {
     return {
-      showCurrentList: false
+      showCurrentList: false,
+      showExpand: false
     };
   },
   mounted() {
@@ -138,6 +153,11 @@ export default {
         storage: { enabled: true, key: "plyr" }
       };
       return options;
+    }
+  },
+  methods: {
+    hideExpand() {
+      this.showExpand = false;
     }
   }
 };
