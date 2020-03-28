@@ -26,10 +26,11 @@ export default {
   },
 
   created() {
-    this.$router.replace({
-      name: "loading",
-      query: { next: this.$route.path }
-    });
+    if (this.$route.path != "/loading")
+      this.$router.replace({
+        name: "loading",
+        query: { next: this.$route.path }
+      });
   }
 };
 </script>

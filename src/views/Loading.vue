@@ -9,14 +9,16 @@ export default {
     this.$store
       .dispatch("checkToken")
       .then(res => {
-        this.$router.replace(this.$route.query.next);
+        let path = this.$route.query.next;
+        if (path === "/login" || !path) path = "/";
+        this.$router.replace(path);
         this.$store.dispatch("fetchPlaylists");
         this.$store.dispatch("fetchAllSong");
       })
       .catch(err => {
         this.$router.replace({
           name: "login",
-          query: { next: this.$route.query.next }
+          query: { next: this.$route.query.next ? this.$route.query.next : "/" }
         });
       });
   }

@@ -70,7 +70,9 @@ export default {
         this.$store
           .dispatch("login1", loginForm)
           .then(() => {
-            this.$router.replace(this.$route.query.next);
+            this.$router.replace(
+              this.$route.query.next ? this.$route.query.next : "/"
+            );
             this.$store.dispatch("fetchPlaylists");
             this.$store.dispatch("fetchAllSong");
             this.showForm = 1;
