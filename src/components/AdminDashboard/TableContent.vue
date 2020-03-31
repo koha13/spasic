@@ -8,13 +8,13 @@
     >
       <div style="padding: 10px; text-align:start">
         <small class="edit-header">Song</small>
-        <div class="edit-text" contenteditable="true">Đây là một bài hát rất là hay ha nữa</div>
+        <input class="edit-text" v-model="selectedSong.name" />
         <small class="edit-header">Artist</small>
-        <div class="edit-text" contenteditable="true">Moojt tac giags ow day</div>
+        <input class="edit-text" v-model="selectedSong.artists" />
         <small class="edit-header">Time</small>
-        <div class="edit-text" contenteditable="true">12:02</div>
+        <input class="edit-text" v-model="selectedSong.length" />
         <small class="edit-header">Lyric</small>
-        <div class="edit-text" contenteditable="true">Moojt tac giags</div>
+        <textarea style="width:100%" class="edit-text" v-model="selectedSong.lyric" />
       </div>
       <div slot="modal-footer" style="text-align:end;padding:10px">
         <span class="btnModal">Update</span>
@@ -45,7 +45,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(song ,index) in allSongs" :key="index">
+        <tr v-for="(song ,index) in allSongs" :key="index" @click="selectedSong = song">
           <th scope="row" class="r1">{{index+1 | cutLongNumber}}</th>
           <td class="text-truncate" :title="song.name" v-text="song.name" />
           <td class="text-truncate" :title="song.artists" name="Artist" v-text="song.artists" />
@@ -100,6 +100,12 @@ export default {
 </script>
 
 <style scoped>
+input {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  width: 100%;
+}
 .admin-dashboard__table {
   width: 100% !important;
   text-align: center;
