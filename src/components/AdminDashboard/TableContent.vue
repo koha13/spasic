@@ -45,15 +45,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="width: 50%">
-          <th scope="row" class="r1">{{10000 | cutLongNumber}}</th>
+        <tr v-for="(song ,index) in allSongs" :key="index">
+          <th scope="row" class="r1">{{index+1 | cutLongNumber}}</th>
+          <td class="text-truncate" :title="song.name" v-text="song.name" />
+          <td class="text-truncate" :title="song.artists" name="Artist" v-text="song.artists" />
           <td
-            class="text-truncate"
-            title="asd"
-          >Markwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</td>
-          <td class="text-truncate" title="asd">ABC</td>
-          <td class="text-truncate p-hide" title="asd">3:05</td>
-          <td class="text-truncate p-hide" title="asd">Yes</td>
+            class="text-truncate p-hide"
+            :title="song.length"
+            name="Time"
+          >{{song.length | minutes}}</td>
+          <td
+            class="text-truncate p-hide"
+            :title="song.lyric"
+            name="Lyric"
+          >{{song.lyric?"Yes":"No"}}</td>
           <td class="r4">
             <i class="fas fa-pen-alt btn1" @click="showModal = true"></i>
             <i class="fas fa-trash-alt btn1" @click="showDeleteConfirmModal = true"></i>
@@ -85,6 +90,11 @@ export default {
       showModal: false,
       showDeleteConfirmModal: false
     };
+  },
+  computed: {
+    allSongs() {
+      return this.$store.state.music_store.allSongs;
+    }
   }
 };
 </script>
