@@ -531,6 +531,27 @@ const actions = {
           }
         }
       });
+  },
+
+  updateSongInfo({}, payload) {
+    axios
+      .post(
+        process.env.VUE_APP_BASE_API + "/song/update/" + payload.id,
+        { ...payload },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }
+      )
+      .then(res => {
+        Vue.notify({
+          group: "foo",
+          title: payload.name,
+          text: "is updated",
+          duration: 3000
+        });
+      });
   }
 };
 const getters = {

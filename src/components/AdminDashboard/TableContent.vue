@@ -11,13 +11,15 @@
         <input class="edit-text" v-model="selectedSong.name" />
         <small class="edit-header">Artist</small>
         <input class="edit-text" v-model="selectedSong.artists" />
+        <small class="edit-header">Album</small>
+        <input class="edit-text" v-model="selectedSong.album" />
         <small class="edit-header">Time</small>
         <input class="edit-text" v-model="selectedSong.length" />
         <small class="edit-header">Lyric</small>
         <textarea style="width:100%" class="edit-text" v-model="selectedSong.lyric" />
       </div>
       <div slot="modal-footer" style="text-align:end;padding:10px">
-        <span class="btnModal">Update</span>
+        <span class="btnModal" @click="updateSongInfo">Update</span>
         <span class="btnModal" @click="showModal=false">Cancel</span>
       </div>
     </CustomModal>
@@ -94,6 +96,12 @@ export default {
   computed: {
     allSongs() {
       return this.$store.state.music_store.allSongs;
+    }
+  },
+  methods: {
+    updateSongInfo() {
+      this.$store.dispatch("updateSongInfo", this.selectedSong);
+      this.showModal = false;
     }
   }
 };
