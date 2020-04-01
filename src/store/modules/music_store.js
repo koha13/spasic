@@ -251,6 +251,11 @@ const actions = {
     }
   },
 
+  playListSongs({ commit, dispatch }, value) {
+    commit("updateCurrentList", [...value]);
+    dispatch("playCurrentList");
+  },
+
   /*Change shuffle state. If current list is shuffled, it will be back to its original. And vice versa */
   changeShuffle({ state, commit }) {
     if (state.currentList.length > 0) {
@@ -601,6 +606,11 @@ const getters = {
       song => song.artists === artists && song.name !== nameSong
     );
     return relevantSong;
+  },
+  albumSong: state => {
+    if (state.currentSong.name === "--") return null;
+    let album = state.currentSong.album;
+    return state.allSongs.filter(song => song.album === album);
   }
 };
 export default {
