@@ -552,6 +552,27 @@ const actions = {
           duration: 3000
         });
       });
+  },
+
+  deleteSong({}, payload) {
+    axios
+      .post(
+        process.env.VUE_APP_BASE_API + "/song/delete/" + payload.id,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }
+      )
+      .then(res => {
+        Vue.notify({
+          group: "foo",
+          title: payload.name,
+          text: "is deleted from store",
+          duration: 3000
+        });
+      });
   }
 };
 const getters = {

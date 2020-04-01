@@ -31,7 +31,7 @@
     >
       <div style="padding: 10px; text-align:start">Are you sure to delete this song</div>
       <div slot="modal-footer" style="text-align:end;padding:10px">
-        <span class="btnModal">Delete</span>
+        <span class="btnModal" @click="deleteSong">Delete</span>
         <span class="btnModal" @click="showDeleteConfirmModal=false">Cancel</span>
       </div>
     </CustomModal>
@@ -102,6 +102,10 @@ export default {
     updateSongInfo() {
       this.$store.dispatch("updateSongInfo", this.selectedSong);
       this.showModal = false;
+    },
+    deleteSong() {
+      this.$store.dispatch("deleteSong", this.selectedSong);
+      this.showDeleteConfirmModal = false;
     }
   }
 };
