@@ -8,7 +8,7 @@
     />
 
     <!-- Plyr progress -->
-    <div class="container" id="progress-plyr">
+    <div :class="{container:true, 'expand-state': showExpand}" id="progress-plyr">
       <vue-plyr
         ref="player"
         :options="playerOptions"
@@ -76,6 +76,9 @@ export default {
 };
 </script>
 <style scoped>
+#progress-plyr.expand-state {
+  top: 55px;
+}
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
@@ -86,5 +89,30 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
+}
+</style>
+<style>
+#progress-plyr {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 101;
+  transition: all 0.5s ease;
+}
+.plyr__controls {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.plyr__progress input[type="range"]::-webkit-slider-runnable-track {
+  color: var(--color-contrast) !important;
+  outline-width: 0 !important;
+}
+.plyr__progress input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
 }
 </style>

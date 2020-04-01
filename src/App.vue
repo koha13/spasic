@@ -35,30 +35,6 @@ export default {
 };
 </script>
 <style>
-#progress-plyr {
-  position: absolute;
-  top: -13px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 101;
-}
-.plyr__controls {
-  background-color: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.plyr__progress input[type="range"]::-webkit-slider-runnable-track {
-  color: var(--color-contrast) !important;
-  outline-width: 0 !important;
-}
-.plyr__progress input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: none !important;
-}
-</style>
-<style>
 .vue-notification {
   border-radius: 10px !important;
   color: var(--color-text) !important;

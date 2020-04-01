@@ -1,11 +1,20 @@
 <template>
   <div class="col-lg-6 col-sm-12">
     <div class="title-song" v-text="$store.state.music_store.currentSong.name" />
+    <span style="margin-right:5px">Artist:</span>
     <router-link
       class="truncate-inform"
       tag="a"
       to="/"
       v-text="$store.state.music_store.currentSong.artists"
+    />
+    <br />
+    <span style="margin-right:5px">Album:</span>
+    <router-link
+      class="truncate-inform"
+      tag="a"
+      to="/"
+      v-text="$store.state.music_store.currentSong.album"
     />
     <hr />
     <div v-if="$store.state.music_store.currentSong.lyric">
