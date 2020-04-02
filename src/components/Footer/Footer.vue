@@ -40,7 +40,7 @@
 <script>
 import CurrentList from "./CurrentList";
 import FooterMain from "./FooterMain";
-import Song from "@/views/Song";
+import Song from "./Song";
 export default {
   components: {
     CurrentList,

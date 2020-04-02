@@ -8,7 +8,6 @@ import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 import Loading from "../views/Loading.vue";
 import AdminDashboard from "../views/AdminDashboard";
-import Song from "../views/Song";
 
 Vue.use(VueRouter);
 
@@ -52,11 +51,6 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: AdminDashboard
-  },
-  {
-    path: "/song/:songId",
-    name: "song",
-    component: Song
   }
 ];
 
