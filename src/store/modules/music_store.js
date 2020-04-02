@@ -495,6 +495,19 @@ const actions = {
         duration: 3000
       });
     });
+  },
+
+  getSongLyric({}, id) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get("/songinfo/" + id)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   }
 };
 const getters = {

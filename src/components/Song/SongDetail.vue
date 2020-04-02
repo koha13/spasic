@@ -17,9 +17,9 @@
       v-text="$store.state.music_store.currentSong.album"
     />
     <hr />
-    <div v-if="$store.state.music_store.currentSong.lyric">
+    <div v-if="lyric">
       <span style="color:var(--color-hover)">Lyric:</span>
-      <pre :class="{'hide' : isHideLyric}" v-text="$store.state.music_store.currentSong.lyric" />
+      <pre :class="{'hide' : isHideLyric}" v-text="lyric" />
       <small class="hide-btn" v-if="isHideLyric && lyric !== null" @click="isHideLyric = false">Show</small>
       <small class="hide-btn" v-else-if="lyric !== null" @click="isHideLyric = true">Hide</small>
     </div>
@@ -27,13 +27,15 @@
 </template>
 <script>
 export default {
-  props: {
-    lyric: {
-      type: String
-    }
-  },
   data() {
-    return { isHideLyric: true };
+    return { lyric: "", isHideLyric: true };
+  },
+  created() {
+    this.$store
+      .dispatch("getSongLyric", this.$store.state.music_store.currentSong.id)
+      .then(res => {
+        this.lyric = res.data.lyric;
+      });
   }
 };
 </script>

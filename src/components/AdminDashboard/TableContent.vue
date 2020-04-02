@@ -47,7 +47,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(song ,index) in allSongs" :key="index" @click="selectedSong = song">
+        <tr v-for="(song ,index) in allSongs" :key="index">
           <th scope="row" class="r1">{{index+1 | cutLongNumber}}</th>
           <td class="text-truncate" :title="song.name" v-text="song.name" />
           <td class="text-truncate" :title="song.artists" name="Artist" v-text="song.artists" />
@@ -62,8 +62,8 @@
             name="Lyric"
           >{{song.lyric?"Yes":"No"}}</td>
           <td class="r4">
-            <i class="fas fa-pen-alt btn1" @click="showModal = true"></i>
-            <i class="fas fa-trash-alt btn1" @click="showDeleteConfirmModal = true"></i>
+            <i class="fas fa-pen-alt btn1" @click="updateSongClicked(song)"></i>
+            <i class="fas fa-trash-alt btn1" @click="deleteSongClicked(song)"></i>
           </td>
         </tr>
       </tbody>
@@ -99,6 +99,17 @@ export default {
     }
   },
   methods: {
+    updateSongClicked(song) {
+      this.selectedSong = song;
+      this.$store
+        .dispatch("getSongLyric", song.id)
+        .then(res => (this.selectedSong.lyric = res.data.lyric));
+      this.showModal = true;
+    },
+    deleteSongClicked(song) {
+      this.selectedSong = song;
+      this.showDeleteConfirmModal = true;
+    },
     updateSongInfo() {
       this.$store.dispatch("updateSongInfo", this.selectedSong);
       this.showModal = false;
