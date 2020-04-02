@@ -1,6 +1,5 @@
-import songs from "@/axios/songs";
-import playlists from "@/axios/playlists";
-import axios from "axios";
+import { playlists, songs } from "@/axios/index.js";
+import axios from "@/axios/index.js";
 import Vue from "vue";
 
 const state = {
@@ -86,15 +85,9 @@ const mutations = {
 };
 const actions = {
   fetchAllSong({ commit }) {
-    songs
-      .get("", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      })
-      .then(res => {
-        commit("updateAllSongs", res.data);
-      });
+    songs.get("").then(res => {
+      commit("updateAllSongs", res.data);
+    });
   },
   play({ state }) {
     state.player.play();
@@ -274,11 +267,7 @@ const actions = {
   fetchPlaylists({ commit }) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
+        .get("")
         .then(res => {
           commit("updatePlaylists", res.data);
           resolve();
@@ -292,15 +281,9 @@ const actions = {
   /*Check all playlist if this song is in or not */
   checkSong({}, song) {
     return new Promise((resolve, reject) => {
-      playlists
-        .get("/checksong?idSong=" + song.id, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(res => {
-          resolve(res.data);
-        });
+      playlists.get("/checksong?idSong=" + song.id).then(res => {
+        resolve(res.data);
+      });
     });
   },
 
@@ -324,15 +307,7 @@ const actions = {
   addSongToPl({ state, commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       playlists
-        .post(
-          "/" + payload.plId + "/song?idSong=" + payload.song.id,
-          {},
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          }
-        )
+        .post("/" + payload.plId + "/song?idSong=" + payload.song.id, {})
         .then(res => {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
@@ -358,12 +333,7 @@ const actions = {
   deleteSongFromPl({ state }, payload) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("/" + payload.plId + "/deletesong?idSong=" + payload.song.id, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json"
-          }
-        })
+        .get("/" + payload.plId + "/deletesong?idSong=" + payload.song.id)
         .then(res => {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
@@ -394,15 +364,7 @@ const actions = {
   createNewPl({ state }, plName) {
     return new Promise((resolve, reject) => {
       playlists
-        .post(
-          "/add?name=" + plName,
-          {},
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          }
-        )
+        .post("/add?name=" + plName, {})
         .then(res => {
           state.playlists.push(res.data);
           Vue.notify({
@@ -421,12 +383,7 @@ const actions = {
   deletePl({ state }, payload) {
     return new Promise((resolve, reject) => {
       playlists
-        .get("/delete/" + payload.plId, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json"
-          }
-        })
+        .get("/delete/" + payload.plId)
         .then(res => {
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
@@ -456,41 +413,31 @@ const actions = {
       temp = song;
     }
     if (temp == null) return;
-    axios
-      .post(
-        process.env.VUE_APP_BASE_API + "/like/" + temp.id,
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
+    axios.post("/like/" + temp.id, {}).then(res => {
+      for (let i = 0; i < state.allSongs.length; i++) {
+        if (state.allSongs[i].id == temp.id) {
+          state.allSongs[i].like = true;
+          break;
         }
-      )
-      .then(res => {
-        for (let i = 0; i < state.allSongs.length; i++) {
-          if (state.allSongs[i].id == temp.id) {
-            state.allSongs[i].like = true;
+      }
+      for (let i = 0; i < state.playlists.length; i++) {
+        for (let j = 0; j < state.playlists[i].songs.length; j++) {
+          if (state.playlists[i].songs[j].id == temp.id) {
+            state.playlists[i].songs[j].like = true;
             break;
           }
         }
-        for (let i = 0; i < state.playlists.length; i++) {
-          for (let j = 0; j < state.playlists[i].songs.length; j++) {
-            if (state.playlists[i].songs[j].id == temp.id) {
-              state.playlists[i].songs[j].like = true;
-              break;
-            }
-          }
-          if (state.playlists[i].name == "Loved") {
-            state.playlists[i].songs.push(temp);
-            Vue.notify({
-              group: "foo",
-              title: temp.name,
-              text: "is added to Loved",
-              duration: 3000
-            });
-          }
+        if (state.playlists[i].name == "Loved") {
+          state.playlists[i].songs.push(temp);
+          Vue.notify({
+            group: "foo",
+            title: temp.name,
+            text: "is added to Loved",
+            duration: 3000
+          });
         }
-      });
+      }
+    });
   },
 
   unlikeSong({ state }, song) {
@@ -501,83 +448,53 @@ const actions = {
       id = song.id;
     }
     if (id == null) return;
-    axios
-      .post(
-        process.env.VUE_APP_BASE_API + "/unlike/" + id,
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
+    axios.post("/unlike/" + id, {}).then(res => {
+      for (let i = 0; i < state.allSongs.length; i++) {
+        if (state.allSongs[i].id == id) {
+          state.allSongs[i].like = false;
+          Vue.notify({
+            group: "foo",
+            title: state.allSongs[i].name,
+            text: "is deleted from Loved",
+            duration: 3000
+          });
+          break;
         }
-      )
-      .then(res => {
-        for (let i = 0; i < state.allSongs.length; i++) {
-          if (state.allSongs[i].id == id) {
-            state.allSongs[i].like = false;
-            Vue.notify({
-              group: "foo",
-              title: state.allSongs[i].name,
-              text: "is deleted from Loved",
-              duration: 3000
-            });
+      }
+      for (let i = 0; i < state.playlists.length; i++) {
+        for (let j = 0; j < state.playlists[i].songs.length; j++) {
+          if (state.playlists[i].songs[j].id == id) {
+            state.playlists[i].songs[j].like = false;
+            if (state.playlists[i].name == "Loved") {
+              state.playlists[i].songs.splice(j, 1);
+            }
             break;
           }
         }
-        for (let i = 0; i < state.playlists.length; i++) {
-          for (let j = 0; j < state.playlists[i].songs.length; j++) {
-            if (state.playlists[i].songs[j].id == id) {
-              state.playlists[i].songs[j].like = false;
-              if (state.playlists[i].name == "Loved") {
-                state.playlists[i].songs.splice(j, 1);
-              }
-              break;
-            }
-          }
-        }
-      });
+      }
+    });
   },
 
   updateSongInfo({}, payload) {
-    axios
-      .post(
-        process.env.VUE_APP_BASE_API + "/song/update/" + payload.id,
-        { ...payload },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        }
-      )
-      .then(res => {
-        Vue.notify({
-          group: "foo",
-          title: payload.name,
-          text: "is updated",
-          duration: 3000
-        });
+    axios.post("/song/update/" + payload.id, { ...payload }).then(res => {
+      Vue.notify({
+        group: "foo",
+        title: payload.name,
+        text: "is updated",
+        duration: 3000
       });
+    });
   },
 
   deleteSong({}, payload) {
-    axios
-      .post(
-        process.env.VUE_APP_BASE_API + "/song/delete/" + payload.id,
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        }
-      )
-      .then(res => {
-        Vue.notify({
-          group: "foo",
-          title: payload.name,
-          text: "is deleted from store",
-          duration: 3000
-        });
+    axios.post("/song/delete/" + payload.id, {}).then(res => {
+      Vue.notify({
+        group: "foo",
+        title: payload.name,
+        text: "is deleted from store",
+        duration: 3000
       });
+    });
   }
 };
 const getters = {

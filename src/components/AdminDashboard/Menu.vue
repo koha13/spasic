@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from "@/axios/index.js";
 export default {
   data() {
     return {
@@ -35,10 +35,9 @@ export default {
       let formData = new FormData();
       formData.append("file", this.file);
       axios
-        .post(process.env.VUE_APP_BASE_API + "/song/upload", formData, {
+        .post("/song/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("token")
           }
         })
         .then(res => {
@@ -60,11 +59,7 @@ export default {
     },
     scan() {
       axios
-        .get(process.env.VUE_APP_BASE_API + "/scan", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token")
-          }
-        })
+        .get("/scan")
         .then(res => {
           this.scanInfo = "Done";
         })
