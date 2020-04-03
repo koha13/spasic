@@ -2,19 +2,30 @@ import { playlists, songs } from "@/axios/index.js";
 import axios from "@/axios/index.js";
 import Vue from "vue";
 
-const state = {
-  allSongs: [],
-  currentSong: { name: "--", artists: "---" },
-  currentList: [],
-  player: Object,
-  isPlaying: false,
-  loop: 0,
-  random: false,
-  storeList: [],
-  playlists: [],
-  search: "",
-};
+function initialState() {
+  return {
+    allSongs: [],
+    currentSong: { name: "--", artists: "---" },
+    currentList: [],
+    player: Object,
+    isPlaying: false,
+    loop: 0,
+    random: false,
+    storeList: [],
+    playlists: [],
+    search: "",
+  };
+}
+
+const state = initialState;
+
 const mutations = {
+  reset(state) {
+    const s = initialState();
+    Object.keys(s).forEach((key) => {
+      state[key] = s[key];
+    });
+  },
   updateAllSongs(state, value) {
     state.allSongs = value;
   },

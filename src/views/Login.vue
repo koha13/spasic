@@ -7,17 +7,33 @@
           <div class="va">
             <input type="text" placeholder="username" v-model.trim="username" />
             <div class="alert-validate" v-if="$v.username.$error">
-              <div class="alert-content" v-if="!$v.username.required">Required zZz</div>
-              <div class="alert-content" v-else-if="!$v.username.minLength">At least 6 characters</div>
-              <div class="alert-content" v-else-if="!$v.username.maxLength">Too many characters</div>
+              <div class="alert-content" v-if="!$v.username.required">
+                Required zZz
+              </div>
+              <div class="alert-content" v-else-if="!$v.username.minLength">
+                At least 6 characters
+              </div>
+              <div class="alert-content" v-else-if="!$v.username.maxLength">
+                Too many characters
+              </div>
             </div>
           </div>
           <div class="va">
-            <input type="password" placeholder="password" v-model.trim="password" />
+            <input
+              type="password"
+              placeholder="password"
+              v-model.trim="password"
+            />
             <div class="alert-validate" v-if="$v.password.$error">
-              <div class="alert-content" v-if="!$v.password.required">Required</div>
-              <div class="alert-content" v-else-if="!$v.password.minLength">At least 6 characters</div>
-              <div class="alert-content" v-else-if="!$v.password.maxLength">Too many characters</div>
+              <div class="alert-content" v-if="!$v.password.required">
+                Required
+              </div>
+              <div class="alert-content" v-else-if="!$v.password.minLength">
+                At least 6 characters
+              </div>
+              <div class="alert-content" v-else-if="!$v.password.maxLength">
+                Too many characters
+              </div>
             </div>
           </div>
 
@@ -30,8 +46,16 @@
             <p id="bt">SUCK</p>
           </a>
         </div>
-        <img src="@/assets/login-true.gif" v-if="showForm == 2" style="width:170px" />
-        <img src="@/assets/login-fail.gif" v-if="showForm == 3" style="width:200px" />
+        <img
+          src="@/assets/login-true.gif"
+          v-if="showForm == 2"
+          style="width: 170px;"
+        />
+        <img
+          src="@/assets/login-fail.gif"
+          v-if="showForm == 3"
+          style="width: 200px;"
+        />
       </form>
     </div>
   </div>
@@ -41,22 +65,22 @@ import { required, minLength, maxLength } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
-      username: "welcomtospasic",
+      username: "welcometospasic",
       password: "123456",
-      showForm: true
+      showForm: true,
     };
   },
   validations: {
     username: {
       required,
       minLength: minLength(6),
-      maxLength: maxLength(32)
+      maxLength: maxLength(32),
     },
     password: {
       required,
       minLength: minLength(6),
-      maxLength: maxLength(32)
-    }
+      maxLength: maxLength(32),
+    },
   },
   methods: {
     onLogin() {
@@ -65,7 +89,7 @@ export default {
         this.showForm = 2;
         let loginForm = {
           username: this.username,
-          password: this.password
+          password: this.password,
         };
         this.$store
           .dispatch("login1", loginForm)
@@ -84,8 +108,8 @@ export default {
             }, 1000);
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

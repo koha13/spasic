@@ -5,53 +5,57 @@
     </div>
     <p>Name: {{ this.$store.state.user_store.username }}</p>
     <p>Role: {{ this.$store.state.user_store.role }}</p>
-    <button type="button" class="btn btn-primary" @click="logout">Logout</button>
+    <button type="button" class="btn btn-primary" @click="logout">
+      Logout
+    </button>
     <br />
     <br />
     <h5>Change password:</h5>
 
-    <form @submit="changePassword">
+    <form @submit.prevent="changePassword">
       <span>Old password:</span>
       <input type="password" v-model="oldpass" />
       <span>New password:</span>
       <input type="password" v-model="newpass" />
       <button type="submit" class="btn btn-primary">Change</button>
     </form>
+    <router-link
+      tag="button"
+      to="/admin"
+      class="btn btn-danger"
+      v-if="$store.state.user_store.role === 'admin'"
+      >Admin</router-link
+    >
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from "@/axios/index.js";
 export default {
   methods: {
     logout() {
       localStorage.removeItem("token");
+      this.$store.commit("reset");
       this.$router.replace({ name: "login" });
     },
     changePassword() {
       axios
-        .post(
-          process.env.VUE_APP_BASE_API + "/auth/changepass",
-          {
-            newPass: this.newpass,
-            oldPass: this.oldpass
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
-            }
-          }
-        )
-        .then(res => {
+        .post("/auth/changepass", {
+          newPass: this.newpass,
+          oldPass: this.oldpass,
+        })
+        .then((res) => {
           localStorage.setItem("token", res.data.token);
+          alert("Change pass done");
+          (this.oldpass = ""), (this.newpass = "");
         });
-    }
+    },
   },
   data() {
     return {
       oldpass: "",
-      newpass: ""
+      newpass: "",
     };
-  }
+  },
 };
 </script>
 <style scoped>
