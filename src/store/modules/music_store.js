@@ -26,6 +26,7 @@ const mutations = {
   },
   updateCurrentSong(state, song) {
     state.currentSong = song;
+    document.title = song.name + " - " + song.artists;
   },
   updateSourcePlayer(state) {
     state.player.source = {
