@@ -49,7 +49,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   background: var(--color-bg);
-  color: var(--color-bg);
+  color: var(--color-text);
   overflow-y: scroll;
   overflow-x: hidden;
 }

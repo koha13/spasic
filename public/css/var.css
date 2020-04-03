@@ -1,15 +1,15 @@
 :root {
-  --color-main: #2a555b;
+  --color-main: #2a555b; /*Bg header, footer, listCurrentSongs*/
   --color-hover: #6fcce3;
   --color-text: #ffffff;
   --color-card: #264e53;
   --color3: #788688; /*bg-input*/
   --color4: rgb(26, 171, 255); /*color-input*/
   --color4-hover: #46cdcf;
-  --color5: rgb(33, 39, 55);
+  --color5: #4d5e60; /*Bg modal and contextMenu*/
   --color-bg: #2a555b;
   --color-item-active: #7a969b;
-  --color-bg-listsong: rgb(33, 39, 55);
+  /* --color-bg-listsong: rgb(33, 39, 55); */
   --color-contrast: #f69953;
 }
 
