@@ -4,13 +4,12 @@
       class="row d-flex justify-content-center"
       style="font-size:20px; margin-bottom:10px"
     >Relevant</div>
-    <div class="row" v-for="song in relevantSong" :key="song.id">
-      <div class="col-4 card-default1">
+    <div class="row">
+      <div class="col-4 card-default1" v-for="song in relevantSong" :key="song.id">
         <div class="img-container">
           <img :src="song.avatar" />
           <i class="fas fa-play fa-4x layout-up"></i>
         </div>
-
         <div class="song-title" v-text="song.name" />
         <br style="margin:0; padding:0;height:0" />
         <router-link to="/" tag="a" class="song-artist" v-text="song.artists" />
