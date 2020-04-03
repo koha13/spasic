@@ -30,13 +30,23 @@ export default {
   data() {
     return { lyric: "", isHideLyric: true };
   },
-  created() {
-    if (this.$store.state.music_store.currentSong.id) {
-      this.$store
-        .dispatch("getSongLyric", this.$store.state.music_store.currentSong.id)
-        .then(res => {
-          this.lyric = res.data.lyric;
-        });
+  computed: {
+    currentSong() {
+      return this.$store.state.music_store.currentSong;
+    }
+  },
+  watch: {
+    currentSong(oldValue, newValue) {
+      if (newValue !== oldValue) {
+        this.$store
+          .dispatch(
+            "getSongLyric",
+            this.$store.state.music_store.currentSong.id
+          )
+          .then(res => {
+            this.lyric = res.data.lyric;
+          });
+      }
     }
   }
 };
