@@ -532,9 +532,14 @@ const getters = {
     if (state.currentSong.name === "--") return null;
     let artists = state.currentSong.artists;
     let nameSong = state.currentSong.name;
-    let relevantSong = state.allSongs.filter(
-      (song) => song.artists === artists && song.name !== nameSong
-    );
+    let count = 0;
+    let relevantSong = state.allSongs.filter((song) => {
+      if (song.artists === artists && song.name !== nameSong && count <= 6) {
+        count++;
+        return true;
+      }
+      return false;
+    });
     return relevantSong;
   },
   albumSong: (state) => {
