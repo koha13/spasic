@@ -31,11 +31,13 @@ export default {
     return { lyric: "", isHideLyric: true };
   },
   created() {
-    this.$store
-      .dispatch("getSongLyric", this.$store.state.music_store.currentSong.id)
-      .then(res => {
-        this.lyric = res.data.lyric;
-      });
+    if (this.$store.state.music_store.currentSong.id) {
+      this.$store
+        .dispatch("getSongLyric", this.$store.state.music_store.currentSong.id)
+        .then(res => {
+          this.lyric = res.data.lyric;
+        });
+    }
   }
 };
 </script>

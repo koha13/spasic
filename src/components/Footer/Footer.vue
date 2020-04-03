@@ -4,7 +4,7 @@
     <FooterMain
       :showCurrentList="showCurrentList"
       @changeCurrentListState="showCurrentList = !showCurrentList"
-      @changeExpandState="showExpand = !showExpand"
+      @changeExpandState="showExpandState"
     />
 
     <!-- Plyr progress -->
@@ -71,6 +71,15 @@ export default {
   methods: {
     hideExpand() {
       this.showExpand = false;
+    },
+    showExpandState() {
+      if (this.$store.state.music_store.currentSong.id) {
+        if (this.showExpand === false) {
+          this.showExpand = true;
+        } else {
+          this.showExpand = false;
+        }
+      }
     }
   }
 };
