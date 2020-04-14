@@ -1,6 +1,7 @@
 import { playlists, songs } from "@/axios/index.js";
 import axios from "@/axios/index.js";
 import Vue from "vue";
+import md5 from "md5";
 
 function initialState() {
   return {
@@ -13,7 +14,7 @@ function initialState() {
     random: false,
     storeList: [],
     playlists: [],
-    search: "",
+    search: ""
   };
 }
 
@@ -22,7 +23,7 @@ const state = initialState;
 const mutations = {
   reset(state) {
     const s = initialState();
-    Object.keys(s).forEach((key) => {
+    Object.keys(s).forEach(key => {
       state[key] = s[key];
     });
   },
@@ -44,10 +45,13 @@ const mutations = {
       type: "audio",
       sources: [
         {
-          src: state.currentSong.link,
-          type: "audio/ogg",
-        },
-      ],
+          src:
+            process.env.VUE_APP_BASE_API +
+            "/songbyid/" +
+            encodeURI(state.currentSong.link),
+          type: "audio/ogg"
+        }
+      ]
     };
   },
   changeLoop(state) {
@@ -93,11 +97,11 @@ const mutations = {
         }
       }
     }
-  },
+  }
 };
 const actions = {
   fetchAllSong({ commit }) {
-    songs.get("").then((res) => {
+    songs.get("").then(res => {
       commit("updateAllSongs", res.data);
     });
   },
@@ -161,7 +165,7 @@ const actions = {
 
   /*Go forward current song */
   nextSong({ state, dispatch, commit }) {
-    dispatch("findCurrentSongIndex").then((check) => {
+    dispatch("findCurrentSongIndex").then(check => {
       if (check != -1) {
         if (check < state.currentList.length - 1) {
           commit("updateCurrentSong", state.currentList[check + 1]);
@@ -176,7 +180,7 @@ const actions = {
 
   /*Back forward current song */
   backSong({ state, dispatch, commit }) {
-    dispatch("findCurrentSongIndex").then((check) => {
+    dispatch("findCurrentSongIndex").then(check => {
       if (check != -1) {
         if (check > 0) {
           commit("updateCurrentSong", state.currentList[check - 1]);
@@ -213,16 +217,16 @@ const actions = {
   /*Add a song next to current song. It will not add to store list
   So if current list is shuffled, you add a new song to it, then you unshuffle it, new song will be remove. */
   addToNextSong({ commit, dispatch }, song) {
-    dispatch("findCurrentSongIndex", song).then((check) => {
+    dispatch("findCurrentSongIndex", song).then(check => {
       if (check != -1) commit("deleteSongFromCurrentList", check);
     });
-    dispatch("findCurrentSongIndex").then((res) => {
+    dispatch("findCurrentSongIndex").then(res => {
       commit("addSongToCurrentList", { song, res });
       Vue.notify({
         group: "foo",
         title: song.name,
         text: "is added after current song",
-        duration: 3000,
+        duration: 3000
       });
     });
   },
@@ -230,7 +234,7 @@ const actions = {
   /*Add a song to current list. It will not add to store list
   So if current list is shuffled, you add a new song to it, then you unshuffle it, new song will be remove. */
   addToCurrentList({ state, commit, dispatch }, song) {
-    dispatch("findCurrentSongIndex", song).then((check) => {
+    dispatch("findCurrentSongIndex", song).then(check => {
       if (check == -1) {
         let res = state.currentList.length - 1;
         commit("addSongToCurrentList", { song, res });
@@ -238,7 +242,7 @@ const actions = {
           group: "foo",
           title: song.name,
           text: "is added to current list",
-          duration: 3000,
+          duration: 3000
         });
       }
     });
@@ -280,11 +284,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       playlists
         .get("")
-        .then((res) => {
+        .then(res => {
           commit("updatePlaylists", res.data);
           resolve();
         })
-        .catch((err) => {
+        .catch(err => {
           reject();
         });
     });
@@ -293,7 +297,7 @@ const actions = {
   /*Check all playlist if this song is in or not */
   checkSong({}, song) {
     return new Promise((resolve, reject) => {
-      playlists.get("/checksong?idSong=" + song.id).then((res) => {
+      playlists.get("/checksong?idSong=" + song.id).then(res => {
         resolve(res.data);
       });
     });
@@ -320,7 +324,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       playlists
         .post("/" + payload.plId + "/song?idSong=" + payload.song.id, {})
-        .then((res) => {
+        .then(res => {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
@@ -329,13 +333,13 @@ const actions = {
                 group: "foo",
                 title: payload.song.name,
                 text: "is added to: " + payload.plName,
-                duration: 3000,
+                duration: 3000
               });
               break;
             }
           }
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err);
         });
     });
@@ -346,7 +350,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       playlists
         .get("/" + payload.plId + "/deletesong?idSong=" + payload.song.id)
-        .then((res) => {
+        .then(res => {
           resolve(res.data);
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
@@ -357,7 +361,7 @@ const actions = {
                     group: "foo",
                     title: payload.song.name,
                     text: "is deleted from " + payload.plName,
-                    duration: 3000,
+                    duration: 3000
                   });
                   break;
                 }
@@ -366,7 +370,7 @@ const actions = {
             }
           }
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err);
         });
     });
@@ -377,17 +381,17 @@ const actions = {
     return new Promise((resolve, reject) => {
       playlists
         .post("/add?name=" + plName, {})
-        .then((res) => {
+        .then(res => {
           state.playlists.push(res.data);
           Vue.notify({
             group: "foo",
             title: "Playlist: " + plName,
             text: "is created",
-            duration: 3000,
+            duration: 3000
           });
           resolve(true);
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err);
         });
     });
@@ -396,7 +400,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       playlists
         .get("/delete/" + payload.plId)
-        .then((res) => {
+        .then(res => {
           for (let i = 0; i < state.playlists.length; i++) {
             if (state.playlists[i].id == payload.plId) {
               state.playlists.splice(i, 1);
@@ -404,14 +408,14 @@ const actions = {
                 group: "foo",
                 title: "Playlist: " + payload.plName,
                 text: "is deleted",
-                duration: 3000,
+                duration: 3000
               });
               break;
             }
           }
           resolve(true);
         })
-        .catch((err) => {
+        .catch(err => {
           reject(false);
         });
     });
@@ -425,7 +429,7 @@ const actions = {
       temp = song;
     }
     if (temp == null) return;
-    axios.post("/like/" + temp.id, {}).then((res) => {
+    axios.post("/like/" + temp.id, {}).then(res => {
       for (let i = 0; i < state.allSongs.length; i++) {
         if (state.allSongs[i].id == temp.id) {
           state.allSongs[i].like = true;
@@ -445,7 +449,7 @@ const actions = {
             group: "foo",
             title: temp.name,
             text: "is added to Loved",
-            duration: 3000,
+            duration: 3000
           });
         }
       }
@@ -460,7 +464,7 @@ const actions = {
       id = song.id;
     }
     if (id == null) return;
-    axios.post("/unlike/" + id, {}).then((res) => {
+    axios.post("/unlike/" + id, {}).then(res => {
       for (let i = 0; i < state.allSongs.length; i++) {
         if (state.allSongs[i].id == id) {
           state.allSongs[i].like = false;
@@ -468,7 +472,7 @@ const actions = {
             group: "foo",
             title: state.allSongs[i].name,
             text: "is deleted from Loved",
-            duration: 3000,
+            duration: 3000
           });
           break;
         }
@@ -488,23 +492,23 @@ const actions = {
   },
 
   updateSongInfo({}, payload) {
-    axios.post("/song/update/" + payload.id, { ...payload }).then((res) => {
+    axios.post("/song/update/" + payload.id, { ...payload }).then(res => {
       Vue.notify({
         group: "foo",
         title: payload.name,
         text: "is updated",
-        duration: 3000,
+        duration: 3000
       });
     });
   },
 
   deleteSong({}, payload) {
-    axios.post("/song/delete/" + payload.id, {}).then((res) => {
+    axios.post("/song/delete/" + payload.id, {}).then(res => {
       Vue.notify({
         group: "foo",
         title: payload.name,
         text: "is deleted from store",
-        duration: 3000,
+        duration: 3000
       });
     });
   },
@@ -513,39 +517,39 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .get("/songinfo/" + id)
-        .then((res) => {
+        .then(res => {
           resolve(res);
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err);
         });
     });
-  },
+  }
 };
 const getters = {
-  isPlaying: (state) => {
+  isPlaying: state => {
     return state.isPlaying;
   },
-  currentSong: (state) => {
+  currentSong: state => {
     return state.currentSong;
   },
-  loop: (state) => {
+  loop: state => {
     return state.loop;
   },
-  random: (state) => {
+  random: state => {
     return state.random;
   },
-  songsFilter: (state) => {
-    return state.allSongs.filter((song) =>
+  songsFilter: state => {
+    return state.allSongs.filter(song =>
       song.name.toLowerCase().includes(state.search.toLowerCase())
     );
   },
-  relevantSong: (state) => {
+  relevantSong: state => {
     if (state.currentSong.name === "--") return null;
     let artists = state.currentSong.artists;
     let nameSong = state.currentSong.name;
     let count = 0;
-    let relevantSong = state.allSongs.filter((song) => {
+    let relevantSong = state.allSongs.filter(song => {
       if (song.artists === artists && song.name !== nameSong && count <= 6) {
         count++;
         return true;
@@ -554,15 +558,15 @@ const getters = {
     });
     return relevantSong;
   },
-  albumSong: (state) => {
+  albumSong: state => {
     if (state.currentSong.name === "--") return null;
     let album = state.currentSong.album;
-    return state.allSongs.filter((song) => song.album === album);
-  },
+    return state.allSongs.filter(song => song.album === album);
+  }
 };
 export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 };
