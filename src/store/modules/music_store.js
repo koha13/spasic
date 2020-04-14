@@ -1,7 +1,6 @@
 import { playlists, songs } from "@/axios/index.js";
 import axios from "@/axios/index.js";
 import Vue from "vue";
-import md5 from "md5";
 
 function initialState() {
   return {
