@@ -32,7 +32,7 @@
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: rgb(23, 24, 32);
+  background-color: rgba(23, 24, 32, 0.598);
 }
 * {
   margin: 0;

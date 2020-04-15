@@ -47,11 +47,7 @@
           </div>
 
           <!-- Song Info -->
-          <nav
-            class="song-info"
-            style="cursor:pointer; user-select:none"
-            @click="$emit('changeExpandState')"
-          >
+          <nav class="song-info" style="cursor:pointer; user-select:none" @click="goCurrentSong">
             <p style="margin-bottom: 0; margin-top: 10px;">{{ $store.getters.currentSong.name }}</p>
             <p>{{ $store.getters.currentSong.artists }}</p>
           </nav>
@@ -99,6 +95,14 @@
 export default {
   props: {
     showCurrentList: Boolean
+  },
+  methods: {
+    goCurrentSong() {
+      if (this.$route.name !== "currentsong") {
+        if (this.$store.state.music_store.currentSong.name !== "--")
+          this.$router.push({ name: "currentsong" });
+      } else this.$router.back();
+    }
   }
 };
 </script>

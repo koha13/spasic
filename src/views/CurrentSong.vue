@@ -24,12 +24,12 @@ export default {
 
 <style>
 .specific-song {
-  margin-top: 10px;
+  margin-top: 100px;
   max-width: 70%;
-  margin-bottom: 5px;
+  margin-bottom: 80px;
   color: var(--color-text);
-  height: calc(100vh - 200px);
   overflow-y: scroll;
+  /* overflow-x: hidden; */
 }
 .specific-song .song-img {
   width: 300px;
@@ -94,6 +94,10 @@ export default {
 @media only screen and (max-width: 768px) {
   .specific-song {
     max-width: 100%;
+    margin-top: 75px;
+  }
+  .specific-song .title-song {
+    font-size: 15px;
   }
   .card-default:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

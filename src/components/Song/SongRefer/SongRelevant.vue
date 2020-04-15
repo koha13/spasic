@@ -3,24 +3,14 @@
     <div
       class="row d-flex justify-content-center"
       style="font-size: 20px; margin-bottom: 10px;"
-    >
-      Relevant
-    </div>
+    >Relevant</div>
     <div class="row">
-      <div
-        class="col-4 card-default1"
-        v-for="song in relevantSong"
-        :key="song.id"
-      >
+      <div class="col-4 card-default1" v-for="song in relevantSong" :key="song.id">
         <div class="img-container" @click.stop="playSong(song)">
           <img :src="song.avatar" />
           <i class="fas fa-play fa-4x layout-up"></i>
         </div>
-        <div
-          class="song-title"
-          v-text="song.name"
-          @click.stop="playSong(song)"
-        />
+        <div class="song-title" v-text="song.name" @click.stop="playSong(song)" />
         <br style="margin: 0; padding: 0; height: 0;" />
         <router-link to="/" tag="a" class="song-artist" v-text="song.artists" />
       </div>
@@ -32,13 +22,13 @@ export default {
   computed: {
     relevantSong() {
       return this.$store.getters.relevantSong;
-    },
+    }
   },
   methods: {
     playSong(song) {
       this.$store.dispatch("playSong", song);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
@@ -70,15 +60,16 @@ img {
 .song-title {
   display: inline;
   user-select: none;
-  font-size: 17px;
+  font-size: 15px;
   color: var(--color-text);
   padding: 0 5px;
+  word-wrap: break-word;
 }
 .song-artist {
   display: inline-block;
   cursor: pointer;
   user-select: none;
-  font-size: 13px;
+  font-size: 11px;
   color: var(--color-text);
   opacity: 0.7;
   padding: 0 5px;

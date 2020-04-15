@@ -7,10 +7,7 @@
       </div>
       <div class="col-lg-8 col-sm-12">
         <div class="d-flex flex-row align-items-center">
-          <p
-            class="album-title flex-grow-1"
-            v-text="$store.state.music_store.currentSong.album"
-          />
+          <p class="album-title flex-grow-1" v-text="$store.state.music_store.currentSong.album" />
           <i class="fa fa-random album-title__btn" @click="randomAlbumSong"></i>
           <i class="fas fa-play album-title__btn" @click="playAlbumSong"></i>
         </div>
@@ -41,7 +38,7 @@ export default {
       let albumSong = this.$store.getters.albumSong;
       let index = _.findIndex(
         albumSong,
-        (song) => song.id === this.$store.state.music_store.currentSong.id
+        song => song.id === this.$store.state.music_store.currentSong.id
       );
       let count = 0;
       let start = index;
@@ -58,7 +55,7 @@ export default {
         if (end === albumSong.length - 1 && start === 0) break;
       }
       return albumSong.slice(start, end + 1);
-    },
+    }
   },
   methods: {
     playAlbumSong() {
@@ -69,8 +66,8 @@ export default {
     },
     playSong(song) {
       this.$store.dispatch("playSong", song);
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
@@ -86,7 +83,7 @@ img {
   border-radius: 10px;
 }
 .album-title {
-  font-size: 18px;
+  font-size: 15px;
 }
 .album-song {
   cursor: pointer;

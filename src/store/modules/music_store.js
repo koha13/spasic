@@ -1,6 +1,7 @@
 import { playlists, songs } from "@/axios/index.js";
 import axios from "@/axios/index.js";
 import Vue from "vue";
+const baseURL = process.env.VUE_APP_BASE_API;
 
 function initialState() {
   return {
@@ -44,10 +45,7 @@ const mutations = {
       type: "audio",
       sources: [
         {
-          src:
-            process.env.VUE_APP_BASE_API +
-            "/songbyid/" +
-            encodeURI(state.currentSong.link),
+          src: baseURL + "/songbyid/" + encodeURI(state.currentSong.link),
           type: "audio/ogg"
         }
       ]
@@ -117,7 +115,7 @@ const actions = {
     state.random = 0;
     dispatch("play");
   },
-  playCurrentList({ commit, dispatch }) {
+  playCurrentList({ commit, dispatch, state }) {
     commit("updateCurrentSong", state.currentList[0]);
     commit("updateSourcePlayer");
     dispatch("play");
@@ -549,7 +547,7 @@ const getters = {
     let nameSong = state.currentSong.name;
     let count = 0;
     let relevantSong = state.allSongs.filter(song => {
-      if (song.artists === artists && song.name !== nameSong && count <= 6) {
+      if (song.artists === artists && song.name !== nameSong && count < 6) {
         count++;
         return true;
       }

@@ -4,7 +4,7 @@
     <span style="margin-right:5px">Artist:</span>
     <router-link
       class="truncate-inform"
-      tag="a"
+      tag="p"
       to="/"
       v-text="$store.state.music_store.currentSong.artists"
     />
@@ -38,14 +38,16 @@ export default {
   watch: {
     currentSong(oldValue, newValue) {
       if (newValue !== oldValue) {
-        this.$store
-          .dispatch(
-            "getSongLyric",
-            this.$store.state.music_store.currentSong.id
-          )
-          .then(res => {
-            this.lyric = res.data.lyric;
-          });
+        if (this.$store.state.music_store.currentSong.lyric === "true") {
+          this.$store
+            .dispatch(
+              "getSongLyric",
+              this.$store.state.music_store.currentSong.id
+            )
+            .then(res => {
+              this.lyric = res.data.lyric;
+            });
+        }
       }
     }
   }

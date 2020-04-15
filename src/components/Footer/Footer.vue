@@ -1,14 +1,13 @@
 <template>
-  <div class="ft" v-click-outside="hideExpand">
+  <div class="ft">
     <!-- Main footer -->
     <FooterMain
       :showCurrentList="showCurrentList"
       @changeCurrentListState="showCurrentList = !showCurrentList"
-      @changeExpandState="showExpandState"
     />
 
     <!-- Plyr progress -->
-    <div :class="{container:true, 'expand-state': showExpand}" id="progress-plyr">
+    <div class="container" id="progress-plyr">
       <vue-plyr
         ref="player"
         :options="playerOptions"
@@ -21,14 +20,6 @@
         <audio></audio>
       </vue-plyr>
     </div>
-
-    <!-- Song expand -->
-    <transition name="slide-fade">
-      <keep-alive>
-        <Song v-if="showExpand" />
-      </keep-alive>
-    </transition>
-
     <!-- Curren List -->
     <transition name="slide-fade">
       <keep-alive>
@@ -40,17 +31,14 @@
 <script>
 import CurrentList from "./CurrentList";
 import FooterMain from "./FooterMain";
-import Song from "./Song";
 export default {
   components: {
     CurrentList,
-    Song,
     FooterMain
   },
   data() {
     return {
-      showCurrentList: false,
-      showExpand: false
+      showCurrentList: false
     };
   },
   mounted() {
@@ -66,20 +54,6 @@ export default {
         storage: { enabled: true, key: "plyr" }
       };
       return options;
-    }
-  },
-  methods: {
-    hideExpand() {
-      this.showExpand = false;
-    },
-    showExpandState() {
-      if (this.$store.state.music_store.currentSong.id) {
-        if (this.showExpand === false) {
-          this.showExpand = true;
-        } else {
-          this.showExpand = false;
-        }
-      }
     }
   }
 };
