@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    style="background: var(--color-main);box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.596);"
+  >
     <div class="row">
       <div class="col" style="padding:0">
         <div class="ft-content d-flex flew-row align-items-center">
@@ -47,7 +50,11 @@
           </div>
 
           <!-- Song Info -->
-          <nav class="song-info" style="cursor:pointer; user-select:none" @click="goCurrentSong">
+          <nav
+            class="song-info"
+            style="cursor:pointer; user-select:none"
+            @click="$emit('changeExpandState')"
+          >
             <p style="margin-bottom: 0; margin-top: 10px;">{{ $store.getters.currentSong.name }}</p>
             <p>{{ $store.getters.currentSong.artists }}</p>
           </nav>
@@ -95,14 +102,6 @@
 export default {
   props: {
     showCurrentList: Boolean
-  },
-  methods: {
-    goCurrentSong() {
-      if (this.$route.name !== "currentsong") {
-        if (this.$store.state.music_store.currentSong.name !== "--")
-          this.$router.push({ name: "currentsong" });
-      } else this.$router.back();
-    }
   }
 };
 </script>

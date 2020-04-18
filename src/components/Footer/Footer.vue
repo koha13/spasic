@@ -1,9 +1,16 @@
 <template>
-  <div class="ft">
+  <div class="ft" v-click-outside="hideExpand">
+    <!-- Song expand -->
+    <transition name="slide-fade">
+      <keep-alive>
+        <Song v-if="showExpand" @hideExpand="hideExpand" />
+      </keep-alive>
+    </transition>
     <!-- Main footer -->
     <FooterMain
       :showCurrentList="showCurrentList"
       @changeCurrentListState="showCurrentList = !showCurrentList"
+      @changeExpandState="showExpandState"
     />
 
     <!-- Plyr progress -->
@@ -20,6 +27,7 @@
         <audio></audio>
       </vue-plyr>
     </div>
+
     <!-- Curren List -->
     <transition name="slide-fade">
       <keep-alive>
@@ -31,14 +39,17 @@
 <script>
 import CurrentList from "./CurrentList";
 import FooterMain from "./FooterMain";
+import Song from "./CurrentSong";
 export default {
   components: {
     CurrentList,
+    Song,
     FooterMain
   },
   data() {
     return {
-      showCurrentList: false
+      showCurrentList: false,
+      showExpand: false
     };
   },
   mounted() {
@@ -55,13 +66,31 @@ export default {
       };
       return options;
     }
+  },
+  methods: {
+    hideExpand() {
+      this.showExpand = false;
+    },
+    showExpandState() {
+      if (this.$store.state.music_store.currentSong.id) {
+        if (this.showExpand === false) {
+          this.showExpand = true;
+        } else {
+          this.showExpand = false;
+        }
+      }
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path !== from.path) {
+        this.showExpand = false;
+      }
+    }
   }
 };
 </script>
 <style scoped>
-#progress-plyr.expand-state {
-  top: 55px;
-}
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
@@ -77,11 +106,11 @@ export default {
 <style>
 #progress-plyr {
   position: absolute;
-  top: -13px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 101;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 .plyr__controls {
   background-color: transparent !important;

@@ -1,11 +1,19 @@
 <template>
-  <div class="container specific-song">
-    <div class="row">
-      <SongImage />
-      <SongDetail />
+  <div>
+    <div class="container cs-title" @click="$emit('hideExpand')">
+      CURRENT SONG
+      <i class="fas fa-arrow-down"></i>
     </div>
-    <hr />
-    <SongRefer />
+    <div class="container specific-song">
+      <div>
+        <div class="row">
+          <SongImage />
+          <SongDetail />
+        </div>
+        <hr />
+        <SongRefer />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,18 +26,42 @@ export default {
     SongImage,
     SongDetail,
     SongRefer
+  },
+  methods: {
+    soso() {
+      console.log("here");
+    }
+  },
+  activated() {
+    document.addEventListener("backbutton", this.soso, true);
+  },
+  deactivated() {
+    console.log("deactive");
   }
 };
 </script>
 
 <style>
 .specific-song {
-  margin-top: 100px;
-  max-width: 70%;
-  margin-bottom: 80px;
+  max-width: 68%;
+  padding-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
   color: var(--color-text);
+  height: calc(100vh - 200px);
   overflow-y: scroll;
-  /* overflow-x: hidden; */
+  position: relative;
+  background: linear-gradient(var(--color-contrast), var(--color-main));
+  border-radius: 10px;
+}
+.cs-title {
+  background: var(--color-contrast);
+  padding-top: 3px;
+  max-width: 30%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  cursor: pointer;
 }
 .specific-song .song-img {
   width: 300px;
@@ -40,7 +72,7 @@ export default {
 .specific-song .title-song {
   overflow-wrap: break-word;
   width: calc(100%);
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 0px;
   padding-right: 0;
   margin-right: 0;
@@ -49,7 +81,7 @@ export default {
   display: inline;
   cursor: pointer;
   user-select: none;
-  font-size: 16px;
+  font-size: 13px;
   color: var(--color-text);
   opacity: 0.7;
   padding: 0;
@@ -65,7 +97,6 @@ export default {
 .specific-song .truncate-inform:active {
   color: var(--color-hover);
 }
-
 .specific-song .hide-btn {
   color: var(--color-hover);
   cursor: pointer;
@@ -94,10 +125,9 @@ export default {
 @media only screen and (max-width: 768px) {
   .specific-song {
     max-width: 100%;
-    margin-top: 75px;
   }
-  .specific-song .title-song {
-    font-size: 15px;
+  .cs-title {
+    max-width: 70%;
   }
   .card-default:hover {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
