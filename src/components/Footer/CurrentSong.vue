@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="currentSong">
     <div class="container cs-title" @click="$emit('hideExpand')">
       CURRENT SONG
       <i class="fas fa-arrow-down"></i>
@@ -27,16 +27,8 @@ export default {
     SongDetail,
     SongRefer
   },
-  methods: {
-    soso() {
-      console.log("here");
-    }
-  },
   activated() {
-    document.addEventListener("backbutton", this.soso, true);
-  },
-  deactivated() {
-    console.log("deactive");
+    document.getElementById("currentSong").scrollTop = 0;
   }
 };
 </script>

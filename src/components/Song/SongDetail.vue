@@ -17,7 +17,7 @@
       v-text="$store.state.music_store.currentSong.album"
     />
     <hr />
-    <div v-if="lyric !== ''">
+    <div v-if="$store.state.music_store.currentSong.lyric">
       <span style="color:var(--color-hover)">Lyric:</span>
       <pre :class="{'hide' : isHideLyric}" v-text="lyric" />
       <small class="hide-btn" v-if="isHideLyric && lyric !== null" @click="isHideLyric = false">Show</small>
@@ -38,7 +38,7 @@ export default {
   watch: {
     currentSong(oldValue, newValue) {
       if (newValue !== oldValue) {
-        this.lyric = "";
+        this.isHideLyric = true;
         if (this.$store.state.music_store.currentSong.lyric === "true") {
           this.$store
             .dispatch(
@@ -48,7 +48,7 @@ export default {
             .then(res => {
               this.lyric = res.data.lyric;
             });
-        }
+        } else this.lyric = "";
       }
     }
   }
