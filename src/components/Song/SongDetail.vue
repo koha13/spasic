@@ -35,6 +35,15 @@ export default {
       return this.$store.state.music_store.currentSong;
     }
   },
+  mounted() {
+    if (this.$store.state.music_store.currentSong.lyric === "true") {
+      this.$store
+        .dispatch("getSongLyric", this.$store.state.music_store.currentSong.id)
+        .then(res => {
+          this.lyric = res.data.lyric;
+        });
+    }
+  },
   watch: {
     currentSong(oldValue, newValue) {
       if (newValue !== oldValue) {

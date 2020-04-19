@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-4 card-default1" v-for="song in relevantSong" :key="song.id">
         <div class="img-container" @click.stop="playSong(song)">
-          <img :src="song.avatar" />
+          <img :src="song.songImage" />
           <i class="fas fa-play fa-4x layout-up"></i>
         </div>
         <div class="song-title" v-text="song.name" @click.stop="playSong(song)" />
