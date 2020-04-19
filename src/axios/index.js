@@ -5,14 +5,14 @@ const baseURL = process.env.VUE_APP_BASE_API;
 
 const defaultAxios = axios.create({
   baseURL: baseURL,
-  timeout: 5000,
+  timeout: 20000,
 });
 
 defaultAxios.interceptors.response.use(
-  function (response) {
+  function(response) {
     return response;
   },
-  function (error) {
+  function(error) {
     if (error.response.status === 403) {
       window.localStorage.removeItem("token");
       router.replace("/login");
@@ -27,19 +27,19 @@ defaultAxios.interceptors.request.use((config) => {
 
 const auth = axios.create({
   baseURL: baseURL + "/auth",
-  timeout: 5000,
+  timeout: 10000,
 });
 
 const songs = axios.create({
   baseURL: baseURL + "/songs",
-  timeout: 5000,
+  timeout: 10000,
 });
 
 songs.interceptors.response.use(
-  function (response) {
+  function(response) {
     return response;
   },
-  function (error) {
+  function(error) {
     if (error.response.status === 403) {
       window.localStorage.removeItem("token");
       router.replace("/login");
@@ -55,13 +55,13 @@ songs.interceptors.request.use((config) => {
 
 const playlists = axios.create({
   baseURL: baseURL + "/playlists",
-  timeout: 5000,
+  timeout: 10000,
 });
 playlists.interceptors.response.use(
-  function (response) {
+  function(response) {
     return response;
   },
-  function (error) {
+  function(error) {
     if (error.response.status === 403) {
       window.localStorage.removeItem("token");
       router.replace("/login");

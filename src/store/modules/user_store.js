@@ -1,4 +1,4 @@
-import auth from "@/axios/auth";
+import { auth } from "@/axios/index";
 
 function initialState() {
   return {
