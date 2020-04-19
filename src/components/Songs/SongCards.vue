@@ -15,7 +15,7 @@
         <div id="image-1" style="width: 100%; height: 150px;" @click="playSong(song)">
           <img
             style="width:100%; height:150px; object-fit: cover; border-radius:3px"
-            v-lazy="song.avatar"
+            v-lazy="song.songImage"
           />
           <div id="middle">
             <i

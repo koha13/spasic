@@ -1,6 +1,6 @@
 <template>
   <div class="col-lg-6 col-sm-12 justify-content-start d-flex flex-column align-items-center">
-    <img class="song-img" :src="$store.state.music_store.currentSong.avatar" />
+    <img class="song-img" :src="$store.state.music_store.currentSong.songImage" />
     <div>
       <i
         class="far fa-heart fa-2x btn-song card-default"

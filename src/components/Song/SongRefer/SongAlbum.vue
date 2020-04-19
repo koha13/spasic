@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-center title">Album</div>
     <div class="row">
       <div class="col-lg-3 hide22">
-        <img :src="$store.state.music_store.currentSong.avatar" />
+        <img :src="$store.state.music_store.currentSong.songImage" />
       </div>
       <div class="col-lg-8 col-sm-12">
         <div class="d-flex flex-row align-items-center">

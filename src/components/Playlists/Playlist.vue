@@ -30,7 +30,7 @@
           }"
           @click.stop="$store.dispatch('playSong', song)"
         >
-          <img v-lazy="song.avatar" alt class="image" />
+          <img v-lazy="song.songImage" alt class="image" />
           <div id="middle3">
             <i
               class="fa fa-pause fa-lg"

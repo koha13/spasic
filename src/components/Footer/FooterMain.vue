@@ -45,7 +45,7 @@
                   }"
                 @click="$store.dispatch('changeShuffle')"
               ></i>
-              <img v-lazy="$store.getters.currentSong.avatar" class="hi991" />
+              <img v-lazy="$store.getters.currentSong.songImage" class="hi991" />
             </a>
           </div>
 
