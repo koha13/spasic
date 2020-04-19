@@ -9,7 +9,7 @@
     <!-- Main footer -->
     <FooterMain
       :showCurrentList="showCurrentList"
-      @changeCurrentListState="showCurrentList = !showCurrentList"
+      @changeCurrentListState="handleShowCurrentList"
       @changeExpandState="showExpandState"
     />
 
@@ -75,10 +75,17 @@ export default {
       if (this.$store.state.music_store.currentSong.id) {
         if (this.showExpand === false) {
           this.showExpand = true;
+          this.showCurrentList = false;
         } else {
           this.showExpand = false;
         }
       }
+    },
+    handleShowCurrentList() {
+      if (this.showCurrentList === false) {
+        this.showCurrentList = true;
+        this.showExpand = false;
+      } else this.showCurrentList = false;
     }
   },
   watch: {
