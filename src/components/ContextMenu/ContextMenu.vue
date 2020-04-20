@@ -1,12 +1,5 @@
 <template>
-  <div
-    ref="contextMenu"
-    @click.stop
-    @contextmenu.stop
-    :id="id"
-    :style="ctxStyle"
-    class="ctx-menu-container"
-  >
+  <div @click.stop @contextmenu.stop :id="id" :style="ctxStyle" class="ctx-menu-container">
     <div style="background-color:transparent" class="ctx open">
       <ul
         role="menu"
@@ -42,20 +35,13 @@ export default {
       bodyClickListener: createBodyClickListener(e => {
         let isOpen = !!this.ctxVisible;
         let outsideClick = isOpen && !this.$el.contains(e.target);
-
         if (outsideClick) {
-          if (e.which !== 1) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-          } else {
-            this.ctxVisible = false;
-            this.$emit("ctx-cancel", this.locals);
-            e.stopPropagation();
-          }
+          this.ctxVisible = false;
+          this.$emit("ctx-cancel", this.locals);
+          e.stopPropagation();
         } else {
           this.ctxVisible = false;
-          this.$emit("ctx-close", this.locals);
+          // this.$emit("ctx-close", this.locals);
         }
       })
     };
@@ -106,12 +92,12 @@ export default {
   watch: {
     ctxVisible(newVal, oldVal) {
       if (oldVal === true && newVal === false) {
-        this.bodyClickListener.stop(e => {
-          // console.log('context menu sequence finished', e)
-          // this.locals = {}
-        });
+        this.bodyClickListener.stop();
       }
     }
+  },
+  destroyed() {
+    this.bodyClickListener.stop();
   },
   computed: {
     ctxStyle() {

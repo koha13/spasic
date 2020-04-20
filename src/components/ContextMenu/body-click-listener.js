@@ -14,9 +14,6 @@ module.exports = function createBodyClickListener(fn) {
     start(cb) {
       window.addEventListener("click", _onclick, true);
       window.addEventListener("keyup", _onescape, true);
-      window.addEventListener("touchstart", _onclick, true);
-      window.addEventListener("touchmove", _onclick, true);
-      window.addEventListener("touchend", _onclick, true);
       isListening = true;
       if (typeof cb === "function") cb();
     },
@@ -24,12 +21,9 @@ module.exports = function createBodyClickListener(fn) {
     stop(cb) {
       window.removeEventListener("click", _onclick, true);
       window.removeEventListener("keyup", _onescape, true);
-      window.removeEventListener("touchstart", _onclick, true);
-      window.removeEventListener("touchmove", _onclick, true);
-      window.removeEventListener("touchend", _onclick, true);
       isListening = false;
       if (typeof cb === "function") cb();
-    }
+    },
   };
 
   /* === private helpers ===================================== */

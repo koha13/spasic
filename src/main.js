@@ -13,7 +13,7 @@ Vue.use(VuePlyr);
 Vue.use(Notifications);
 Vue.use(VueLazyload);
 
-Vue.filter("minutes", value => {
+Vue.filter("minutes", (value) => {
   if (!value || typeof value !== "number") return "00:00";
   let hour = parseInt(value / 3600),
     min = parseInt((value % 3600) / 60),
@@ -30,37 +30,30 @@ Vue.filter("minutes", value => {
 });
 
 Vue.directive("click-outside", {
-  bind: function(el, binding, vnode) {
-    el.eventSetDrag = function() {
-      el.setAttribute("data-dragging", "yes");
-    };
-    el.eventClearDrag = function() {
-      el.removeAttribute("data-dragging");
-    };
-    el.eventOnClick = function(event) {
-      var dragging = el.getAttribute("data-dragging");
-      // Check that the click was outside the el and its children, and wasn't a drag
-      if (!(el == event.target || el.contains(event.target)) && !dragging) {
-        // call method provided in attribute value
-        vnode.context[binding.expression](event);
+  bind: function(el, binding, vNode) {
+    // Define Handler and cache it on the element
+    const bubble = binding.modifiers.bubble;
+    const handler = (e) => {
+      // e.stopPropagation();
+      if (bubble || (!el.contains(e.target) && el !== e.target)) {
+        binding.value(e);
       }
     };
-    document.addEventListener("touchstart", el.eventClearDrag);
-    document.addEventListener("touchmove", el.eventSetDrag);
-    document.addEventListener("click", el.eventOnClick);
-    document.addEventListener("touchend", el.eventOnClick);
+    el.__vueClickOutside__ = handler;
+
+    // add Event Listeners
+    document.addEventListener("click", handler);
   },
-  unbind: function(el) {
-    document.removeEventListener("touchstart", el.eventClearDrag);
-    document.removeEventListener("touchmove", el.eventSetDrag);
-    document.removeEventListener("click", el.eventOnClick);
-    document.removeEventListener("touchend", el.eventOnClick);
-    el.removeAttribute("data-dragging");
-  }
+
+  unbind: function(el, binding) {
+    // Remove Event Listeners
+    document.removeEventListener("click", el.__vueClickOutside__);
+    el.__vueClickOutside__ = null;
+  },
 });
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
