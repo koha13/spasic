@@ -67,7 +67,11 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img style="width: 40px; height: 40px;" class="media-object" v-lazy="song.avatar" />
+                  <img
+                    style="width: 40px; height: 40px;"
+                    class="media-object"
+                    v-lazy="song.songImage"
+                  />
                   <div id="middle">
                     <i
                       class="fa fa-pause-circle fa-2x"

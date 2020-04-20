@@ -5,9 +5,13 @@
     </div>
     <p>Name: {{ this.$store.state.user_store.username }}</p>
     <p>Role: {{ this.$store.state.user_store.role }}</p>
-    <button type="button" class="btn btn-primary" @click="logout">
-      Logout
-    </button>
+    <button
+      type="button"
+      :class="{btn:true, darkTheme:darkTheme}"
+      @click="darkTheme = !darkTheme"
+    >Dark theme</button>
+    <br />
+    <button type="button" class="btn btn-primary" @click="logout">Logout</button>
     <br />
     <br />
     <h5>Change password:</h5>
@@ -24,13 +28,32 @@
       to="/admin"
       class="btn btn-danger"
       v-if="$store.state.user_store.role === 'admin'"
-      >Admin</router-link
-    >
+    >Admin</router-link>
   </div>
 </template>
 <script>
 import axios from "@/axios/index.js";
 export default {
+  created() {
+    if (localStorage.getItem("darkTheme") === "true") {
+      this.darkTheme = true;
+    }
+  },
+  watch: {
+    darkTheme() {
+      if (this.darkTheme === true) {
+        localStorage.setItem("darkTheme", "true");
+        document
+          .getElementById("varSource")
+          .setAttribute("href", "/css/var-dark.css");
+      } else {
+        localStorage.setItem("darkTheme", "false");
+        document
+          .getElementById("varSource")
+          .setAttribute("href", "/css/var.css");
+      }
+    }
+  },
   methods: {
     logout() {
       localStorage.removeItem("token");
@@ -41,21 +64,22 @@ export default {
       axios
         .post("/auth/changepass", {
           newPass: this.newpass,
-          oldPass: this.oldpass,
+          oldPass: this.oldpass
         })
-        .then((res) => {
+        .then(res => {
           localStorage.setItem("token", res.data.token);
           alert("Change pass done");
           (this.oldpass = ""), (this.newpass = "");
         });
-    },
+    }
   },
   data() {
     return {
       oldpass: "",
       newpass: "",
+      darkTheme: false
     };
-  },
+  }
 };
 </script>
 <style scoped>
@@ -86,5 +110,9 @@ form input {
   border-radius: 20px;
   font-weight: 600;
   display: block;
+}
+.darkTheme {
+  background: black;
+  color: var(--color-contrast);
 }
 </style>
