@@ -40,15 +40,16 @@ const mutations = {
     document.title = song.name + " - " + song.artists;
   },
   updateSourcePlayer(state) {
-    state.player.source = {
-      type: "audio",
-      sources: [
-        {
-          src: state.currentSong.link,
-          type: "audio/ogg",
-        },
-      ],
-    };
+    if (state.player.source !== state.currentSong.link)
+      state.player.source = {
+        type: "audio",
+        sources: [
+          {
+            src: state.currentSong.link,
+            type: "audio/ogg",
+          },
+        ],
+      };
   },
   changeLoop(state) {
     if (state.loop == 1) state.loop = 2;
