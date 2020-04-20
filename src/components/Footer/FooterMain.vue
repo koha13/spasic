@@ -82,6 +82,7 @@
                 <i
                   id="hi"
                   class="fas fa-heart fa-lg"
+                  style="color:var(--color-hover)"
                   v-else
                   @click.stop="$store.dispatch('unlikeSong')"
                 ></i>
