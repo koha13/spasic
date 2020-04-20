@@ -30,6 +30,9 @@
           <div id="time">
             <span>{{ song.length | minutes }}</span>
           </div>
+          <div id="lyric-tag" v-if="song.lyric">
+            <span>Lyric</span>
+          </div>
         </div>
         <div class="card-inner">
           <div class="content">

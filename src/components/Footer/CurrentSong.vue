@@ -43,11 +43,12 @@ export default {
   height: calc(100vh - 200px);
   overflow-y: scroll;
   position: relative;
-  background: linear-gradient(var(--color-contrast), var(--color-main));
+  background: linear-gradient(rgb(32, 44, 45), var(--color-main));
   border-radius: 10px;
+  opacity: 0.98;
 }
 .cs-title {
-  background: var(--color-contrast);
+  background: rgb(32, 44, 45);
   padding-top: 3px;
   max-width: 30%;
   border-top-left-radius: 10px;

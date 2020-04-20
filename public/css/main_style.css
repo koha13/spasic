@@ -356,18 +356,23 @@ h3 {
   font-weight: 500;
   line-height: 12px;
 }
-#time span {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
+.card #image-1 #lyric-tag {
+  position: absolute;
+  bottom: 65px;
+  right: 0;
+  margin: 4px;
+  color: #fff;
+  background-color: var(--color-hover);
+  padding: 2px 4px 1px 4px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 12px;
 }
 .card #image-1:hover #middle {
   opacity: 1;
   cursor: pointer;
-}
-.card #image-1:hover #time {
-  opacity: 0;
 }
 .card #image-1:hover img {
   opacity: 0.5;
