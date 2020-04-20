@@ -26,6 +26,13 @@ export default {
   },
 
   created() {
+    if (localStorage.getItem("darkTheme") === "true") {
+      document
+        .getElementById("varSource")
+        .setAttribute("href", "/css/var-dark.css");
+    } else {
+      document.getElementById("varSource").setAttribute("href", "/css/var.css");
+    }
     if (this.$route.path != "/loading")
       this.$router.replace({
         name: "loading",

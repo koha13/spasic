@@ -9,7 +9,7 @@
       type="button"
       :class="{btn:true, darkTheme:darkTheme}"
       @click="darkTheme = !darkTheme"
-    >Dark theme</button>
+    >Dark theme: {{darkTheme}}</button>
     <br />
     <button type="button" class="btn btn-primary" @click="logout">Logout</button>
     <br />
