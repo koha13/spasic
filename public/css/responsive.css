@@ -157,6 +157,14 @@
   .playlists {
     max-width: 100%;
   }
+  .song-info {
+    left: 50%;
+    width: 100px;
+    font-size: 11px;
+  }
+  .ft .ft-content .control i {
+    margin-left: 13px;
+  }
 }
 
 /************
@@ -164,10 +172,6 @@
 ************/
 
 @media only screen and (max-width: 767px) {
-  .song-info {
-    left: 53%;
-    width: 100px;
-  }
 }
 
 /************
@@ -200,7 +204,7 @@
     display: none;
   }
   .song-info {
-    left: 58%;
+    left: 55%;
     width: 160px;
   }
   #hi {

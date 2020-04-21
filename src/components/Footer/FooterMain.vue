@@ -120,11 +120,12 @@ export default {
 .loopAll {
   color: var(--color-hover);
 }
-input[type="range"] {
+.custom-range {
   position: relative;
   width: 55px;
   left: 0px;
   bottom: 5px;
+  -moz-transform: translateY(5px);
   border-radius: 10px;
 }
 input[type="range"]::-webkit-slider-runnable-track {
@@ -134,6 +135,21 @@ input[type="range"]::-webkit-slider-runnable-track {
   border-radius: 10px;
 }
 input[type="range"]::-webkit-slider-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 25px;
+  background: var(--color-hover);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+input[type="range"]::-moz-range-thumb {
   height: 10px;
   width: 10px;
   border-radius: 25px;
