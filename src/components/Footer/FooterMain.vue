@@ -113,6 +113,7 @@ export default {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 230px;
+  border-radius: 6px;
 }
 .actived {
   color: var(--color-hover);

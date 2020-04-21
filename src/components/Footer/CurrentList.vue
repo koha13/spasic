@@ -67,11 +67,7 @@
                   style="width: 40px; height: 40px;margin-left: 5px; position: relative;"
                   @click="playSong(song)"
                 >
-                  <img
-                    style="width: 40px; height: 40px;"
-                    class="media-object"
-                    v-lazy="song.songImage"
-                  />
+                  <img class="media-object" v-lazy="song.songImage" />
                   <div id="middle">
                     <i
                       class="fa fa-pause-circle fa-2x"
@@ -248,6 +244,11 @@ export default {
 }
 </style>
 <style scoped>
+.ft img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
 .current1 #image-2 img {
   opacity: 0.1;
 }

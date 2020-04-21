@@ -44,7 +44,6 @@ export default {
   overflow-y: scroll;
   position: relative;
   background: linear-gradient(rgb(32, 44, 45), var(--color-main));
-  border-radius: 10px;
   opacity: 0.98;
 }
 .cs-title {
