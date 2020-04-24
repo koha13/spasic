@@ -541,6 +541,11 @@ const getters = {
       song.name.toLowerCase().includes(state.search.toLowerCase())
     );
   },
+  playlistsFilter: (state) => {
+    return state.playlists.filter((pl) =>
+      pl.name.toLowerCase().includes(state.search.toLowerCase())
+    );
+  },
   relevantSong: (state) => {
     if (state.currentSong.name === "--") return null;
     let artists = state.currentSong.artists;

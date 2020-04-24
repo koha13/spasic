@@ -41,7 +41,7 @@ export default {
   computed: {
     playlists: {
       get: function() {
-        return this.$store.state.music_store.playlists;
+        return this.$store.getters.playlistsFilter;
       }
     }
   },
