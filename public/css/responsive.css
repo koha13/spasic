@@ -190,6 +190,9 @@
   .log_reg #textInput1 {
     display: none;
   }
+  .log_reg #iconSearch {
+    display: block;
+  }
   .menu_close {
     right: 30px;
   }

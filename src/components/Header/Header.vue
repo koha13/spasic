@@ -32,6 +32,9 @@
                 <li>
                   <input type="text" id="textInput1" v-model="search" />
                 </li>
+                <li id="iconSearch">
+                  <i class="fas fa-search fa-lg"></i>
+                </li>
                 <li style="margin-left:20px">
                   <i
                     class="fas fa-info-circle fa-lg"

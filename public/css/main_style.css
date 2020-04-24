@@ -184,6 +184,9 @@ a:link {
 .log_reg #textInput1:focus {
   outline-width: 0;
 }
+.log_reg #iconSearch {
+  display: none;
+}
 .main_nav ul li:not(:last-of-type) {
   margin-right: 65px;
 }
