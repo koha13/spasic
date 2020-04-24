@@ -8,6 +8,7 @@ import About from "../views/About.vue";
 import Profile from "../views/Profile.vue";
 import Loading from "../views/Loading.vue";
 import AdminDashboard from "../views/AdminDashboard";
+import Artists from "../views/Artists";
 
 Vue.use(VueRouter);
 
@@ -15,49 +16,54 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
     path: "/songs",
     name: "songs",
-    component: Songs
+    component: Songs,
   },
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: Login,
   },
   {
     path: "/playlists",
     name: "playlists",
-    component: Playlists
+    component: Playlists,
   },
   {
     path: "/about",
     name: "about",
-    component: About
+    component: About,
   },
   {
     path: "/profile",
     name: "profile",
-    component: Profile
+    component: Profile,
   },
   {
     path: "/loading",
     name: "loading",
-    component: Loading
+    component: Loading,
   },
   {
     path: "/admin",
     name: "admin",
-    component: AdminDashboard
-  }
+    component: AdminDashboard,
+  },
+  {
+    path: "/artists",
+    name: "artists",
+    component: Artists,
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

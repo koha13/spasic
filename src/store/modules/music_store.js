@@ -1,6 +1,7 @@
 import { playlists, songs } from "@/axios/index.js";
 import axios from "@/axios/index.js";
 import Vue from "vue";
+import _ from "lodash";
 
 function initialState() {
   return {
@@ -547,6 +548,12 @@ const getters = {
     return state.playlists.filter((pl) =>
       pl.name.toLowerCase().includes(state.search.toLowerCase())
     );
+  },
+  songsGroupByArtist: (state) => {
+    return _.chain(state.allSongs)
+      .groupBy("artists")
+      .map((value, key) => ({ name: key, songs: value }))
+      .value();
   },
   relevantSong: (state) => {
     if (state.currentSong.name === "--") return null;

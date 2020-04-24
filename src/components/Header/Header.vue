@@ -23,6 +23,9 @@
                 <li :class="{ active: $route.path == '/playlists' }">
                   <a id="direc" @click="goPls">Playlists</a>
                 </li>
+                <li :class="{ active: $route.path == '/artists' }">
+                  <a id="direc" @click="goArtists">Artists</a>
+                </li>
               </ul>
             </nav>
             <!-- User area -->
@@ -95,6 +98,9 @@ export default {
     },
     goProfile() {
       this.$router.push({ name: "profile" });
+    },
+    goArtists() {
+      this.$router.push({ name: "artists" });
     }
   },
   data() {

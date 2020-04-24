@@ -17,6 +17,9 @@
             <li>
               <a :class="{ active: $route.path == '/playlists' }" @click.stop="goPls">Playlists</a>
             </li>
+            <li>
+              <a :class="{ active: $route.path == '/artists' }" @click.stop="goArtists">Artists</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -37,6 +40,9 @@ export default {
     goPls() {
       this.$router.push({ name: "playlists" });
       this.$emit("close");
+    },
+    goArtists() {
+      this.$router.push({ name: "artists" });
     }
   }
 };
