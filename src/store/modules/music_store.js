@@ -555,6 +555,11 @@ const getters = {
       .map((value, key) => ({ name: key, songs: value }))
       .value();
   },
+  songsGroupByArtistFilter: (state, getters) => {
+    return getters.songsGroupByArtist.filter((gr) => {
+      return gr.name.toLowerCase().includes(state.search.toLowerCase());
+    });
+  },
   relevantSong: (state) => {
     if (state.currentSong.name === "--") return null;
     let artists = state.currentSong.artists;

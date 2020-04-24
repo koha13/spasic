@@ -23,7 +23,7 @@ export default {
   computed: {
     playlists: {
       get: function() {
-        return this.$store.getters.songsGroupByArtist;
+        return this.$store.getters.songsGroupByArtistFilter;
       }
     }
   },
