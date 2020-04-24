@@ -168,6 +168,9 @@ a:link {
   position: relative;
 }
 .log_reg #textInput1 {
+  position: relative;
+}
+.log_reg #textInput1 input {
   background-color: var(--color3);
   border-radius: 20px;
   border: 0;
@@ -180,6 +183,12 @@ a:link {
   -ms-transform: translateY(-3px);
   -o-transform: translateY(-3px);
   transform: translateY(-3px);
+}
+.log_reg #textInput1 i {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+  font-size: 10px !important;
 }
 .log_reg #textInput1:focus {
   outline-width: 0;

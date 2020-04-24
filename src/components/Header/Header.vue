@@ -29,8 +29,9 @@
             <div class="log_reg d-flex flex-row align-items-center justify-content-start">
               <ul class="d-flex flex-row align-items-start justify-content-start">
                 <!-- <li style="margin-left:20px"><a href="#">Login</a></li> -->
-                <li>
-                  <input type="text" id="textInput1" v-model="search" />
+                <li id="textInput1">
+                  <input type="text" v-model="search" />
+                  <i class="fa fa-times fa-xs" v-if="search !== ''" @click="search=''"></i>
                 </li>
                 <li id="iconSearch">
                   <i class="fas fa-search fa-lg"></i>
