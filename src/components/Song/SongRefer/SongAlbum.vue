@@ -35,26 +35,7 @@ import _ from "lodash";
 export default {
   computed: {
     albumSong() {
-      let albumSong = this.$store.getters.albumSong;
-      let index = _.findIndex(
-        albumSong,
-        song => song.id === this.$store.state.music_store.currentSong.id
-      );
-      let count = 0;
-      let start = index;
-      let end = index;
-      while (count < 6) {
-        if (end < albumSong.length - 1) {
-          end++;
-          count++;
-        }
-        if (start > 0) {
-          start--;
-          count++;
-        }
-        if (end === albumSong.length - 1 && start === 0) break;
-      }
-      return albumSong.slice(start, end + 1);
+      return this.$store.getters.albumSong;
     }
   },
   methods: {
