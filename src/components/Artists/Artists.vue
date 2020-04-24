@@ -139,7 +139,7 @@ export default {
 </script>
 <style scoped>
 .playlist {
-  height: 60px;
+  /* height: 60px; */
   /* background: rgb(37, 41, 56); */
   align-items: center;
   border-radius: 10px;

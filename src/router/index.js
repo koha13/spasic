@@ -9,6 +9,7 @@ import Profile from "../views/Profile.vue";
 import Loading from "../views/Loading.vue";
 import AdminDashboard from "../views/AdminDashboard";
 import Artists from "../views/Artists";
+import Albums from "../views/Albums";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,12 @@ const routes = [
     path: "/artists",
     name: "artists",
     component: Artists,
+  },
+  ,
+  {
+    path: "/albums",
+    name: "albums",
+    component: Albums,
   },
 ];
 

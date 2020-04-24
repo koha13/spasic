@@ -26,6 +26,9 @@
                 <li :class="{ active: $route.path == '/artists' }">
                   <a id="direc" @click="goArtists">Artists</a>
                 </li>
+                <li :class="{ active: $route.path == '/albums' }">
+                  <a id="direc" @click="goAlbums">Albums</a>
+                </li>
               </ul>
             </nav>
             <!-- User area -->
@@ -85,22 +88,28 @@ export default {
   },
   methods: {
     goHome() {
-      this.$router.push({ name: "home" });
+      if (this.$route.name !== "home") this.$router.push({ name: "home" });
     },
     goSongs() {
-      this.$router.push({ name: "songs" });
+      if (this.$route.name !== "songs") this.$router.push({ name: "songs" });
     },
     goPls() {
-      this.$router.push({ name: "playlists" });
+      if (this.$route.name !== "playlists")
+        this.$router.push({ name: "playlists" });
     },
     goAbout() {
-      this.$router.push({ name: "about" });
+      if (this.$route.name !== "about") this.$router.push({ name: "about" });
     },
     goProfile() {
-      this.$router.push({ name: "profile" });
+      if (this.$route.name !== "profile")
+        this.$router.push({ name: "profile" });
     },
     goArtists() {
-      this.$router.push({ name: "artists" });
+      if (this.$route.name !== "artists")
+        this.$router.push({ name: "artists" });
+    },
+    goAlbums() {
+      if (this.$route.name !== "albums") this.$router.push({ name: "albums" });
     }
   },
   data() {

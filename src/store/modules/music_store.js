@@ -560,6 +560,17 @@ const getters = {
       return gr.name.toLowerCase().includes(state.search.toLowerCase());
     });
   },
+  songsGroupByAlbum: (state) => {
+    return _.chain(state.allSongs)
+      .groupBy("album")
+      .map((value, key) => ({ name: key, songs: value }))
+      .value();
+  },
+  songsGroupByAlbumFilter: (state, getters) => {
+    return getters.songsGroupByAlbum.filter((gr) => {
+      return gr.name.toLowerCase().includes(state.search.toLowerCase());
+    });
+  },
   relevantSong: (state) => {
     if (state.currentSong.name === "--") return null;
     let artists = state.currentSong.artists;

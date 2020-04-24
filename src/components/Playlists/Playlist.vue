@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="padding: 8px 0;">
-    <div class="col-12 playlist d-flex flex-row" @click="show = !show">
+    <div class="col-6 col-sm-12 playlist d-flex flex-row" @click="show = !show">
       <div class="p-2 flex-grow-1 bd-highlight text">
         <p class="text title">{{ playlist.name }}</p>
         <p class="text">
@@ -11,8 +11,6 @@
           }}
         </p>
       </div>
-      <!-- <i class="fa fa-pen item"></i>
-      <i class="far fa-times-circle"></i>-->
       <i
         class="fa fa-times-circle item"
         @click.stop="showModalDeletePl = true"
@@ -170,7 +168,7 @@ export default {
 </script>
 <style scoped>
 .playlist {
-  height: 60px;
+  /* height: 60px; */
   /* background: rgb(37, 41, 56); */
   align-items: center;
   border-radius: 10px;

@@ -20,6 +20,9 @@
             <li>
               <a :class="{ active: $route.path == '/artists' }" @click.stop="goArtists">Artists</a>
             </li>
+            <li>
+              <a :class="{ active: $route.path == '/albums' }" @click.stop="goAlbums">Albums</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -30,19 +33,26 @@
 export default {
   methods: {
     goHome() {
-      this.$router.push({ name: "home" });
+      if (this.$route.name !== "home") this.$router.push({ name: "home" });
       this.$emit("close");
     },
     goSongs() {
-      this.$router.push({ name: "songs" });
+      if (this.$route.name !== "songs") this.$router.push({ name: "songs" });
       this.$emit("close");
     },
     goPls() {
-      this.$router.push({ name: "playlists" });
+      if (this.$route.name !== "playlists")
+        this.$router.push({ name: "playlists" });
       this.$emit("close");
     },
     goArtists() {
-      this.$router.push({ name: "artists" });
+      if (this.$route.name !== "artists")
+        this.$router.push({ name: "artists" });
+      this.$emit("close");
+    },
+    goAlbums() {
+      if (this.$route.name !== "albums") this.$router.push({ name: "albums" });
+      this.$emit("close");
     }
   }
 };
