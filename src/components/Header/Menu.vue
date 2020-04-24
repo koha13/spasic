@@ -17,9 +17,6 @@
             <li>
               <a :class="{ active: $route.path == '/playlists' }" @click.stop="goPls">Playlists</a>
             </li>
-            <li>
-              <a :class="{ active: $route.path == '/about' }" @click.stop="goAbout">About us</a>
-            </li>
           </ul>
         </nav>
       </div>
@@ -39,10 +36,6 @@ export default {
     },
     goPls() {
       this.$router.push({ name: "playlists" });
-      this.$emit("close");
-    },
-    goAbout() {
-      this.$router.push({ name: "about" });
       this.$emit("close");
     }
   }

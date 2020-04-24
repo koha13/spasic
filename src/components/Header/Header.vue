@@ -23,9 +23,6 @@
                 <li :class="{ active: $route.path == '/playlists' }">
                   <a id="direc" @click="goPls">Playlists</a>
                 </li>
-                <li :class="{ active: $route.path == '/about' }">
-                  <a id="direc" @click="goAbout">About</a>
-                </li>
               </ul>
             </nav>
             <!-- User area -->
@@ -36,7 +33,11 @@
                   <input type="text" id="textInput1" v-model="search" />
                 </li>
                 <li style="margin-left:20px">
-                  <i class="fa fa-search fa-lg"></i>
+                  <i
+                    class="fas fa-info-circle fa-lg"
+                    @click="goAbout"
+                    :class="{ active: $route.path == '/about' }"
+                  ></i>
                 </li>
                 <li style="margin-left:20px">
                   <i
