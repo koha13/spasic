@@ -7,7 +7,7 @@
           {{
           playlist.songs.length +
           "-song" +
-          (playlist.songs.length > 1 ? "s" : "")
+          (playlist.songs.length > 1 ? "s" : "")}} / {{totalTime | minutes
           }}
         </p>
       </div>
@@ -122,6 +122,15 @@ export default {
       tempSong: null,
       showModalDeletePl: false
     };
+  },
+  computed: {
+    totalTime() {
+      let time = 0;
+      this.playlist.songs.map(song => {
+        time += song.length;
+      });
+      return time;
+    }
   },
   methods: {
     close() {
