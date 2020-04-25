@@ -7,15 +7,19 @@
       <div class="box">
         <p>Name: {{ this.$store.state.user_store.username }}</p>
         <p>Role: {{ this.$store.state.user_store.role }}</p>
-        <button type="button" class="btn btn-primary" @click="logout">Logout</button>
+        <button type="button" class="btn btn-primary" @click="logout">
+          Logout
+        </button>
       </div>
       <div class="box">
         <p>Theme</p>
         <button
           type="button"
-          :class="{btn:true, darkTheme:darkTheme}"
+          :class="{ btn: true, darkTheme: darkTheme }"
           @click="darkTheme = !darkTheme"
-        >Dark theme: {{darkTheme}}</button>
+        >
+          Dark theme: {{ darkTheme }}
+        </button>
       </div>
       <div class="box">
         <h5>Change password:</h5>
@@ -28,14 +32,11 @@
           <button type="submit" class="btn btn-primary">Change</button>
         </form>
       </div>
-      <div class="box">
+      <div class="box" v-if="$store.state.user_store.role === 'admin'">
         <p>Admin stuff</p>
-        <router-link
-          tag="button"
-          to="/admin"
-          class="btn btn-danger"
-          v-if="$store.state.user_store.role === 'admin'"
-        >Admin</router-link>
+        <router-link tag="button" to="/admin" class="btn btn-danger"
+          >Admin</router-link
+        >
       </div>
     </div>
   </div>
@@ -61,7 +62,7 @@ export default {
           .getElementById("varSource")
           .setAttribute("href", "/css/var.css");
       }
-    }
+    },
   },
   methods: {
     logout() {
@@ -73,22 +74,22 @@ export default {
       axios
         .post("/auth/changepass", {
           newPass: this.newpass,
-          oldPass: this.oldpass
+          oldPass: this.oldpass,
         })
-        .then(res => {
+        .then((res) => {
           localStorage.setItem("token", res.data.token);
           alert("Change pass done");
           (this.oldpass = ""), (this.newpass = "");
         });
-    }
+    },
   },
   data() {
     return {
       oldpass: "",
       newpass: "",
-      darkTheme: false
+      darkTheme: false,
     };
-  }
+  },
 };
 </script>
 <style scoped>

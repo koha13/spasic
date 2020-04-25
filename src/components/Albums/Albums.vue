@@ -2,7 +2,7 @@
   <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="album">
       <div class="image-holder">
-        <img :src="playlist.songs[0].songImage" style="width:100%;height:300px;object-fit:cover" />
+        <img v-lazy="playlist.songs[0].songImage" />
         <div class="song-in-album">
           <div
             :class="{
@@ -93,8 +93,9 @@ export default {
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   opacity: 1;
-}
-.album img:hover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .album {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

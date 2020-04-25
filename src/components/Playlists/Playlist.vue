@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="padding: 8px 0;">
-    <div class="col-6 col-sm-12 playlist d-flex flex-row" @click="show = !show">
+    <div class="col-12 playlist d-flex flex-row" @click="show = !show">
       <div class="p-2 flex-grow-1 bd-highlight text">
         <p class="text title">{{ playlist.name }}</p>
         <p class="text">
