@@ -62,7 +62,8 @@
           <!-- Menu -->
           <div class="menu-bot d-flex flex-row align-items-center justify-content-start">
             <ul class="d-flex flex-row align-items-start justify-content-start">
-              <li>
+              <li style="position:relative" class="vl">
+                <i id="hi" class="fa fa-volume-up fa-lg"></i>
                 <input
                   id="hi"
                   type="range"
@@ -70,9 +71,10 @@
                   min="0"
                   max="1"
                   step="0.1"
-                  v-model="$store.state.music_store.player.volume"
+                  v-model="volume"
                 />
-
+              </li>
+              <li>
                 <i
                   id="hi"
                   class="far fa-heart fa-lg"
@@ -86,6 +88,8 @@
                   v-else
                   @click.stop="$store.dispatch('unlikeSong')"
                 ></i>
+              </li>
+              <li>
                 <i
                   class="fa fa-list-ul fa-lg"
                   @click="$emit('changeCurrentListState')"
@@ -103,6 +107,25 @@
 export default {
   props: {
     showCurrentList: Boolean
+  },
+  created() {
+    this.vl = this.volume;
+  },
+  data() {
+    return {
+      vl: 0
+    };
+  },
+  computed: {
+    volume: {
+      get() {
+        return this.$store.state.music_store.player.volume;
+      },
+      set(value) {
+        this.vl = value;
+        this.$store.state.music_store.player.volume = value;
+      }
+    }
   }
 };
 </script>
@@ -123,11 +146,17 @@ export default {
 }
 .custom-range {
   position: relative;
-  width: 55px;
-  left: 0px;
+  width: 70px;
+  margin-left: 5px;
   bottom: 5px;
   -moz-transform: translateY(5px);
   border-radius: 10px;
+  background: var(--color5);
+  z-index: 1000;
+  display: none;
+}
+.vl:hover .custom-range {
+  display: inline-block;
 }
 input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;

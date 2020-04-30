@@ -116,7 +116,7 @@ export default {
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 101;
+  z-index: 1;
   transition: all 0.2s ease;
 }
 .plyr__controls {
