@@ -30,8 +30,10 @@ export default {
       document
         .getElementById("varSource")
         .setAttribute("href", "/css/var-dark.css");
+      document.getElementById("adr-color").setAttribute("content", "#090b10");
     } else {
       document.getElementById("varSource").setAttribute("href", "/css/var.css");
+      document.getElementById("adr-color").setAttribute("content", "#2a555b");
     }
     if (this.$route.path != "/loading")
       this.$router.replace({
