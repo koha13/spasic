@@ -13,6 +13,11 @@ Vue.use(VuePlyr);
 Vue.use(Notifications);
 Vue.use(VueLazyload);
 
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: "UA-165025730-1",
+});
+
 Vue.filter("minutes", (value) => {
   if (!value || typeof value !== "number") return "00:00";
   let hour = parseInt(value / 3600),
