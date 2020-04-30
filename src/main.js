@@ -6,6 +6,7 @@ import Vuelidate from "vuelidate";
 import VuePlyr from "vue-plyr";
 import Notifications from "vue-notification";
 import VueLazyload from "vue-lazyload";
+import VueAnalytics from "vue-analytics";
 
 Vue.config.productionTip = false;
 Vue.use(Vuelidate);
