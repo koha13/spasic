@@ -9,14 +9,14 @@
           <!-- control -->
           <div class="control">
             <a class="d-flex flex-row align-items-end justify-content-start">
-              <i class="fa fa-backward fa-lg" @click="$store.dispatch('backSong')"></i>
+              <i class="fa fa-step-backward fa-lg" @click="$store.dispatch('backSong')"></i>
               <i
                 v-if="!$store.getters.isPlaying"
                 class="fa fa-play fa-lg"
                 @click="$store.dispatch('play')"
               ></i>
               <i v-else class="fa fa-pause fa-lg" @click="$store.dispatch('pause')"></i>
-              <i class="fa fa-forward fa-lg" @click="$store.dispatch('nextSong')"></i>
+              <i class="fa fa-step-forward fa-lg" @click="$store.dispatch('nextSong')"></i>
               <i
                 id="hi"
                 class="fa fa-repeat fa-lg"
@@ -149,7 +149,7 @@ export default {
   width: 70px;
   margin-left: 5px;
   bottom: 5px;
-  -moz-transform: translateY(5px);
+  -moz-transform: translateY(7px);
   border-radius: 10px;
   background: var(--color5);
   z-index: 1000;
