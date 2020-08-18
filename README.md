@@ -2,7 +2,7 @@
 
 #### Simple front-end music website by VueJS
 
-## [Demo](https://koha13.live)
+## [Demo](https://koha13.live) suck azure server. So MAYBE it's not working
 
 ## [API repo](https://github.com/koha13/spasic-api)
 
