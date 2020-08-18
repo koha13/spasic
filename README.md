@@ -2,16 +2,18 @@
 
 #### Simple front-end music website by VueJS
 
-## [Demo](https://koha13.live) suck azure server. So MAYBE it's not working
+## [Demo](https://koha13.live)
 
 ## [API repo](https://github.com/koha13/spasic-api)
 
 ## Image
 
-![alt text](https://user-images.githubusercontent.com/26362611/72894877-d516b500-3d4e-11ea-9268-10704ff18ee3.PNG)
-![alt text](https://user-images.githubusercontent.com/26362611/72894878-d516b500-3d4e-11ea-95fb-6fc116e3422b.PNG)
-![alt text](https://user-images.githubusercontent.com/26362611/72894879-d516b500-3d4e-11ea-9491-78907b5f23d7.PNG)
-![alt text](https://user-images.githubusercontent.com/26362611/72894881-d5af4b80-3d4e-11ea-9658-da842efe9773.PNG)
+![alt text](https://user-images.githubusercontent.com/26362611/90546266-0441b780-e1b4-11ea-8284-83e5236116f0.PNG)
+![alt text](https://user-images.githubusercontent.com/26362611/90546267-04da4e00-e1b4-11ea-9559-cfc1a87d5f9f.PNG)
+![alt text](https://user-images.githubusercontent.com/26362611/90546268-04da4e00-e1b4-11ea-9ccb-47fd31b23a6e.PNG)
+![alt text](https://user-images.githubusercontent.com/26362611/90546248-00ae3080-e1b4-11ea-86d7-434981358d07.PNG)
+With new theme:
+![alt text](https://user-images.githubusercontent.com/26362611/90546262-03a92100-e1b4-11ea-8d59-bfd3023447cb.PNG)
 |<img width="250" src="https://user-images.githubusercontent.com/26362611/76830611-31321d00-6858-11ea-81e5-7ac25240c746.png">  |  <img width="250" src="https://user-images.githubusercontent.com/26362611/76830615-33947700-6858-11ea-8f41-2c0d8430d8d0.png">|<img width="250" src="https://user-images.githubusercontent.com/26362611/76830617-34c5a400-6858-11ea-9ea6-b9d228510f47.png">|
 
 ## Project setup
