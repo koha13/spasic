@@ -10,6 +10,7 @@
 
 ![alt text](https://user-images.githubusercontent.com/26362611/90546266-0441b780-e1b4-11ea-8284-83e5236116f0.PNG)
 ![alt text](https://user-images.githubusercontent.com/26362611/90546267-04da4e00-e1b4-11ea-9559-cfc1a87d5f9f.PNG)
+![alt text](https://user-images.githubusercontent.com/26362611/91053439-017c1200-e64d-11ea-93d3-bfbc5bcb5f7c.PNG)
 ![alt text](https://user-images.githubusercontent.com/26362611/90546268-04da4e00-e1b4-11ea-9ccb-47fd31b23a6e.PNG)
 ![alt text](https://user-images.githubusercontent.com/26362611/90546248-00ae3080-e1b4-11ea-86d7-434981358d07.PNG)
 With new theme:
