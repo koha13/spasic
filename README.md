@@ -1,6 +1,6 @@
 # spasic
 
-#### Simple front-end music website by VueJS
+#### Simple front-end music website by VueJS (Mobile friendly)
 
 ## [Demo](https://koha13.live)
 
