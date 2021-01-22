@@ -106,14 +106,14 @@
 <script>
 export default {
   props: {
-    showCurrentList: Boolean
+    showCurrentList: Boolean,
   },
   created() {
     this.vl = this.volume;
   },
   data() {
     return {
-      vl: 0
+      vl: 0,
     };
   },
   computed: {
@@ -124,9 +124,9 @@ export default {
       set(value) {
         this.vl = value;
         this.$store.state.music_store.player.volume = value;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 <style scoped>

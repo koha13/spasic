@@ -25,11 +25,11 @@ export default {
   components: {
     SongImage,
     SongDetail,
-    SongRefer
+    SongRefer,
   },
   activated() {
     document.getElementById("currentSong").scrollTop = 0;
-  }
+  },
 };
 </script>
 
