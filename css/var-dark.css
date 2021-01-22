@@ -1,0 +1,14 @@
+:root {
+  --color-main: #090b10; /*Bg header, footer, listCurrentSongs*/
+  --color-hover: #f69953;
+  --color-text: #ffffff;
+  --color-card: #0f111a;
+  --color3: #788688; /*bg-input*/
+  --color4: rgb(26, 171, 255); /*color-input*/
+  --color4-hover: #46cdcf;
+  --color5: #4d5e60; /*Bg modal and contextMenu*/
+  --color-bg: #151a25;
+  --color-item-active: #7a969b;
+  /* --color-bg-listsong: rgb(33, 39, 55); */
+  --color-contrast: #f69953;
+}
