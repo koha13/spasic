@@ -2,7 +2,7 @@
 
 #### Simple front-end music website by VueJS (Mobile friendly)
 
-## [Demo](https://koha13.live)
+## [Demo](https://music.koha13.xyz/)
 
 ## [API repo](https://github.com/koha13/spasic-api)
 
